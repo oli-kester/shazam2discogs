@@ -4,7 +4,7 @@ plugins {
 	id 'java'
 }
 
-group = 'net.oli-kester'
+group = 'net.olikester'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '11'
 
@@ -19,9 +19,11 @@ repositories {
 }
 
 dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
-	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	runtimeOnly 'com.h2database:h2' //TODO remove this if we don't use it
 	testImplementation('org.springframework.boot:spring-boot-starter-test') {
 		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 	}

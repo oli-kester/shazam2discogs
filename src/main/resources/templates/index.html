@@ -1,0 +1,19 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text=${SITE_TITLE}></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<h1>Welcome to the Shazam2Discogs tool.</h1>
+<p>Use this to import all of your Shazamed tracks into a Discogs list. </p>
+
+<p>Follow this video to get your JSON file of Shazam tracks - </p>
+
+<p>---- VIDEO HERE ----</p>
+<form method="POST" enctype="multipart/form-data" action="/">
+    <input type="file" name="file"/>
+    <input type="submit" value="Upload"/>
+</form>
+</body>
+</html>

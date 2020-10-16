@@ -1,0 +1,124 @@
+{
+    "tags": [
+        {
+            "tagid": "f36e1600-2d1e-41d0-987e-87b4b9b1ca4f",
+            "key": "524476162",
+            "timestamp": 1600956464865,
+            "timezone": "Europe/London",
+            "geolocation": {
+                "longitude": 0.0,
+                "latitude": 0.0
+            },
+            "type": "TAG",
+            "track": {
+                "type": "MUSIC",
+                "key": "524476162",
+                "heading": {
+                    "title": "Model Village",
+                    "subtitle": "IDLES"
+                },
+                "images": {
+                    "default": "https://images.shazam.com/coverart/t524476162-i1517641329_s400.jpg",
+                    "blurred": "https://images.shazam.com/coverart/t524476162-i1517641329_s400b6.jpg",
+                    "play": "https://images.shazam.com/coverart/t524476162-i1517641329_s400play.jpg"
+                },
+                "stores": {
+                    "apple": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://music.apple.com/gb/album/model-village/1517639211?i=1517641329&uo=5&at=1001l4DI&itscg=30201&ct=5348615A-616D-3235-3830-44754D6D5973&app=music&itsct=Shazam_1"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t524476162-b1517641329_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t524476162-b1517641329_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t524476162-b1517641329_s400play.jpg"
+                        },
+                        "explicit": true,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview113/v4/11/cb/96/11cb962b-33be-e22d-53a8-c5da1cc7061d/mzaf_15979793308050894847.plus.aac.p.m4a",
+                        "trackid": "1517641329",
+                        "productid": "1517639211"
+                    },
+                    "itunes": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://itunes.apple.com/gb/album/model-village/1517639211?i=1517641329&uo=5&at=11l3eE&ct=5348615A-616D-3235-3830-44754D6D5973&app=itunes"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t524476162-i1517641329_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t524476162-i1517641329_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t524476162-i1517641329_s400play.jpg"
+                        },
+                        "explicit": true,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview113/v4/11/cb/96/11cb962b-33be-e22d-53a8-c5da1cc7061d/mzaf_15979793308050894847.plus.aac.p.m4a",
+                        "trackid": "1517641329",
+                        "productid": "1517639211"
+                    }
+                },
+                "streams": {},
+                "modules": [],
+                "content": {
+                    "videos": {
+                        "href": "https://cdn.shazam.com/video/v2/-/GB/web/track/-/videos?q=IDLES+Model+Village"
+                    },
+                    "artiststoptracks": {
+                        "href": "https://cdn.shazam.com/shazam/v2/en/GB/web/-/tracks/artisttoptracks_41715698"
+                    }
+                },
+                "artists": [
+                    {
+                        "follow": {
+                            "followkey": "A_41715698"
+                        },
+                        "alias": "idles",
+                        "id": "41715698"
+                    }
+                ],
+                "share": {
+                    "subject": "Model Village - IDLES",
+                    "text": "I used Shazam to discover Model Village by IDLES.",
+                    "href": "https://www.shazam.com/track/524476162/model-village",
+                    "image": "https://images.shazam.com/coverart/t524476162-i1517641329_s400.jpg",
+                    "twitter": "I used @Shazam to discover Model Village by IDLES.",
+                    "html": "https://www.shazam.com/snippets/email-share/524476162?lang=en&country=GB",
+                    "avatar": "https://is2-ssl.mzstatic.com/image/thumb/Features114/v4/b4/82/49/b48249e9-723a-57f6-7af9-9933bf9a16c0/mza_768474841643879044.png/800x800bb.jpeg",
+                    "snapchat": "https://www.shazam.com/partner/sc/track/524476162"
+                },
+                "footnotes": [
+                    {
+                        "title": "Album",
+                        "value": "Ultra Mono"
+                    },
+                    {
+                        "title": "Label",
+                        "value": "Partisan Records"
+                    },
+                    {
+                        "title": "Released",
+                        "value": "2020"
+                    },
+                    {
+                        "title": "Artwork",
+                        "value": "Provided by iTunes"
+                    }
+                ],
+                "alias": "model-village",
+                "url": "https://www.shazam.com/track/524476162/model-village",
+                "actions": [
+                    {
+                        "name": "track:524476162",
+                        "type": "track",
+                        "id": "524476162"
+                    }
+                ],
+                "urlparams": {
+                    "{tracktitle}": "Model+Village",
+                    "{trackartist}": "IDLES"
+                }
+            }
+        },
+    ]
+}
