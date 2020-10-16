@@ -11,7 +11,7 @@ import javax.persistence.Id;
 public class Release {
     @Id
     @GeneratedValue
-    private int id;
+    private int id; //TODO make this work
     private String album;
     private String label;
     private String releaseYear;

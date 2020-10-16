@@ -1,0 +1,141 @@
+{
+  "tags": [
+    {
+      "tagid": "ebd7145c-6542-41fa-9794-84bacdec0b18",
+      "key": "5996069",
+      "timestamp": 1576589658033,
+      "timezone": "Europe/London",
+      "geolocation": {
+        "longitude": 0.0,
+        "latitude": 0.0
+      },
+      "type": "TAG",
+      "track": {
+        "type": "MUSIC",
+        "key": "5996069",
+        "heading": {
+          "title": "Lazy",
+          "subtitle": "X-Press 2 Feat. David Byrne"
+        },
+        "images": {
+          "default": "https://images.shazam.com/coverart/t5996069-i1141927898_s400.jpg",
+          "blurred": "https://images.shazam.com/coverart/t5996069-i1141927898_s400b6.jpg",
+          "play": "https://images.shazam.com/coverart/t5996069-i1141927898_s400play.jpg"
+        },
+        "stores": {
+          "apple": {
+            "actions": [
+              {
+                "type": "uri",
+                "uri": "https://music.apple.com/gb/album/lazy-feat-david-byrne-extended-version/1141927706?i=1141927898&uo=5&at=1001l4DI&itscg=30201&ct=5348615A-616D-3235-3830-44754D6D5973&app=music&itsct=Shazam_1"
+              }
+            ],
+            "images": {
+              "default": "https://images.shazam.com/coverart/t5996069-b1141927898_s400.jpg",
+              "blurred": "https://images.shazam.com/coverart/t5996069-b1141927898_s100b6.jpg",
+              "play": "https://images.shazam.com/coverart/t5996069-b1141927898_s400play.jpg"
+            },
+            "explicit": false,
+            "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview62/v4/5e/4c/ac/5e4cac49-1242-53f8-40b0-fb9eb27aa528/mzaf_8309952690093194245.plus.aac.p.m4a",
+            "trackid": "1141927898",
+            "productid": "1141927706"
+          },
+          "itunes": {
+            "actions": [
+              {
+                "type": "uri",
+                "uri": "https://itunes.apple.com/gb/album/lazy-feat-david-byrne-extended-version/1141927706?i=1141927898&uo=5&at=11l3eE&ct=5348615A-616D-3235-3830-44754D6D5973&app=itunes"
+              }
+            ],
+            "images": {
+              "default": "https://images.shazam.com/coverart/t5996069-i1141927898_s400.jpg",
+              "blurred": "https://images.shazam.com/coverart/t5996069-i1141927898_s100b6.jpg",
+              "play": "https://images.shazam.com/coverart/t5996069-i1141927898_s400play.jpg"
+            },
+            "explicit": false,
+            "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview62/v4/5e/4c/ac/5e4cac49-1242-53f8-40b0-fb9eb27aa528/mzaf_8309952690093194245.plus.aac.p.m4a",
+            "trackid": "1141927898",
+            "productid": "1141927706"
+          }
+        },
+        "streams": {
+          "spotify": {
+            "actions": [
+              {
+                "name": "stream:spotify:web",
+                "type": "uri",
+                "uri": "https://open.spotify.com/track/5DpIo1IxyQetTtWlcyUmPG?utm_campaign=ShazamSC&utm_source=Shazam&utm_medium=web"
+              }
+            ]
+          }
+        },
+        "modules": [],
+        "content": {
+          "videos": {
+            "href": "https://cdn.shazam.com/video/v2/-/GB/web/track/-/videos?q=X-Press+2+Feat.+David+Byrne+Lazy"
+          },
+          "artiststoptracks": {
+            "href": "https://cdn.shazam.com/shazam/v2/en/GB/web/-/tracks/artisttoptracks_5703634"
+          }
+        },
+        "artists": [
+          {
+            "follow": {
+              "followkey": "A_5703634"
+            },
+            "alias": "x-press-2",
+            "id": "5703634"
+          },
+          {
+            "follow": {
+              "followkey": "A_2670"
+            },
+            "alias": "david-byrne",
+            "id": "2670"
+          }
+        ],
+        "share": {
+          "subject": "Lazy - X-Press 2 Feat. David Byrne",
+          "text": "I used Shazam to discover Lazy by X-Press 2 Feat. David Byrne.",
+          "href": "https://www.shazam.com/track/5996069/lazy",
+          "image": "https://images.shazam.com/coverart/t5996069-i1141927898_s400.jpg",
+          "twitter": "I used @Shazam to discover Lazy by X-Press 2 Feat. David Byrne.",
+          "html": "https://www.shazam.com/snippets/email-share/5996069?lang=en&country=GB",
+          "avatar": "https://is3-ssl.mzstatic.com/image/thumb/Music123/v4/45/e3/34/45e334e2-acac-1801-3a6d-7ba6aa5bafbf/pr_source.png/800x800bb.jpeg",
+          "snapchat": "https://www.shazam.com/partner/sc/track/5996069"
+        },
+        "footnotes": [
+          {
+            "title": "Album",
+            "value": "Lazy (feat. David Byrne) - Single"
+          },
+          {
+            "title": "Label",
+            "value": "Skint Records"
+          },
+          {
+            "title": "Released",
+            "value": "2002"
+          },
+          {
+            "title": "Artwork",
+            "value": "Provided by iTunes"
+          }
+        ],
+        "alias": "lazy",
+        "url": "https://www.shazam.com/track/5996069/lazy",
+        "actions": [
+          {
+            "name": "track:5996069",
+            "type": "track",
+            "id": "5996069"
+          }
+        ],
+        "urlparams": {
+          "{tracktitle}": "Lazy",
+          "{trackartist}": "X-Press+2"
+        }
+      }
+    }
+  ]
+}
