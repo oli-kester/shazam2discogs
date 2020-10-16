@@ -8,36 +8,38 @@ import javax.persistence.Id;
 @Entity
 public class Tag {
     @Id
-    @JsonProperty ( "key" )
-    private String tagKey;
+    private int key;
     @JsonProperty ( "title" )
     private String trackTitle;
     @JsonProperty ( "subtitle" )
     private String artist;
     private Release release;
 
+    /**
+     * Default constructor to allow Jackson to use the class
+     */
     public Tag () {
     }
 
-    public Tag (String tagKey, String trackTitle, String artist) {
-        this.tagKey = tagKey;
+    public Tag (int key, String trackTitle, String artist) {
+        this.key = key;
         this.trackTitle = trackTitle;
         this.artist = artist;
     }
 
-    public Tag (String tagKey, String trackTitle, String artist, Release release) {
-        this.tagKey = tagKey;
+    public Tag (int key, String trackTitle, String artist, Release release) {
+        this.key = key;
         this.trackTitle = trackTitle;
         this.artist = artist;
         this.release = release;
     }
 
-    public String getTagKey () {
-        return tagKey;
+    public int getKey () {
+        return key;
     }
 
-    public void setTagKey (String tagKey) {
-        this.tagKey = tagKey;
+    public void setKey (int key) {
+        this.key = key;
     }
 
     public String getTrackTitle () {
@@ -67,7 +69,7 @@ public class Tag {
     @Override
     public String toString () {
         return "Tag{" +
-                "key='" + tagKey + '\'' +
+                "key='" + key + '\'' +
                 ", title='" + trackTitle + '\'' +
                 ", artist='" + artist + '\'' +
                 '}';

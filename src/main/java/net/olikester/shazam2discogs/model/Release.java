@@ -16,6 +16,9 @@ public class Release {
     private String label;
     private String releaseYear;
 
+    /**
+     * Default constructor to allow Jackson to use the class
+     */
     public Release () {
     }
 
