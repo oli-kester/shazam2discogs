@@ -18,11 +18,13 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 @SpringBootTest ( classes = TagList.class )
-class TagListTest {
+class DeserializationTest {
 
     private static String oneTagJson1 = "";
     private static String oneTagJson2 = "";
     private static String largeShazamDoc = "";
+    private static final String emptyDoc = "";
+    private static String oneTagInvalidTrailingComma = "";
     private static ObjectMapper mapper;
 
     @BeforeAll
@@ -30,6 +32,7 @@ class TagListTest {
         oneTagJson1 = Files.readString(Path.of("src/test/resources/one-tag-test.json"));
         oneTagJson2 = Files.readString(Path.of("src/test/resources/one-tag-test2.json"));
         largeShazamDoc = Files.readString(Path.of("src/test/resources/personal-shazams-oct-2020.json"));
+        oneTagInvalidTrailingComma = Files.readString(Path.of("src/test/resources/one-tag-invalid-trailing-comma.json"));
     }
 
     @BeforeEach
@@ -76,15 +79,47 @@ class TagListTest {
     }
 
     /**
-     * Just check there are no errors with a real & large Shazam JSON file.
+     * Just check there are no errors thrown with a real, large Shazam JSON file.
      */
     @Test
-    public void largeFileSimpleCheck () throws JsonProcessingException {
-        TagList tags = mapper.readValue(largeShazamDoc, TagList.class);
+    public void largeFileSimpleTest () {
+        TagList tags = null;
+        try {
+            tags = mapper.readValue(largeShazamDoc, TagList.class);
+        } catch (Exception e) {
+            e.printStackTrace();
+            fail("Check there are no errors thrown with a real, large Shazam JSON file. Exception thrown. ");
+        }
         if (tags.toArrayList().size() < 1) {
-            fail();
+            fail("Check there are no errors thrown with a real, large Shazam JSON file. No tags scanned. ");
         }
     }
 
-    //TODO corner cases and error handling
+    /**
+     * Test with empty file
+     */
+    @Test
+    public void emptyStringTest () {
+        try {
+            mapper.readValue(emptyDoc, TagList.class);
+            fail("Test with empty file. Program did not throw exception. ");
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * Test with invalid file with trailing comma.
+     */
+    @Test
+    public void invalidFileTest () {
+        try {
+            mapper.readValue(oneTagInvalidTrailingComma, TagList.class);
+            fail("Test with invalid file with trailing comma. Exception not thrown. ");
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    // TODO throw exception on really large file.
 }

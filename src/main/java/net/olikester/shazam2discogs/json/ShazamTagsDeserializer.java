@@ -21,10 +21,10 @@ public class ShazamTagsDeserializer extends StdDeserializer<TagList> {
         super(vc);
     }
 
-    @Override
     /**
      * Deserialize a full Shazam JSON export into a list of tags, discarding irrelevant data.
      */
+    @Override
     public TagList deserialize (JsonParser parser, DeserializationContext context) throws IOException {
         TagList tagList = new TagList();
         ObjectCodec codec = parser.getCodec();
