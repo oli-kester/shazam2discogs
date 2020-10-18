@@ -1,12 +1,10 @@
 package net.olikester.shazam2discogs.model;
 
-import javax.persistence.Entity;
 import java.util.ArrayList;
 
 /**
  * Simple wrapper class around an ArrayList to let us use deserialization methods.
  */
-@Entity
 public class TagList {
     private final ArrayList<Tag> tagsList;
 

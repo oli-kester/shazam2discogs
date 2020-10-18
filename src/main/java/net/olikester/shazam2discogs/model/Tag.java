@@ -1,17 +1,9 @@
 package net.olikester.shazam2discogs.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-
-@Entity
 public class Tag {
-    @Id
     private int key;
-    @JsonProperty ( "title" )
     private String trackTitle;
-    @JsonProperty ( "subtitle" )
     private String artist;
     private Release release;
 

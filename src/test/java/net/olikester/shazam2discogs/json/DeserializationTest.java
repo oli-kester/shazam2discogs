@@ -1,10 +1,12 @@
-package net.olikester.shazam2discogs.model;
+package net.olikester.shazam2discogs.json;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import net.olikester.shazam2discogs.json.ShazamTagsDeserializer;
+import net.olikester.shazam2discogs.model.Tag;
+import net.olikester.shazam2discogs.model.TagList;
+
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

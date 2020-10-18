@@ -1,16 +1,10 @@
 package net.olikester.shazam2discogs.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
 
 /**
  * Reads footnote section of Shazam tag
  */
-@Entity
 public class Release {
-    @Id
-    @GeneratedValue
     private int id; //TODO make this work
     private String album;
     private String label;
