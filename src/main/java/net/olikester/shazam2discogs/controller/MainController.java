@@ -43,17 +43,13 @@ public class MainController {
     @PostMapping("/")
     public RedirectView handleFileUpload(@RequestParam("shazam-json-file") MultipartFile file, RedirectAttributes ra) {
 
-	// Take uploaded file and parse tags into the database
-
 	String fileContents = "";
 
 	try {
 	    fileContents = new String(file.getBytes());
 	    ra.addFlashAttribute("ioSuccess", true);
-	    ra.addFlashAttribute("fileStatus", "File \"" + file.getOriginalFilename() + "\" uploaded successfully");
 	} catch (IOException e) {
 	    ra.addFlashAttribute("ioSuccess", false);
-	    ra.addFlashAttribute("fileStatus", "I/O error on \"" + file.getOriginalFilename() + "\"");
 	    e.printStackTrace();
 	}
 
@@ -66,22 +62,16 @@ public class MainController {
 	try {
 	    tags = mapper.readValue(fileContents, TagList.class);
 	    ra.addFlashAttribute("parseSuccess", true);
-	    ra.addFlashAttribute("parseStatus", "JSON \"" + file.getOriginalFilename() + "\" parsed successfully");
 	} catch (JsonProcessingException e) {
 	    ra.addFlashAttribute("parseSuccess", false);
-	    ra.addFlashAttribute("parseStatus", "JSON parse error with \"" + file.getOriginalFilename() + "\"");
 	    e.printStackTrace();
 	}
 
 	tags.toArrayList().stream().forEach(currTag -> {
 	    tagDao.save(currTag);
 	});
-
-	ra.addFlashAttribute("SITE_TITLE", SITE_TITLE);
-
-	// redirect user to next page
+	
 	RedirectView rv = new RedirectView("jsonSumbit");
-
 	return rv;
     }
 
