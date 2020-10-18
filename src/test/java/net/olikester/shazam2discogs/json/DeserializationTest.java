@@ -125,6 +125,4 @@ class DeserializationTest {
 	    e.printStackTrace();
 	}
     }
-
-    // TODO throw exception on really large file.
 }

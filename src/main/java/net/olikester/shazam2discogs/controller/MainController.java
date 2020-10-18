@@ -1,6 +1,9 @@
 package net.olikester.shazam2discogs.controller;
 
 import java.io.IOException;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
+import org.springframework.web.servlet.view.RedirectView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.Version;
@@ -36,20 +41,19 @@ public class MainController {
     }
 
     @PostMapping("/")
-    public String handleFileUpload(@RequestParam("shazam-json-file") MultipartFile file,
-	    RedirectAttributes redirectAttributes) {
+    public RedirectView handleFileUpload(@RequestParam("shazam-json-file") MultipartFile file, RedirectAttributes ra) {
 
-	/**
-	 * TODO exceptions for file access errors -
-	 * https://github.com/spring-guides/gs-uploading-files/blob/master/complete/src/main/java/com/example/uploadingfiles/storage/FileSystemStorageService.java
-	 **/
+	// Take uploaded file and parse tags into the database
 
 	String fileContents = "";
 
 	try {
 	    fileContents = new String(file.getBytes());
+	    ra.addFlashAttribute("ioSuccess", true);
+	    ra.addFlashAttribute("fileStatus", "File \"" + file.getOriginalFilename() + "\" uploaded successfully");
 	} catch (IOException e) {
-	    // TODO Auto-generated catch block
+	    ra.addFlashAttribute("ioSuccess", false);
+	    ra.addFlashAttribute("fileStatus", "I/O error on \"" + file.getOriginalFilename() + "\"");
 	    e.printStackTrace();
 	}
 
@@ -61,18 +65,47 @@ public class MainController {
 
 	try {
 	    tags = mapper.readValue(fileContents, TagList.class);
+	    ra.addFlashAttribute("parseSuccess", true);
+	    ra.addFlashAttribute("parseStatus", "JSON \"" + file.getOriginalFilename() + "\" parsed successfully");
 	} catch (JsonProcessingException e) {
-	    // TODO Auto-generated catch block
+	    ra.addFlashAttribute("parseSuccess", false);
+	    ra.addFlashAttribute("parseStatus", "JSON parse error with \"" + file.getOriginalFilename() + "\"");
 	    e.printStackTrace();
 	}
-	
+
 	tags.toArrayList().stream().forEach(currTag -> {
 	    tagDao.save(currTag);
 	});
 
-	redirectAttributes.addFlashAttribute("message",
-		"You successfully uploaded " + file.getOriginalFilename() + "!");
+	ra.addFlashAttribute("SITE_TITLE", SITE_TITLE);
 
-	return "redirect:/";
+	// redirect user to next page
+	RedirectView rv = new RedirectView("jsonSumbit");
+
+	return rv;
     }
+
+    @GetMapping("/jsonSumbit")
+    public ModelAndView jsonSumbit(HttpServletRequest request) {
+	Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
+
+	ModelAndView mv = new ModelAndView();
+
+	if (inputFlashMap != null) {
+	    boolean ioSuccess = (boolean) inputFlashMap.get("ioSuccess");
+	    boolean parseSuccess = (boolean) inputFlashMap.get("parseSuccess");
+	    mv.addObject("SITE_TITLE", SITE_TITLE);
+	    mv.addAllObjects(inputFlashMap);
+
+	    if (ioSuccess && parseSuccess) {
+		mv.setViewName("linkDiscogs");
+	    } else {
+		mv.setViewName("jsonError");
+	    }
+	} else {
+	    mv.setViewName("error");
+	}
+	return mv;
+    }
+
 }
