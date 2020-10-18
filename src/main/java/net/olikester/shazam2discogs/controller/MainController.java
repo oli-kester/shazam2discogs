@@ -65,6 +65,10 @@ public class MainController {
 	    // TODO Auto-generated catch block
 	    e.printStackTrace();
 	}
+	
+	tags.toArrayList().stream().forEach(currTag -> {
+	    tagDao.save(currTag);
+	});
 
 	redirectAttributes.addFlashAttribute("message",
 		"You successfully uploaded " + file.getOriginalFilename() + "!");
