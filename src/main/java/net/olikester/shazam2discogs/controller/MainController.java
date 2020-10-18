@@ -2,6 +2,7 @@ package net.olikester.shazam2discogs.controller;
 
 import java.io.IOException;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -15,6 +16,7 @@ import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
+import net.olikester.shazam2discogs.dao.TagDao;
 import net.olikester.shazam2discogs.json.ShazamTagsDeserializer;
 import net.olikester.shazam2discogs.model.TagList;
 
@@ -23,8 +25,8 @@ public class MainController {
 
     private final static String SITE_TITLE = "Shazam2Discogs";
 
-//    @Autowired
-//    private TagDao tagDao;
+    @Autowired
+    private TagDao tagDao;
 
     @GetMapping("/")
     public ModelAndView home() {
