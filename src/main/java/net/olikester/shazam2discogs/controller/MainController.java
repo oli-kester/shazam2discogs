@@ -6,6 +6,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +29,8 @@ import net.olikester.shazam2discogs.model.TagList;
 @Controller
 public class MainController {
 
-    private final static String SITE_TITLE = "Shazam2Discogs";
+    @Value("${shazam2discogs.site-title}")
+    private String SITE_TITLE;
 
     @Autowired
     private TagDao tagDao;
@@ -70,7 +72,7 @@ public class MainController {
 	tags.toArrayList().stream().forEach(currTag -> {
 	    tagDao.save(currTag);
 	});
-	
+
 	RedirectView rv = new RedirectView("jsonSumbit");
 	return rv;
     }
@@ -90,9 +92,11 @@ public class MainController {
 	    if (ioSuccess && parseSuccess) {
 		mv.setViewName("linkDiscogs");
 	    } else {
+		// TODO better error messages in JSON Error document
 		mv.setViewName("jsonError");
 	    }
 	} else {
+	    // TODO make error page.
 	    mv.setViewName("error");
 	}
 	return mv;
