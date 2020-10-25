@@ -1,7 +1,6 @@
 package net.olikester.shazam2discogs.service;
 
 import java.util.HashMap;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
@@ -11,9 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth.common.signature.SharedConsumerSecretImpl;
 import org.springframework.security.oauth.consumer.BaseProtectedResourceDetails;
 import org.springframework.security.oauth.consumer.client.OAuthRestTemplate;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
-@Component
+@Service
 @SuppressWarnings("deprecation")
 @PropertySource("classpath:apiSecret.properties") // my API keys are hidden in second properties file.
 public class DiscogsServiceImpl implements DiscogsService {
