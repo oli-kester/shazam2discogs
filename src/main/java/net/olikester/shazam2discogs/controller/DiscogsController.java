@@ -20,7 +20,7 @@ public class DiscogsController {
     @GetMapping("/login")
     public ModelAndView login() {
 	ModelAndView mv = new ModelAndView();
-	discogsService.login();
+	discogsService.fetchRequestToken();
 	return mv;
     }
 

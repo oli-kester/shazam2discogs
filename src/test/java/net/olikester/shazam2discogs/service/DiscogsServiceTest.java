@@ -14,7 +14,7 @@ public class DiscogsServiceTest {
     @DisplayName("Should get no exceptions from a simple login token request.")
     @Test
     public void simpleRestLoginTokenTest() {
-	discogsService.login();
+	discogsService.fetchRequestToken();
     }
     
 }
