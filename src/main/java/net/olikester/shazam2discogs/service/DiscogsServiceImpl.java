@@ -1,17 +1,15 @@
 package net.olikester.shazam2discogs.service;
 
-import java.text.ParseException;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth.common.signature.SharedConsumerSecretImpl;
 import org.springframework.security.oauth.consumer.BaseProtectedResourceDetails;
+import org.springframework.security.oauth.consumer.OAuthConsumerToken;
 import org.springframework.security.oauth.consumer.OAuthRequestFailedException;
-import org.springframework.security.oauth.consumer.client.OAuthRestTemplate;
+import org.springframework.security.oauth.consumer.client.CoreOAuthConsumerSupport;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -27,8 +25,11 @@ public class DiscogsServiceImpl implements DiscogsService {
     private String API_SECRET;
 
     @Override
-    public OauthRequestToken fetchRequestToken() {
+    public OAuthConsumerToken fetchRequestToken(String callbackURL) {
 	BaseProtectedResourceDetails resource = new BaseProtectedResourceDetails();
+	HashMap<String, String> extraHeaderParams = new HashMap<String, String>();
+	CoreOAuthConsumerSupport consumerSupport = new CoreOAuthConsumerSupport();
+
 	resource.setId("discogs");
 	resource.setConsumerKey(API_KEY);
 	resource.setSharedSecret(new SharedConsumerSecretImpl(API_SECRET));
@@ -36,23 +37,18 @@ public class DiscogsServiceImpl implements DiscogsService {
 	resource.setUserAuthorizationURL("https://www.discogs.com/oauth/authorize");
 	resource.setAccessTokenURL("https://api.discogs.com/oauth/access_token");
 
-	HashMap<String, String> extraHeaderParams = new HashMap<String, String>();
 	extraHeaderParams.put("User-Agent", USER_AGENT);
 	resource.setAdditionalParameters(extraHeaderParams);
 
-	OAuthRestTemplate discogsOauthTemplate = new OAuthRestTemplate(resource);
+	OAuthConsumerToken token = consumerSupport.getUnauthorizedRequestToken(resource, callbackURL);
 
-	ResponseEntity<String> response = discogsOauthTemplate.exchange("https://api.discogs.com/oauth/request_token",
-		HttpMethod.GET, null, String.class);
+	System.out.println(token.getAdditionalParameters().get("oauth_callback_confirmed"));
 
-	if (response.getStatusCode().is2xxSuccessful()) {
-	    try {
-		return new OauthRequestToken(response.getBody());
-	    } catch (ParseException e) {
-		throw new OAuthRequestFailedException("Format of Discogs Request Token does not match. ");
-	    }
+	if (token.getAdditionalParameters().get("oauth_callback_confirmed").equals("true")) {
+	    return token;
+	} else {
+	    throw new OAuthRequestFailedException("Callback URL not confirmed by OAuth provider. ");
 	}
-	throw new OAuthRequestFailedException("Discogs API Request Token not received successfully. ");
     }
 
 }

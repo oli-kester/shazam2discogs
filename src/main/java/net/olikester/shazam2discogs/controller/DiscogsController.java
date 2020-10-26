@@ -2,13 +2,14 @@ package net.olikester.shazam2discogs.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.security.oauth.consumer.OAuthConsumerToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.olikester.shazam2discogs.service.DiscogsService;
-import net.olikester.shazam2discogs.service.OauthRequestToken;
 
+@SuppressWarnings("deprecation")
 @Controller
 public class DiscogsController {
 
@@ -21,8 +22,7 @@ public class DiscogsController {
     @GetMapping("/login")
     public ModelAndView login() {
 	ModelAndView mv = new ModelAndView();
-	OauthRequestToken accessToken = discogsService.fetchRequestToken();
+	OAuthConsumerToken accessToken = discogsService.fetchRequestToken("/oauthCallback");
 	return mv;
     }
-
 }
