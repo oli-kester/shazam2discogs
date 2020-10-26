@@ -28,7 +28,7 @@ public class DiscogsServiceImpl implements DiscogsService {
 	BaseProtectedResourceDetails resource = new BaseProtectedResourceDetails();
 	HashMap<String, String> extraHeaderParams = new HashMap<String, String>();
 	CoreOAuthConsumerSupport consumerSupport = new CoreOAuthConsumerSupport();
-
+	
 	resource.setId(APP_ID);
 	resource.setConsumerKey(API_KEY);
 	resource.setSharedSecret(new SharedConsumerSecretImpl(API_SECRET));
