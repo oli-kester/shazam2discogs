@@ -27,7 +27,7 @@ public class DiscogsController {
     public RedirectView login() {
 	RedirectView rv = new RedirectView();
 	OAuthConsumerToken accessToken = discogsService.fetchRequestToken(OAUTH_CALLBACK_URL);
-	rv.setUrl(discogsService.AUTHORIZATION_URL + "?oauth_token=" + accessToken.getValue());
+	rv.setUrl(DiscogsService.AUTHORIZATION_URL + "?oauth_token=" + accessToken.getValue());
 	return rv;
     }
 

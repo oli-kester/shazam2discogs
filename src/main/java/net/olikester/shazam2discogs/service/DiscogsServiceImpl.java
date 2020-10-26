@@ -4,7 +4,6 @@ import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
-import org.springframework.http.MediaType;
 import org.springframework.security.oauth.common.signature.SharedConsumerSecretImpl;
 import org.springframework.security.oauth.consumer.BaseProtectedResourceDetails;
 import org.springframework.security.oauth.consumer.OAuthConsumerToken;
@@ -40,8 +39,6 @@ public class DiscogsServiceImpl implements DiscogsService {
 	resource.setAdditionalParameters(extraHeaderParams);
 
 	OAuthConsumerToken token = consumerSupport.getUnauthorizedRequestToken(resource, callbackURL);
-
-	System.out.println(token.getAdditionalParameters().get("oauth_callback_confirmed"));
 
 	if (token.getAdditionalParameters().get("oauth_callback_confirmed").equals("true")) {
 	    return token;
