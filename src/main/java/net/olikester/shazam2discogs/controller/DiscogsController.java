@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.oauth.consumer.OAuthConsumerToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.view.RedirectView;
 
 import net.olikester.shazam2discogs.service.DiscogsService;
 
@@ -20,9 +20,10 @@ public class DiscogsController {
     private String SITE_TITLE;
 
     @GetMapping("/login")
-    public ModelAndView login() {
-	ModelAndView mv = new ModelAndView();
+    public RedirectView login() {
+	RedirectView rv = new RedirectView();
 	OAuthConsumerToken accessToken = discogsService.fetchRequestToken("/oauthCallback");
-	return mv;
+	
+	return rv;
     }
 }

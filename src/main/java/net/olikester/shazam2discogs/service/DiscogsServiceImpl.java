@@ -18,7 +18,6 @@ import org.springframework.stereotype.Service;
 public class DiscogsServiceImpl implements DiscogsService {
 
     private final String USER_AGENT = "Shazam2Discogs/0.1 +http://oli-kester.net";
-    private final MediaType REQUEST_MEDIA_TYPE = MediaType.APPLICATION_FORM_URLENCODED;
     @Value("${shazam2discogs.api-key}")
     private String API_KEY;
     @Value("${shazam2discogs.api-secret}")
@@ -30,12 +29,12 @@ public class DiscogsServiceImpl implements DiscogsService {
 	HashMap<String, String> extraHeaderParams = new HashMap<String, String>();
 	CoreOAuthConsumerSupport consumerSupport = new CoreOAuthConsumerSupport();
 
-	resource.setId("discogs");
+	resource.setId(APP_ID);
 	resource.setConsumerKey(API_KEY);
 	resource.setSharedSecret(new SharedConsumerSecretImpl(API_SECRET));
-	resource.setRequestTokenURL("https://api.discogs.com/oauth/request_token");
-	resource.setUserAuthorizationURL("https://www.discogs.com/oauth/authorize");
-	resource.setAccessTokenURL("https://api.discogs.com/oauth/access_token");
+	resource.setRequestTokenURL(REQUEST_TOKEN_URL);
+	resource.setUserAuthorizationURL(AUTHORIZATION_URL);
+	resource.setAccessTokenURL(ACCESS_TOKEN_URL);
 
 	extraHeaderParams.put("User-Agent", USER_AGENT);
 	resource.setAdditionalParameters(extraHeaderParams);
