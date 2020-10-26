@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -43,7 +44,8 @@ public class MainController {
     }
 
     @PostMapping("/")
-    public RedirectView handleFileUpload(@RequestParam("shazam-json-file") MultipartFile file, RedirectAttributes ra) {
+    public RedirectView handleFileUpload(@RequestParam("shazam-json-file") MultipartFile file, RedirectAttributes ra,
+	    HttpSession session) {
 
 	String fileContents = "";
 
@@ -70,6 +72,7 @@ public class MainController {
 	}
 
 	tags.toArrayList().stream().forEach(currTag -> {
+	    currTag.setSessionId(session.getId());
 	    tagDao.save(currTag);
 	});
 

@@ -7,6 +7,7 @@ import javax.persistence.Id;
 public class Tag {
     @Id
     private int key;
+    private String sessionId;
     private String trackTitle;
     private String artist;
     private String album;
@@ -100,9 +101,18 @@ public class Tag {
 	this.releaseYear = releaseYear;
     }
 
+    public String getSessionId() {
+	return sessionId;
+    }
+
+    public void setSessionId(String sessionId) {
+	this.sessionId = sessionId;
+    }
+
     @Override
     public String toString() {
-	return "Tag [key=" + key + ", trackTitle=" + trackTitle + ", artist=" + artist + ", album=" + album + ", label="
-		+ label + ", releaseYear=" + releaseYear + "]";
+	return "Tag [key=" + key + ", sessionId=" + sessionId + ", trackTitle=" + trackTitle + ", artist=" + artist
+		+ ", album=" + album + ", label=" + label + ", releaseYear=" + releaseYear + "]";
     }
+
 }
