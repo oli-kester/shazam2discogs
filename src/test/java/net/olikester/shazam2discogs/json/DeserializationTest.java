@@ -53,8 +53,6 @@ class DeserializationTest {
 	TagList tags = mapper.readValue(oneTagJson1, TagList.class);
 	Tag tag = tags.toArrayList().get(0);
 
-	// TODO re-enable once we have database mappings working
-
         assertNotNull(tag);
         assertEquals(524476162, tag.getKey());
         assertEquals("Model Village", tag.getTrackTitle());
@@ -71,8 +69,6 @@ class DeserializationTest {
     public void oneTagParseTestWithRelease2() throws JsonProcessingException {
 	TagList tags = mapper.readValue(oneTagJson2, TagList.class);
 	Tag tag = tags.toArrayList().get(0);
-
-	// TODO re-enable once we have database mappings working
 
         assertNotNull(tag);
         assertEquals(5996069, tag.getKey());

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import net.olikester.shazam2discogs.service.DiscogsService;
+import net.olikester.shazam2discogs.service.OauthRequestToken;
 
 @Controller
 public class DiscogsController {
@@ -20,7 +21,7 @@ public class DiscogsController {
     @GetMapping("/login")
     public ModelAndView login() {
 	ModelAndView mv = new ModelAndView();
-	discogsService.fetchRequestToken();
+	OauthRequestToken accessToken = discogsService.fetchRequestToken();
 	return mv;
     }
 
