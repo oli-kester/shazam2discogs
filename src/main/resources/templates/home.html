@@ -3,17 +3,22 @@
 <head>
     <title th:text="${SITE_TITLE}"></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css} "/>
 </head>
 <body>
-<h1  th:text="'Welcome to the ' + ${SITE_TITLE} + ' tool.'">Welcome.</h1>
-<p>Use this to import all of your Shazamed tracks into a Discogs list. </p>
-
-<p>Follow this video to get your JSON file of Shazam tracks - </p>
-
-<p>---- VIDEO HERE ----</p>
-<form method="POST" enctype="multipart/form-data" action="/">
-    <input type="file" name="shazam-json-file"/>
-    <input type="submit" value="Upload"/>
-</form>	
+	<div class="jumbotron">
+		<h1  th:text="'Welcome to the ' + ${SITE_TITLE} + ' tool.'">Welcome.</h1>
+		<p>Use this to import all of your Shazamed tracks into a Discogs list. </p>
+	</div>
+	<div class="container">
+		<p>Follow this video to get your JSON file of Shazam tracks - </p>
+		
+		<p>---- VIDEO HERE ----</p>
+		<form method="POST" enctype="multipart/form-data" action="/">
+			<p>Upload your JSON file below - </p>
+		    <input type="file" name="shazam-json-file"/>
+		    <input type="submit" value="Upload"/>
+		</form>	
+	</div>
 </body>
 </html>
