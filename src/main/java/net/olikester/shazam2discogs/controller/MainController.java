@@ -32,6 +32,8 @@ public class MainController {
 
     @Value("${shazam2discogs.site-title}")
     private String SITE_TITLE;
+    @Value("${shazam2discogs.oauth-bypass}")
+    private boolean OAUTH_BYPASS; //TODO add some sort of display that this is active
 
     @Autowired
     private TagDao tagDao;
@@ -93,7 +95,11 @@ public class MainController {
 	    mv.addAllObjects(inputFlashMap);
 
 	    if (ioSuccess && parseSuccess) {
-		mv.setViewName("linkDiscogs");
+		if (OAUTH_BYPASS) {
+		    mv.setViewName("main");
+		} else {
+		    mv.setViewName("linkDiscogs");
+		}
 	    } else {
 		// TODO better error messages in JSON Error document
 		mv.setViewName("jsonError");

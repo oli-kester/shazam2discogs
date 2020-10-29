@@ -20,4 +20,4 @@ shazam2discogs.test-access-secret=[an OAuth user access secret for testing]
 
 The last two are optional. 
 
-To skip the OAuth flow and use your test keys, set `shazam2discogs.dev-mode=true` in `application.properties`.  
+To skip the OAuth flow and use your test keys, set `shazam2discogs.oauth-bypass=true` in `application.properties`.  

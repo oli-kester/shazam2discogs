@@ -50,14 +50,15 @@ public class DiscogsController {
 	    // TODO request cancelled by user. Give try again option?
 	} else if (requestParams.containsKey("oauth_token") && requestParams.containsKey("oauth_verifier")) {
 	    JpaOAuthConsumerToken requestToken = tokenStore.findById(session.getId()).orElseThrow();
-	    // TODO check if request token is already an access token (that means OAuth is
-	    // completed).
+	    // TODO check if request token is already an access token (that means OAuth has
+	    // been completed).
 	    OAuthConsumerToken accessToken = discogsService.fetchAccessToken(requestToken.toOAuthConsumerToken(),
 		    requestParams.get("oauth_verifier"));
 	    tokenStore.save(new JpaOAuthConsumerToken(session.getId(), accessToken));
+	    mv.setViewName("main");
 	} else {
-	    // TODO fail, unknown request.
+	    mv.setViewName("error");
 	}
-	return new ModelAndView();
+	return mv;
     }
 }

@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title th:text="${SITE_TITLE}"></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<h1>Search for Releases</h1>
+	<p>Click the button below to search Discogs for releases matching your Shazams. </p>
+	<br/>
+	<form method="get" action="/search">
+		<input type="submit" value="Search"/>
+	</form>
+</body>
+</html>
