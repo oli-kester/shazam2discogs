@@ -53,13 +53,13 @@ class DeserializationTest {
 	TagList tags = mapper.readValue(oneTagJson1, TagList.class);
 	Tag tag = tags.toArrayList().get(0);
 
-        assertNotNull(tag);
-        assertEquals(524476162, tag.getKey());
-        assertEquals("Model Village", tag.getTrackTitle());
-        assertEquals("IDLES", tag.getArtist());
-        assertEquals("Ultra Mono", tag.getAlbum());
-        assertEquals("Partisan Records", tag.getLabel());
-        assertEquals(2020, tag.getReleaseYear());
+	assertNotNull(tag);
+	assertEquals(524476162, tag.getKey());
+	assertEquals("Model Village", tag.getTrackTitle());
+	assertEquals("IDLES", tag.getArtist());
+	assertEquals("Ultra Mono", tag.getAlbum());
+	assertEquals("Partisan Records", tag.getLabel());
+	assertEquals(2020, tag.getReleaseYear());
     }
 
     /**
@@ -70,15 +70,16 @@ class DeserializationTest {
 	TagList tags = mapper.readValue(oneTagJson2, TagList.class);
 	Tag tag = tags.toArrayList().get(0);
 
-        assertNotNull(tag);
-        assertEquals(5996069, tag.getKey());
-        assertEquals("Lazy", tag.getTrackTitle());
-        assertEquals("X-Press 2 Feat. David Byrne", tag.getArtist());
-        assertEquals("Lazy (feat. David Byrne) - Single", tag.getAlbum());
-        assertEquals("Skint Records", tag.getLabel());
-        assertEquals(2002, tag.getReleaseYear());
+	assertNotNull(tag);
+	assertEquals(5996069, tag.getKey());
+	assertEquals("Lazy", tag.getTrackTitle());
+	assertEquals("X-Press 2 Feat. David Byrne", tag.getArtist());
+	assertEquals("Lazy (feat. David Byrne) - Single", tag.getAlbum());
+	assertEquals("Skint Records", tag.getLabel());
+	assertEquals(2002, tag.getReleaseYear());
     }
 
+    // TODO skip these extended tests if the files don't exist.
     /**
      * Just check there are no errors thrown with a real, large Shazam JSON file.
      */
