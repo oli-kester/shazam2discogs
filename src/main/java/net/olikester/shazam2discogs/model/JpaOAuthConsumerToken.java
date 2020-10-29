@@ -10,6 +10,7 @@ import javax.persistence.MapKeyColumn;
 
 import org.springframework.security.oauth.consumer.OAuthConsumerToken;
 
+
 /**
  * Custom implementation of the OAuth1 library Consumer Token class to allow
  * storage as a JPA entity.
@@ -141,6 +142,16 @@ public class JpaOAuthConsumerToken {
 	return "JpaOAuthConsumerToken [httpSessionId=" + httpSessionId + ", oauthResourceId=" + oauthResourceId
 		+ ", oauthToken=" + oauthToken + ", oauthSecret=" + oauthSecret + ", isAccessToken=" + isAccessToken
 		+ ", additionalParameters=" + additionalParameters + "]";
+    }
+
+    public OAuthConsumerToken toOAuthConsumerToken() {
+	OAuthConsumerToken returnToken = new OAuthConsumerToken();	
+	returnToken.setResourceId(getOauthResourceId());
+	returnToken.setValue(getOauthToken());
+	returnToken.setSecret(getOauthSecret());
+	returnToken.setAccessToken(isAccessToken());
+	returnToken.setAdditionalParameters(getAdditionalParameters());
+	return returnToken;
     }
 
 }

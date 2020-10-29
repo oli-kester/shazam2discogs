@@ -2,6 +2,7 @@ package net.olikester.shazam2discogs.service;
 
 import org.springframework.security.oauth.consumer.OAuthConsumerToken;
 
+
 @SuppressWarnings("deprecation")
 public interface DiscogsService {
     
@@ -11,5 +12,7 @@ public interface DiscogsService {
     public final String ACCESS_TOKEN_URL = "https://api.discogs.com/oauth/access_token";
 
     OAuthConsumerToken fetchRequestToken(String callbackURL);
+
+    OAuthConsumerToken fetchAccessToken(OAuthConsumerToken oAuthConsumerToken, String oAuthVerifier);
 
 }
