@@ -1,6 +1,11 @@
 package net.olikester.shazam2discogs.service;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
 
 import javax.annotation.PostConstruct;
 
@@ -8,17 +13,23 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.oauth.common.signature.SharedConsumerSecretImpl;
 import org.springframework.security.oauth.consumer.BaseProtectedResourceDetails;
+import org.springframework.security.oauth.consumer.InMemoryProtectedResourceDetailsService;
 import org.springframework.security.oauth.consumer.OAuthConsumerToken;
 import org.springframework.security.oauth.consumer.OAuthRequestFailedException;
+import org.springframework.security.oauth.consumer.ProtectedResourceDetails;
 import org.springframework.security.oauth.consumer.client.CoreOAuthConsumerSupport;
 import org.springframework.stereotype.Service;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import net.olikester.shazam2discogs.model.JpaOAuthConsumerToken;
+import net.olikester.shazam2discogs.model.Release;
+import net.olikester.shazam2discogs.model.Tag;
 
 @Service
 @SuppressWarnings("deprecation")
 @PropertySource("classpath:apiSecret.properties") // API keys are hidden in second properties file.
 public class DiscogsServiceImpl implements DiscogsService {
 
-    private final String USER_AGENT = "Shazam2Discogs/0.1 +http://oli-kester.net";
     @Value("${shazam2discogs.api-key}")
     private String API_KEY;
     @Value("${shazam2discogs.api-secret}")
@@ -27,12 +38,16 @@ public class DiscogsServiceImpl implements DiscogsService {
     private BaseProtectedResourceDetails resource;
     private HashMap<String, String> extraHeaderParams;
     private CoreOAuthConsumerSupport consumerSupport;
+    private InMemoryProtectedResourceDetailsService protectedResourceDetailsService;
+    private HashMap<String, BaseProtectedResourceDetails> resourceDetailsStore;
 
     @PostConstruct
     private void init() {
 	resource = new BaseProtectedResourceDetails();
 	extraHeaderParams = new HashMap<>();
 	consumerSupport = new CoreOAuthConsumerSupport();
+	protectedResourceDetailsService = new InMemoryProtectedResourceDetailsService();
+	resourceDetailsStore = new HashMap<String, BaseProtectedResourceDetails>();
 
 	resource.setId(APP_ID);
 	resource.setConsumerKey(API_KEY);
@@ -43,6 +58,10 @@ public class DiscogsServiceImpl implements DiscogsService {
 
 	extraHeaderParams.put("User-Agent", USER_AGENT);
 	resource.setAdditionalParameters(extraHeaderParams);
+	
+	resourceDetailsStore.put(APP_ID, resource);
+	protectedResourceDetailsService.setResourceDetailsStore(resourceDetailsStore);
+	consumerSupport.setProtectedResourceDetailsService(protectedResourceDetailsService);
     }
 
     @Override
@@ -61,4 +80,46 @@ public class DiscogsServiceImpl implements DiscogsService {
 	return token;
     }
 
+    @Override
+    public Release getRelease(Tag currTag, JpaOAuthConsumerToken accessToken) {
+	// TODO delete this
+//	consumerSupport.
+//	WebClient webClient = WebClient.create(DISCOGS_SEARCH_URL);
+//	Flux<Release> results = webClient.get()
+//		.uri(uriBuilder -> uriBuilder
+//			.path("")
+//			.queryParam("type", "release")
+//			.queryParam("release_title", currTag.getAlbum())
+//			.queryParam("artist", currTag.getArtist())
+//			.queryParam("label", currTag.getLabel())
+//			.queryParam("year", currTag.getReleaseYear())
+//			.build())
+//		.header("User-Agent", USER_AGENT)
+//		.header("oauth_token", accessToken.getOauthToken())
+//		.header("oauth_token_secret", accessToken.getOauthSecret())
+//		.retrieve()
+//		.bodyToFlux(Release.class);
+//	return results.blockFirst();
+
+	UriComponentsBuilder uriComponents = UriComponentsBuilder.fromHttpUrl(DISCOGS_SEARCH_URL)
+		.queryParam("type", "release").queryParam("release_title", currTag.getAlbum())
+		.queryParam("artist", currTag.getArtist()).queryParam("label", currTag.getLabel())
+		.queryParam("year", currTag.getReleaseYear());
+
+	String result = "";
+
+	try {
+	    // TODO the below format is 
+	    System.out.println(uriComponents.toUriString());
+	    InputStream inputStream = consumerSupport.readProtectedResource(new URL(uriComponents.toUriString()),
+		    accessToken.toOAuthConsumerToken(), "GET");
+	    Scanner s = new Scanner(inputStream).useDelimiter("\\A");
+	    result = s.hasNext() ? s.next() : "";
+	} catch (OAuthRequestFailedException | IOException e) {
+	    // TODO URL was malformed.
+	    e.printStackTrace();
+	}
+	System.out.println("Debug printout - " + result);
+	return null;
+    }
 }

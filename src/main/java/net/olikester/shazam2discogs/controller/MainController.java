@@ -33,7 +33,7 @@ public class MainController {
     @Value("${shazam2discogs.site-title}")
     private String SITE_TITLE;
     @Value("${shazam2discogs.oauth-bypass}")
-    private boolean OAUTH_BYPASS; //TODO add some sort of display that this is active
+    private boolean OAUTH_BYPASS; // TODO add some sort of display that this is active
 
     @Autowired
     private TagDao tagDao;
@@ -105,10 +105,9 @@ public class MainController {
 		mv.setViewName("jsonError");
 	    }
 	} else {
-	    // TODO make error page.
+	    // TODO make error page - no input received
 	    mv.setViewName("error");
 	}
 	return mv;
     }
-
 }

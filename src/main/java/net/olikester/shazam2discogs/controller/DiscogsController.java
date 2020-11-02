@@ -1,6 +1,10 @@
 package net.olikester.shazam2discogs.controller;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,7 +18,10 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import net.olikester.shazam2discogs.dao.ConsumerTokenDao;
+import net.olikester.shazam2discogs.dao.TagDao;
 import net.olikester.shazam2discogs.model.JpaOAuthConsumerToken;
+import net.olikester.shazam2discogs.model.Release;
+import net.olikester.shazam2discogs.model.Tag;
 import net.olikester.shazam2discogs.service.DiscogsService;
 
 @SuppressWarnings("deprecation")
@@ -29,6 +36,8 @@ public class DiscogsController {
     private DiscogsService discogsService;
     @Autowired
     private ConsumerTokenDao tokenStore;
+    @Autowired
+    private TagDao tagDao;
 
     @Value("${shazam2discogs.site-title}")
     private String SITE_TITLE;
@@ -60,5 +69,37 @@ public class DiscogsController {
 	    mv.setViewName("error");
 	}
 	return mv;
+    }
+
+    @GetMapping("searchTags")
+    public void searchTags(HttpSession session) {
+	String sessionId = session.getId();
+	Optional<JpaOAuthConsumerToken> userToken = tokenStore.findById(sessionId);
+
+	if (authCheck(userToken)) {
+	    ArrayList<Tag> userTags = tagDao.findBySessionId(sessionId);
+	    List<Release> results =  userTags.stream().map(currTag -> {
+		return discogsService.getRelease(currTag, userToken.get());
+	    }).collect(Collectors.toList());
+	}
+    }
+
+    /**
+     * Check to see if a user is authenticated before we send requests.
+     * 
+     * @param userToken
+     * @return whether the user is authenticated.
+     */
+    private boolean authCheck(Optional<JpaOAuthConsumerToken> userToken) {
+	if (userToken.isPresent()) {
+	    if (userToken.get().isAccessToken()) {
+		return true;
+	    } else {
+		throw new IllegalStateException(
+			"OAuth process not complete (it was started, but we have no access token)");
+	    }
+	} else {
+	    throw new IllegalStateException("User not found in OAuth data store. ");
+	}
     }
 }
