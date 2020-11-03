@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-class DeserializationTest {
+class ShazamDeserializationTest {
 
     private static String oneTagJson1 = "";
     private static String oneTagJson2 = "";

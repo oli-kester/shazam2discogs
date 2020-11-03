@@ -12,8 +12,7 @@ import java.util.ArrayList;
 
 public class ShazamTagsDeserializer extends StdDeserializer<ArrayList<Tag>> {
 
-    // recommended by Eclipse
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -6632369719629804358L;
 
     public ShazamTagsDeserializer() {
 	this(null);

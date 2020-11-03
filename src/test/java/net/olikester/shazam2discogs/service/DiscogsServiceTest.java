@@ -46,7 +46,8 @@ public class DiscogsServiceTest {
 	discogsService.fetchRequestToken("/error");
     }
 
-    @DisplayName("Test sending a search request")
+    @SuppressWarnings("unused")
+    @DisplayName("Check there's no exceptions from a simple search request. ")
     @Test
     public void searchRequest1() {
 	Release result = discogsService.getRelease(testTag1, accessToken, MediaFormats.DIGITAL_HI_RES);
