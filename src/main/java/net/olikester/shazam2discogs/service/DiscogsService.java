@@ -8,10 +8,9 @@ import net.olikester.shazam2discogs.model.JpaOAuthConsumerToken;
 import net.olikester.shazam2discogs.model.Release;
 import net.olikester.shazam2discogs.model.Tag;
 
-
 @SuppressWarnings("deprecation")
 public interface DiscogsService {
-    
+
     public final String APP_ID = "discogs";
     public final String REQUEST_TOKEN_URL = "https://api.discogs.com/oauth/request_token";
     public final String AUTHORIZATION_URL = "https://www.discogs.com/oauth/authorize";
@@ -24,7 +23,8 @@ public interface DiscogsService {
     OAuthConsumerToken fetchAccessToken(OAuthConsumerToken oAuthConsumerToken, String oAuthVerifier);
 
     /**
-     * Returns a list of Releases matching the given search parameters. 
+     * Returns a list of Releases matching the given search parameters.
+     * 
      * @param currTag
      * @param accessToken
      * @return

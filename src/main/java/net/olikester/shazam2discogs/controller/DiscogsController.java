@@ -1,6 +1,7 @@
 package net.olikester.shazam2discogs.controller;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -82,27 +83,10 @@ public class DiscogsController {
 
 	if (authCheck(userToken)) {
 	    ArrayList<Tag> userTags = tagDao.findBySessionId(sessionId);
-	    
+
 	    List<Release> results = userTags.stream().map(currTag -> {
 		ArrayList<Release> discogsSearchResults = discogsService.getReleaseList(currTag, userToken.get());
-		List<Release> filteredResultsByFormat = discogsSearchResults.stream().filter(release -> {
-		    String formatTitle = release.getFormatType();
-		    String formatDesc = release.getFormatDesc();
-		    switch (preferredFormat) {
-		    case DIGITAL_HI_RES:
-			return formatTitle.equals("File") && (formatDesc.equals("FLAC") || formatDesc.equals("WAV"));
-		    case DIGITAL_MP3:
-			return formatTitle.equals("File") && formatDesc.equals("MP3");
-		    case PHYSICAL_CD:
-			return formatTitle.equals("CD");
-		    case PHYSICAL_VINYL:
-			return formatTitle.equals("Vinyl");
-		    }
-		    return false;
-		}).collect(Collectors.toList());
-
-		// TODO
-		return new Release();
+		return Release.selectPreferredReleaseByFormat(discogsSearchResults, preferredFormat);
 	    }).collect(Collectors.toList());
 	}
     }

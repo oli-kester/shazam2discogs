@@ -4,8 +4,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 
@@ -28,6 +31,7 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 
 import net.olikester.shazam2discogs.json.DiscogsReleaseSearchResultsDeserializer;
 import net.olikester.shazam2discogs.model.JpaOAuthConsumerToken;
+import net.olikester.shazam2discogs.model.MediaFormats;
 import net.olikester.shazam2discogs.model.Release;
 import net.olikester.shazam2discogs.model.Tag;
 
