@@ -1,0 +1,340 @@
+{
+    "pagination": {
+        "page": 1,
+        "pages": 1,
+        "per_page": 50,
+        "items": 6,
+        "urls": {}
+    },
+    "results": [
+        {
+            "country": "UK",
+            "year": "2020",
+            "format": [
+                "CD",
+                "Album"
+            ],
+            "label": [
+                "Warp Records",
+                "Warp Records",
+                "Warp Publishing",
+                "Warp Records Limited",
+                "Warp Records Limited",
+                "MPO"
+            ],
+            "type": "release",
+            "genre": [
+                "Electronic"
+            ],
+            "style": [
+                "Experimental",
+                "Ambient",
+                "Abstract",
+                "IDM"
+            ],
+            "id": 16063776,
+            "barcode": [
+                "0801061032920",
+                "LC 02070",
+                "CA WARPCD329 @ IFPI L039 08/13/20 09:20:08 AM",
+                "IFPI L039",
+                "IFPI 127E"
+            ],
+            "user_data": {
+                "in_wantlist": false,
+                "in_collection": false
+            },
+            "master_id": 1819720,
+            "master_url": "https://api.discogs.com/masters/1819720",
+            "uri": "/Autechre-SIGN/release/16063776",
+            "catno": "warp cd 329",
+            "title": "Autechre - SIGN",
+            "thumb": "https://img.discogs.com/6gceNKMFsr1D2C-08_bnlKOD4Uo=/fit-in/150x150/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/R-16063776-1602940524-6756.jpeg.jpg",
+            "cover_image": "https://img.discogs.com/6xSg0EVty8KsRVmrWuU1OOwSYRQ=/fit-in/600x592/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-16063776-1602940524-6756.jpeg.jpg",
+            "resource_url": "https://api.discogs.com/releases/16063776",
+            "community": {
+                "want": 50,
+                "have": 271
+            },
+            "format_quantity": 1,
+            "formats": [
+                {
+                    "name": "CD",
+                    "qty": "1",
+                    "descriptions": [
+                        "Album"
+                    ]
+                }
+            ]
+        },
+        {
+            "country": "Japan",
+            "year": "2020",
+            "format": [
+                "CD",
+                "Album"
+            ],
+            "label": [
+                "Beat Records",
+                "Warp Records",
+                "Warp Records Limited",
+                "Warp Records Limited",
+                "Beat Records",
+                "Warp Records Limited"
+            ],
+            "type": "release",
+            "genre": [
+                "Electronic"
+            ],
+            "style": [
+                "Experimental",
+                "Ambient",
+                "Abstract",
+                "IDM"
+            ],
+            "id": 16065078,
+            "barcode": [
+                "4523132263069"
+            ],
+            "user_data": {
+                "in_wantlist": false,
+                "in_collection": false
+            },
+            "master_id": 1819720,
+            "master_url": "https://api.discogs.com/masters/1819720",
+            "uri": "/Autechre-SIGN/release/16065078",
+            "catno": "BRC-656",
+            "title": "Autechre - SIGN",
+            "thumb": "https://img.discogs.com/IQY4kqfLN3hmX-raiyFbcJ9Adyc=/fit-in/150x150/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/R-16065078-1603032853-7287.jpeg.jpg",
+            "cover_image": "https://img.discogs.com/zzrqwzRAJO9dCr3_hR3fByE6DUs=/fit-in/600x594/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-16065078-1603032853-7287.jpeg.jpg",
+            "resource_url": "https://api.discogs.com/releases/16065078",
+            "community": {
+                "want": 49,
+                "have": 23
+            },
+            "format_quantity": 1,
+            "formats": [
+                {
+                    "name": "CD",
+                    "qty": "1",
+                    "descriptions": [
+                        "Album"
+                    ]
+                }
+            ]
+        },
+        {
+            "country": "UK",
+            "year": "2020",
+            "format": [
+                "File",
+                "FLAC",
+                "Album"
+            ],
+            "label": [
+                "Warp Records"
+            ],
+            "type": "release",
+            "genre": [
+                "Electronic"
+            ],
+            "style": [
+                "Experimental",
+                "Ambient",
+                "Abstract",
+                "IDM"
+            ],
+            "id": 16093568,
+            "barcode": [],
+            "user_data": {
+                "in_wantlist": false,
+                "in_collection": false
+            },
+            "master_id": 1819720,
+            "master_url": "https://api.discogs.com/masters/1819720",
+            "uri": "/Autechre-SIGN/release/16093568",
+            "catno": "WARPCDD329",
+            "title": "Autechre - SIGN",
+            "thumb": "https://img.discogs.com/S5sirpn8_XJ7uD0LFkipF4XaDI4=/fit-in/150x150/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/R-16093568-1603306296-6325.jpeg.jpg",
+            "cover_image": "https://img.discogs.com/LNTE5mECRkKaFWdCI0xLV68Tm3Q=/fit-in/600x600/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-16093568-1603306296-6325.jpeg.jpg",
+            "resource_url": "https://api.discogs.com/releases/16093568",
+            "community": {
+                "want": 3,
+                "have": 8
+            },
+            "format_quantity": 0,
+            "formats": [
+                {
+                    "name": "File",
+                    "qty": "11",
+                    "descriptions": [
+                        "FLAC",
+                        "Album"
+                    ]
+                }
+            ]
+        },
+        {
+            "country": "UK",
+            "year": "2020",
+            "format": [
+                "Vinyl",
+                "LP",
+                "Album"
+            ],
+            "label": [
+                "Warp Records",
+                "Warp Records Limited",
+                "Warp Records Limited",
+                "Warp Publishing",
+                "Optimal Media GmbH"
+            ],
+            "type": "release",
+            "genre": [
+                "Electronic"
+            ],
+            "style": [
+                "Ambient",
+                "IDM",
+                "Abstract"
+            ],
+            "id": 16061701,
+            "barcode": [
+                "0801061032913",
+                "WARPLP329 NS BK08383-01 A1",
+                "WARPLP329 NS BK08383-01 B1",
+                "WARPLP329 NS BK08383-02 C1",
+                "WARPLP329 NS BK08383-02 D1"
+            ],
+            "user_data": {
+                "in_wantlist": false,
+                "in_collection": false
+            },
+            "master_id": 1819720,
+            "master_url": "https://api.discogs.com/masters/1819720",
+            "uri": "/Autechre-SIGN/release/16061701",
+            "catno": "warp lp 329",
+            "title": "Autechre - SIGN",
+            "thumb": "https://img.discogs.com/Cg8EpOG-bbFcmkgJfDIs4fcGYX8=/fit-in/150x150/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/R-16061701-1602818277-9333.jpeg.jpg",
+            "cover_image": "https://img.discogs.com/P6S5E9hrpMJmCcYfbGgSVwAw128=/fit-in/600x595/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-16061701-1602818277-9333.jpeg.jpg",
+            "resource_url": "https://api.discogs.com/releases/16061701",
+            "community": {
+                "want": 235,
+                "have": 1078
+            },
+            "format_quantity": 2,
+            "formats": [
+                {
+                    "name": "Vinyl",
+                    "qty": "2",
+                    "descriptions": [
+                        "LP",
+                        "Album"
+                    ]
+                }
+            ]
+        },
+        {
+            "country": "UK",
+            "year": "2020",
+            "format": [
+                "File",
+                "WAV",
+                "Album"
+            ],
+            "label": [
+                "Warp Records"
+            ],
+            "type": "release",
+            "genre": [
+                "Electronic"
+            ],
+            "style": [
+                "Experimental",
+                "Ambient",
+                "Abstract",
+                "IDM"
+            ],
+            "id": 16031874,
+            "barcode": [],
+            "user_data": {
+                "in_wantlist": false,
+                "in_collection": false
+            },
+            "master_id": 1819720,
+            "master_url": "https://api.discogs.com/masters/1819720",
+            "uri": "/Autechre-SIGN/release/16031874",
+            "catno": "WARPCDD329",
+            "title": "Autechre - SIGN",
+            "thumb": "https://img.discogs.com/4mnOP_NsGMoHoXoJgWZMrqRwmvA=/fit-in/150x150/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/R-16031874-1602227819-4990.png.jpg",
+            "cover_image": "https://img.discogs.com/4_lHIMWwS2iHXS6WUDSDULC87Ls=/fit-in/600x600/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-16031874-1602227819-4990.png.jpg",
+            "resource_url": "https://api.discogs.com/releases/16031874",
+            "community": {
+                "want": 10,
+                "have": 76
+            },
+            "format_quantity": 0,
+            "formats": [
+                {
+                    "name": "File",
+                    "qty": "11",
+                    "text": "24 bit, 44.1 kHz",
+                    "descriptions": [
+                        "WAV",
+                        "Album"
+                    ]
+                }
+            ]
+        },
+        {
+            "country": "UK",
+            "year": "2020",
+            "format": [
+                "File",
+                "MP3",
+                "Album"
+            ],
+            "label": [
+                "Warp Records"
+            ],
+            "type": "release",
+            "genre": [
+                "Electronic"
+            ],
+            "style": [
+                "Ambient",
+                "IDM"
+            ],
+            "id": 16041221,
+            "barcode": [],
+            "user_data": {
+                "in_wantlist": false,
+                "in_collection": false
+            },
+            "master_id": 1819720,
+            "master_url": "https://api.discogs.com/masters/1819720",
+            "uri": "/Autechre-SIGN/release/16041221",
+            "catno": "WARPCDD329",
+            "title": "Autechre - SIGN",
+            "thumb": "https://img.discogs.com/9x8KjeUuC_eloE09bZANJ18_2W4=/fit-in/150x150/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/R-16041221-1602381740-1770.jpeg.jpg",
+            "cover_image": "https://img.discogs.com/c48Wns5TfwVGMKJHnZXeITBxpUQ=/fit-in/600x600/filters:strip_icc():format(jpeg):mode_rgb():quality(90)/discogs-images/R-16041221-1602381740-1770.jpeg.jpg",
+            "resource_url": "https://api.discogs.com/releases/16041221",
+            "community": {
+                "want": 15,
+                "have": 38
+            },
+            "format_quantity": 0,
+            "formats": [
+                {
+                    "name": "File",
+                    "qty": "11",
+                    "text": "320 kbps",
+                    "descriptions": [
+                        "MP3",
+                        "Album"
+                    ]
+                }
+            ]
+        }
+    ]
+}
