@@ -3,6 +3,7 @@ package net.olikester.shazam2discogs.service;
 import org.springframework.security.oauth.consumer.OAuthConsumerToken;
 
 import net.olikester.shazam2discogs.model.JpaOAuthConsumerToken;
+import net.olikester.shazam2discogs.model.MediaFormats;
 import net.olikester.shazam2discogs.model.Release;
 import net.olikester.shazam2discogs.model.Tag;
 
@@ -27,6 +28,6 @@ public interface DiscogsService {
      * @param accessToken
      * @return
      */
-    Release getRelease(Tag currTag, JpaOAuthConsumerToken accessToken);
+    Release getRelease(Tag currTag, JpaOAuthConsumerToken accessToken, MediaFormats preferredFormat);
 
 }

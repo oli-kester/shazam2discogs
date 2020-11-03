@@ -22,6 +22,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import net.olikester.shazam2discogs.model.JpaOAuthConsumerToken;
+import net.olikester.shazam2discogs.model.MediaFormats;
 import net.olikester.shazam2discogs.model.Release;
 import net.olikester.shazam2discogs.model.Tag;
 
@@ -58,7 +59,7 @@ public class DiscogsServiceImpl implements DiscogsService {
 
 	extraHeaderParams.put("User-Agent", USER_AGENT);
 	resource.setAdditionalParameters(extraHeaderParams);
-	
+
 	resourceDetailsStore.put(APP_ID, resource);
 	protectedResourceDetailsService.setResourceDetailsStore(resourceDetailsStore);
 	consumerSupport.setProtectedResourceDetailsService(protectedResourceDetailsService);
@@ -81,25 +82,7 @@ public class DiscogsServiceImpl implements DiscogsService {
     }
 
     @Override
-    public Release getRelease(Tag currTag, JpaOAuthConsumerToken accessToken) {
-	// TODO delete this
-//	consumerSupport.
-//	WebClient webClient = WebClient.create(DISCOGS_SEARCH_URL);
-//	Flux<Release> results = webClient.get()
-//		.uri(uriBuilder -> uriBuilder
-//			.path("")
-//			.queryParam("type", "release")
-//			.queryParam("release_title", currTag.getAlbum())
-//			.queryParam("artist", currTag.getArtist())
-//			.queryParam("label", currTag.getLabel())
-//			.queryParam("year", currTag.getReleaseYear())
-//			.build())
-//		.header("User-Agent", USER_AGENT)
-//		.header("oauth_token", accessToken.getOauthToken())
-//		.header("oauth_token_secret", accessToken.getOauthSecret())
-//		.retrieve()
-//		.bodyToFlux(Release.class);
-//	return results.blockFirst();
+    public Release getRelease(Tag currTag, JpaOAuthConsumerToken accessToken, MediaFormats preferredFormat) {
 
 	UriComponentsBuilder uriComponents = UriComponentsBuilder.fromHttpUrl(DISCOGS_SEARCH_URL)
 		.queryParam("type", "release").queryParam("release_title", currTag.getAlbum())
@@ -109,7 +92,6 @@ public class DiscogsServiceImpl implements DiscogsService {
 	String result = "";
 
 	try {
-	    // TODO the below format is 
 	    System.out.println(uriComponents.toUriString());
 	    InputStream inputStream = consumerSupport.readProtectedResource(new URL(uriComponents.toUriString()),
 		    accessToken.toOAuthConsumerToken(), "GET");

@@ -20,6 +20,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import net.olikester.shazam2discogs.dao.ConsumerTokenDao;
 import net.olikester.shazam2discogs.dao.TagDao;
 import net.olikester.shazam2discogs.model.JpaOAuthConsumerToken;
+import net.olikester.shazam2discogs.model.MediaFormats;
 import net.olikester.shazam2discogs.model.Release;
 import net.olikester.shazam2discogs.model.Tag;
 import net.olikester.shazam2discogs.service.DiscogsService;
@@ -79,7 +80,7 @@ public class DiscogsController {
 	if (authCheck(userToken)) {
 	    ArrayList<Tag> userTags = tagDao.findBySessionId(sessionId);
 	    List<Release> results =  userTags.stream().map(currTag -> {
-		return discogsService.getRelease(currTag, userToken.get());
+		return discogsService.getRelease(currTag, userToken.get(), MediaFormats.DIGITAL_HI_RES);
 	    }).collect(Collectors.toList());
 	}
     }

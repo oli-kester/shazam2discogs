@@ -16,6 +16,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 
 import net.olikester.shazam2discogs.model.JpaOAuthConsumerToken;
+import net.olikester.shazam2discogs.model.MediaFormats;
 import net.olikester.shazam2discogs.model.Release;
 import net.olikester.shazam2discogs.model.Tag;
 
@@ -28,7 +29,7 @@ public class DiscogsServiceTest {
     @Value("${shazam2discogs.test-access-secret}")
     private String OAUTH_SECRET;
 
-    private final static JpaOAuthConsumerToken accessToken = new JpaOAuthConsumerToken();
+    private final JpaOAuthConsumerToken accessToken = new JpaOAuthConsumerToken();
     private final Tag testTag1 = new Tag(0, "si00", "Autechre", "SIGN", "Warp Records", 2020);
 
     @Autowired
@@ -53,7 +54,7 @@ public class DiscogsServiceTest {
     @DisplayName("Test sending a search request")
     @Test
     public void searchRequest1() {
-	Release result = discogsService.getRelease(testTag1, accessToken);
+	Release result = discogsService.getRelease(testTag1, accessToken, MediaFormats.DIGITAL_HI_RES);
     }
 
 }
