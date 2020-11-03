@@ -64,6 +64,7 @@ public class DiscogsReleaseSearchResultsDeserializerTest {
 		"https://img.discogs.com/S5sirpn8_XJ7uD0LFkipF4XaDI4=/fit-in/150x150/filters:strip_icc():format(jpeg):mode_rgb():quality(40)/discogs-images/R-16093568-1603306296-6325.jpeg.jpg",
 		release.getThumbnailPath());
 	assertEquals("Autechre - SIGN", release.getTitle());
+	assertEquals(8, release.getPopularity());
     }
 
     @DisplayName("Check multiple results get parsed without exception")

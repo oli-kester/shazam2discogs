@@ -3,6 +3,7 @@ package net.olikester.shazam2discogs.service;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
@@ -19,8 +20,14 @@ import org.springframework.security.oauth.consumer.client.CoreOAuthConsumerSuppo
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.core.Version;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
+
+import net.olikester.shazam2discogs.json.DiscogsReleaseSearchResultsDeserializer;
 import net.olikester.shazam2discogs.model.JpaOAuthConsumerToken;
-import net.olikester.shazam2discogs.model.MediaFormats;
 import net.olikester.shazam2discogs.model.Release;
 import net.olikester.shazam2discogs.model.Tag;
 
@@ -80,27 +87,44 @@ public class DiscogsServiceImpl implements DiscogsService {
     }
 
     @Override
-    public Release getRelease(Tag currTag, JpaOAuthConsumerToken accessToken, MediaFormats preferredFormat) {
+    public ArrayList<Release> getReleaseList(Tag currTag, JpaOAuthConsumerToken accessToken) {
 
 	UriComponentsBuilder uriComponents = UriComponentsBuilder.fromHttpUrl(DISCOGS_SEARCH_URL)
 		.queryParam("type", "release").queryParam("release_title", currTag.getAlbum())
 		.queryParam("artist", currTag.getArtist()).queryParam("label", currTag.getLabel())
 		.queryParam("year", currTag.getReleaseYear());
 
-	String result = "";
+	String json = "";
 
 	try {
-	    System.out.println(uriComponents.toUriString());
 	    InputStream inputStream = consumerSupport.readProtectedResource(new URL(uriComponents.toUriString()),
 		    accessToken.toOAuthConsumerToken(), "GET");
+
 	    Scanner s = new Scanner(inputStream).useDelimiter("\\A");
-	    result = s.hasNext() ? s.next() : "";
+	    json = s.hasNext() ? s.next() : "";
 	    s.close();
+
 	} catch (OAuthRequestFailedException | IOException e) {
 	    // TODO URL was malformed.
 	    e.printStackTrace();
 	}
-	System.out.println("Debug printout - " + result);
-	return null;
+
+	ObjectMapper mapper = new ObjectMapper();
+	SimpleModule module = new SimpleModule("DiscogsReleaseSearchResultsDeserializer",
+		new Version(1, 0, 0, null, null, null));
+	module.addDeserializer(ArrayList.class, new DiscogsReleaseSearchResultsDeserializer());
+	mapper.registerModule(module);
+
+	ArrayList<Release> releases = new ArrayList<>();
+
+	try {
+	    releases = mapper.readValue(json, new TypeReference<ArrayList<Release>>() {
+	    });
+	} catch (JsonProcessingException e) {
+	    // TODO Discogs JSON not mapped properly
+	    e.printStackTrace();
+	}
+
+	return releases;
     }
 }

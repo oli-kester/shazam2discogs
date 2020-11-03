@@ -32,7 +32,7 @@ public class DiscogsReleaseSearchResultsDeserializer extends StdDeserializer<Arr
 	ArrayList<Release> releaseList = new ArrayList<Release>();
 	ObjectCodec codec = parser.getCodec();
 	JsonNode rootNode = codec.readTree(parser);
-	
+
 	for (JsonNode currResult : rootNode.get("results")) {
 	    Release newRelease = new Release();
 	    newRelease.setCountry(currResult.get("country").asText());
@@ -40,13 +40,14 @@ public class DiscogsReleaseSearchResultsDeserializer extends StdDeserializer<Arr
 	    newRelease.setId(currResult.get("id").asText());
 	    newRelease.setThumbnailPath(currResult.get("thumb").asText());
 	    newRelease.setTitle(currResult.get("title").asText());
-	    
+
 	    JsonNode formatDetails = currResult.get("format");
 	    newRelease.setFormatType(formatDetails.get(0).asText());
 	    newRelease.setFormatDesc(formatDetails.get(1).asText());
-	    
+
 	    newRelease.setLabel(currResult.get("label").get(0).asText());
-	    
+	    newRelease.setPopularity(currResult.get("community").get("have").asInt());
+
 	    releaseList.add(newRelease);
 	}
 

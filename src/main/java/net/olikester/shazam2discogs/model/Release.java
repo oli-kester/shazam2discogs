@@ -20,6 +20,7 @@ public class Release {
     private String formatDesc;
     private String label;
     private String thumbnailPath;
+    private int popularity; // the number of users that have this in their collection.
 
     /**
      * Default constructor to allow Jackson to use the class
@@ -140,11 +141,19 @@ public class Release {
 	this.thumbnailPath = thumbnailPath;
     }
 
+    public int getPopularity() {
+	return popularity;
+    }
+
+    public void setPopularity(int popularity) {
+	this.popularity = popularity;
+    }
+
     @Override
     public String toString() {
 	return "Release [id=" + id + ", title=" + title + ", country=" + country + ", releaseYear=" + releaseYear
 		+ ", formatType=" + formatType + ", formatDesc=" + formatDesc + ", label=" + label + ", thumbnailPath="
-		+ thumbnailPath + "]";
+		+ thumbnailPath + ", popularity=" + popularity + "]";
     }
 
 }

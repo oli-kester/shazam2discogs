@@ -74,13 +74,35 @@ public class DiscogsController {
 
     @GetMapping("searchTags")
     public void searchTags(HttpSession session) {
+	// TODO enable user selection of media type
+	MediaFormats preferredFormat = MediaFormats.DIGITAL_HI_RES;
+
 	String sessionId = session.getId();
 	Optional<JpaOAuthConsumerToken> userToken = tokenStore.findById(sessionId);
 
 	if (authCheck(userToken)) {
 	    ArrayList<Tag> userTags = tagDao.findBySessionId(sessionId);
-	    List<Release> results =  userTags.stream().map(currTag -> {
-		return discogsService.getRelease(currTag, userToken.get(), MediaFormats.DIGITAL_HI_RES);
+	    
+	    List<Release> results = userTags.stream().map(currTag -> {
+		ArrayList<Release> discogsSearchResults = discogsService.getReleaseList(currTag, userToken.get());
+		List<Release> filteredResultsByFormat = discogsSearchResults.stream().filter(release -> {
+		    String formatTitle = release.getFormatType();
+		    String formatDesc = release.getFormatDesc();
+		    switch (preferredFormat) {
+		    case DIGITAL_HI_RES:
+			return formatTitle.equals("File") && (formatDesc.equals("FLAC") || formatDesc.equals("WAV"));
+		    case DIGITAL_MP3:
+			return formatTitle.equals("File") && formatDesc.equals("MP3");
+		    case PHYSICAL_CD:
+			return formatTitle.equals("CD");
+		    case PHYSICAL_VINYL:
+			return formatTitle.equals("Vinyl");
+		    }
+		    return false;
+		}).collect(Collectors.toList());
+
+		// TODO
+		return new Release();
 	    }).collect(Collectors.toList());
 	}
     }

@@ -1,5 +1,6 @@
 package net.olikester.shazam2discogs.service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -11,7 +12,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.TestPropertySource;
 
 import net.olikester.shazam2discogs.model.JpaOAuthConsumerToken;
-import net.olikester.shazam2discogs.model.MediaFormats;
 import net.olikester.shazam2discogs.model.Release;
 import net.olikester.shazam2discogs.model.Tag;
 
@@ -50,7 +50,7 @@ public class DiscogsServiceTest {
     @DisplayName("Check there's no exceptions from a simple search request. ")
     @Test
     public void searchRequest1() {
-	Release result = discogsService.getRelease(testTag1, accessToken, MediaFormats.DIGITAL_HI_RES);
+	ArrayList<Release> results = discogsService.getReleaseList(testTag1, accessToken);
     }
 
 }

@@ -1,9 +1,10 @@
 package net.olikester.shazam2discogs.service;
 
+import java.util.ArrayList;
+
 import org.springframework.security.oauth.consumer.OAuthConsumerToken;
 
 import net.olikester.shazam2discogs.model.JpaOAuthConsumerToken;
-import net.olikester.shazam2discogs.model.MediaFormats;
 import net.olikester.shazam2discogs.model.Release;
 import net.olikester.shazam2discogs.model.Tag;
 
@@ -23,11 +24,11 @@ public interface DiscogsService {
     OAuthConsumerToken fetchAccessToken(OAuthConsumerToken oAuthConsumerToken, String oAuthVerifier);
 
     /**
-     * Return the first release matching the given search parameters. 
+     * Returns a list of Releases matching the given search parameters. 
      * @param currTag
      * @param accessToken
      * @return
      */
-    Release getRelease(Tag currTag, JpaOAuthConsumerToken accessToken, MediaFormats preferredFormat);
+    ArrayList<Release> getReleaseList(Tag currTag, JpaOAuthConsumerToken accessToken);
 
 }
