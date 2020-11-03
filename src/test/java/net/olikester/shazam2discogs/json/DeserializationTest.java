@@ -2,10 +2,10 @@ package net.olikester.shazam2discogs.json;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.Version;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import net.olikester.shazam2discogs.model.Tag;
-import net.olikester.shazam2discogs.model.TagList;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,10 +15,11 @@ import org.springframework.boot.test.context.SpringBootTest;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-@SpringBootTest(classes = TagList.class)
+@SpringBootTest
 class DeserializationTest {
 
     private static String oneTagJson1 = "";
@@ -41,7 +42,7 @@ class DeserializationTest {
     public void setupEach() {
 	mapper = new ObjectMapper();
 	SimpleModule module = new SimpleModule("ShazamTagsDeserializer", new Version(1, 0, 0, null, null, null));
-	module.addDeserializer(TagList.class, new ShazamTagsDeserializer());
+	module.addDeserializer(ArrayList.class, new ShazamTagsDeserializer());
 	mapper.registerModule(module);
     }
 
@@ -50,8 +51,11 @@ class DeserializationTest {
      */
     @Test
     public void oneTagParseTestWithRelease1() throws JsonProcessingException {
-	TagList tags = mapper.readValue(oneTagJson1, TagList.class);
-	Tag tag = tags.toArrayList().get(0);
+	ArrayList<Tag> tags = new ArrayList<Tag>();
+	tags = mapper.readValue(oneTagJson1, new TypeReference<ArrayList<Tag>>() {
+	});
+
+	Tag tag = tags.get(0);
 
 	assertNotNull(tag);
 	assertEquals(524476162, tag.getKey());
@@ -67,8 +71,10 @@ class DeserializationTest {
      */
     @Test
     public void oneTagParseTestWithRelease2() throws JsonProcessingException {
-	TagList tags = mapper.readValue(oneTagJson2, TagList.class);
-	Tag tag = tags.toArrayList().get(0);
+	ArrayList<Tag> tags = mapper.readValue(oneTagJson2, new TypeReference<ArrayList<Tag>>() {
+	});
+
+	Tag tag = tags.get(0);
 
 	assertNotNull(tag);
 	assertEquals(5996069, tag.getKey());
@@ -85,14 +91,15 @@ class DeserializationTest {
      */
     @Test
     public void largeFileSimpleTest() {
-	TagList tags = null;
+	ArrayList<Tag> tags = new ArrayList<>();
 	try {
-	    tags = mapper.readValue(largeShazamDoc, TagList.class);
+	    tags = mapper.readValue(largeShazamDoc, new TypeReference<ArrayList<Tag>>() {
+	    });
 	} catch (Exception e) {
 	    e.printStackTrace();
 	    fail("Check there are no errors thrown with a real, large Shazam JSON file. Exception thrown. ");
 	}
-	if (tags.toArrayList().size() < 1) {
+	if (tags.size() < 1) {
 	    fail("Check there are no errors thrown with a real, large Shazam JSON file. No tags scanned. ");
 	}
     }
@@ -100,10 +107,12 @@ class DeserializationTest {
     /**
      * Test with empty file
      */
+    @SuppressWarnings("unused")
     @Test
     public void emptyStringTest() {
 	try {
-	    mapper.readValue(emptyDoc, TagList.class);
+	    ArrayList<Tag> tags = mapper.readValue(emptyDoc, new TypeReference<ArrayList<Tag>>() {
+	    });
 	    fail("Test with empty file. Program did not throw exception. ");
 	} catch (JsonProcessingException e) {
 	    e.printStackTrace();
@@ -113,10 +122,12 @@ class DeserializationTest {
     /**
      * Test with invalid file with trailing comma.
      */
+    @SuppressWarnings("unused")
     @Test
     public void invalidFileTest() {
 	try {
-	    mapper.readValue(oneTagInvalidTrailingComma, TagList.class);
+	    ArrayList<Tag> tags = mapper.readValue(oneTagInvalidTrailingComma, new TypeReference<ArrayList<Tag>>() {
+	    });
 	    fail("Test with invalid file with trailing comma. Exception not thrown. ");
 	} catch (JsonProcessingException e) {
 	    e.printStackTrace();

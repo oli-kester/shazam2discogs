@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Scanner;
 
 import javax.annotation.PostConstruct;
@@ -16,7 +15,6 @@ import org.springframework.security.oauth.consumer.BaseProtectedResourceDetails;
 import org.springframework.security.oauth.consumer.InMemoryProtectedResourceDetailsService;
 import org.springframework.security.oauth.consumer.OAuthConsumerToken;
 import org.springframework.security.oauth.consumer.OAuthRequestFailedException;
-import org.springframework.security.oauth.consumer.ProtectedResourceDetails;
 import org.springframework.security.oauth.consumer.client.CoreOAuthConsumerSupport;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -97,6 +95,7 @@ public class DiscogsServiceImpl implements DiscogsService {
 		    accessToken.toOAuthConsumerToken(), "GET");
 	    Scanner s = new Scanner(inputStream).useDelimiter("\\A");
 	    result = s.hasNext() ? s.next() : "";
+	    s.close();
 	} catch (OAuthRequestFailedException | IOException e) {
 	    // TODO URL was malformed.
 	    e.printStackTrace();

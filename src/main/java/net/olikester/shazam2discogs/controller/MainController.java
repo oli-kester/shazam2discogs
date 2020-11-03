@@ -1,6 +1,7 @@
 package net.olikester.shazam2discogs.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -20,12 +21,13 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.Version;
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
 import net.olikester.shazam2discogs.dao.TagDao;
 import net.olikester.shazam2discogs.json.ShazamTagsDeserializer;
-import net.olikester.shazam2discogs.model.TagList;
+import net.olikester.shazam2discogs.model.Tag;
 
 @Controller
 public class MainController {
@@ -61,19 +63,19 @@ public class MainController {
 
 	ObjectMapper mapper = new ObjectMapper();
 	SimpleModule module = new SimpleModule("ShazamTagsDeserializer", new Version(1, 0, 0, null, null, null));
-	TagList tags = new TagList();
-	module.addDeserializer(TagList.class, new ShazamTagsDeserializer());
+	ArrayList<Tag> tags = new ArrayList<Tag>();
+	module.addDeserializer(ArrayList.class, new ShazamTagsDeserializer());
 	mapper.registerModule(module);
 
 	try {
-	    tags = mapper.readValue(fileContents, TagList.class);
+	    tags = mapper.readValue(fileContents, new TypeReference<ArrayList<Tag>>() {});
 	    ra.addFlashAttribute("parseSuccess", true);
 	} catch (JsonProcessingException e) {
 	    ra.addFlashAttribute("parseSuccess", false);
 	    e.printStackTrace();
 	}
 
-	tags.toArrayList().stream().forEach(currTag -> {
+	tags.stream().forEach(currTag -> {
 	    currTag.setSessionId(session.getId());
 	    tagDao.save(currTag);
 	});

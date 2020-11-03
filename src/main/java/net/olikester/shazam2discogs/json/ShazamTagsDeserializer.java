@@ -6,13 +6,13 @@ import com.fasterxml.jackson.databind.DeserializationContext;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.deser.std.StdDeserializer;
 import net.olikester.shazam2discogs.model.Tag;
-import net.olikester.shazam2discogs.model.TagList;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
-public class ShazamTagsDeserializer extends StdDeserializer<TagList> {
+public class ShazamTagsDeserializer extends StdDeserializer<ArrayList<Tag>> {
 
-    // recommended by Eclipse 
+    // recommended by Eclipse
     private static final long serialVersionUID = 1L;
 
     public ShazamTagsDeserializer() {
@@ -28,8 +28,8 @@ public class ShazamTagsDeserializer extends StdDeserializer<TagList> {
      * irrelevant data.
      */
     @Override
-    public TagList deserialize(JsonParser parser, DeserializationContext context) throws IOException {
-	TagList tagList = new TagList();
+    public ArrayList<Tag> deserialize(JsonParser parser, DeserializationContext context) throws IOException {
+	ArrayList<Tag> tagList = new ArrayList<Tag>();
 	ObjectCodec codec = parser.getCodec();
 	JsonNode rootNode = codec.readTree(parser);
 
