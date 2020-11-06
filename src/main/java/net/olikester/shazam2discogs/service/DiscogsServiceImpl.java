@@ -25,6 +25,7 @@ import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.google.common.util.concurrent.RateLimiter;
 
 import net.olikester.shazam2discogs.json.DiscogsReleaseSearchResultsDeserializer;
 import net.olikester.shazam2discogs.model.JpaOAuthConsumerToken;
@@ -40,18 +41,19 @@ public class DiscogsServiceImpl implements DiscogsService {
     private String API_KEY;
     @Value("${shazam2discogs.api-secret}")
     private String API_SECRET;
-    
+
     @Value("${shazam2discogs.test-access-token}")
     private String DEV_OAUTH_TOKEN;
     @Value("${shazam2discogs.test-access-secret}")
     private String DEV_OAUTH_SECRET;
-
 
     private BaseProtectedResourceDetails resource;
     private HashMap<String, String> extraHeaderParams;
     private CoreOAuthConsumerSupport consumerSupport;
     private InMemoryProtectedResourceDetailsService protectedResourceDetailsService;
     private HashMap<String, BaseProtectedResourceDetails> resourceDetailsStore;
+
+    private static final RateLimiter rateLimiter = RateLimiter.create(0.9);
 
     @PostConstruct
     private void init() {
@@ -78,6 +80,7 @@ public class DiscogsServiceImpl implements DiscogsService {
 
     @Override
     public OAuthConsumerToken fetchRequestToken(String callbackURL) {
+	rateLimiter.acquire();
 	OAuthConsumerToken token = consumerSupport.getUnauthorizedRequestToken(resource, callbackURL);
 	if (token.getAdditionalParameters().get("oauth_callback_confirmed").equals("true")) {
 	    return token;
@@ -88,6 +91,7 @@ public class DiscogsServiceImpl implements DiscogsService {
 
     @Override
     public OAuthConsumerToken fetchAccessToken(OAuthConsumerToken oAuthConsumerToken, String oAuthVerifier) {
+	rateLimiter.acquire();
 	OAuthConsumerToken token = consumerSupport.getAccessToken(resource, oAuthConsumerToken, oAuthVerifier);
 	return token;
     }
@@ -103,6 +107,7 @@ public class DiscogsServiceImpl implements DiscogsService {
 	String json = "";
 
 	try {
+	    rateLimiter.acquire();
 	    InputStream inputStream = consumerSupport.readProtectedResource(new URL(uriComponents.toUriString()),
 		    accessToken.toOAuthConsumerToken(), "GET");
 
@@ -133,7 +138,7 @@ public class DiscogsServiceImpl implements DiscogsService {
 
 	return releases;
     }
-    
+
     @Override
     public JpaOAuthConsumerToken createTestAccessToken(String sessionId) {
 	JpaOAuthConsumerToken oauthToken = new JpaOAuthConsumerToken();

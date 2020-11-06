@@ -18,6 +18,7 @@ dependencies {
 	
   	compile 'org.springframework.session:spring-session-jdbc'
   	compile 'org.webjars:bootstrap:4.5.3'  	
+  	compile 'com.google.guava:guava:28.0-jre'
 	
 	//implementation 'org.springframework.boot:spring-boot-starter-security'	
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
