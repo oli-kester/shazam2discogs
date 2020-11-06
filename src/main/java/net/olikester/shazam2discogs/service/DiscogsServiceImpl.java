@@ -53,7 +53,8 @@ public class DiscogsServiceImpl implements DiscogsService {
     private InMemoryProtectedResourceDetailsService protectedResourceDetailsService;
     private HashMap<String, BaseProtectedResourceDetails> resourceDetailsStore;
 
-    //Discogs allows up to 60 requests per minute. This is found to be a save value to prevent errors. 
+    // Discogs allows up to 60 requests per minute. This is found to be a save value
+    // to prevent errors.
     private static final RateLimiter rateLimiter = RateLimiter.create(0.75);
 
     @PostConstruct
@@ -104,16 +105,39 @@ public class DiscogsServiceImpl implements DiscogsService {
 		.queryParam("type", "release").queryParam("release_title", currTag.getAlbum())
 		.queryParam("artist", currTag.getArtist());
 
-	//only add these search parameters if they're not null
+	// only add these search parameters if they're not null
 	if (currTag.getLabel() != null) {
 	    uriComponents.queryParam("label", currTag.getLabel());
 	}
 	if (currTag.getReleaseYear() != 0) {
 	    uriComponents.queryParam("year", currTag.getReleaseYear());
 	}
-	
+
 	String query = DiscogsService.stripIllegalQueryChars(uriComponents.toUriString());
 
+	return sendDiscogsSearch(query, accessToken);
+
+    }
+
+    @Override
+    public ArrayList<Release> getReleaseList(String searchString, JpaOAuthConsumerToken accessToken) {
+	UriComponentsBuilder uriComponents = UriComponentsBuilder.fromHttpUrl(DISCOGS_SEARCH_URL).queryParam("query",
+		searchString);
+
+	String query = DiscogsService.stripIllegalQueryChars(uriComponents.toUriString());
+
+	return sendDiscogsSearch(query, accessToken);
+    }
+
+    /**
+     * Sends a GET request to the given URL using the access token and handles any
+     * errors.
+     * 
+     * @param query
+     * @param accessToken
+     * @return
+     */
+    private ArrayList<Release> sendDiscogsSearch(String query, JpaOAuthConsumerToken accessToken) {
 	ArrayList<Release> releases = new ArrayList<>();
 
 	try {

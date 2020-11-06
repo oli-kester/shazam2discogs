@@ -35,21 +35,40 @@ public class DiscogsReleaseSearchResultsDeserializer extends StdDeserializer<Arr
 
 	for (JsonNode currResult : rootNode.get("results")) {
 	    Release newRelease = new Release();
-	    newRelease.setCountry(currResult.get("country").asText());
-	    newRelease.setReleaseYear(currResult.get("year").asInt());
+
 	    newRelease.setId(currResult.get("id").asText());
-	    newRelease.setThumbnailPath(currResult.get("thumb").asText());
 	    newRelease.setTitle(currResult.get("title").asText());
 
-	    JsonNode formatDetails = currResult.get("format");
-	    newRelease.setFormatType(formatDetails.get(0).asText());
-	    if (formatDetails.has(1)) {
-		newRelease.setFormatDesc(formatDetails.get(1).asText());
+	    if (currResult.has("country")) {
+		newRelease.setCountry(currResult.get("country").asText());
+	    }
+	    if (currResult.has("year")) {
+		newRelease.setReleaseYear(currResult.get("year").asInt());
+	    }
+	    if (currResult.has("thumb")) {
+		newRelease.setThumbnailPath(currResult.get("thumb").asText());
 	    }
 
-	    newRelease.setLabel(currResult.get("label").get(0).asText());
-	    newRelease.setPopularity(currResult.get("community").get("have").asInt());
+	    if (currResult.has("format")) {
+		JsonNode formatDetails = currResult.get("format");
+		newRelease.setFormatType(formatDetails.get(0).asText());
+		if (formatDetails.has(1)) {
+		    newRelease.setFormatDesc(formatDetails.get(1).asText());
+		}
+	    } else {
+		continue;
+	    }
 
+	    if (currResult.has("label")) {
+		newRelease.setLabel(currResult.get("label").get(0).asText());
+	    }
+
+	    if (currResult.has("community") && currResult.get("community").has("have")) {
+		newRelease.setPopularity(currResult.get("community").get("have").asInt());
+	    } else {
+		System.out.println("Root node - " + currResult.toPrettyString());
+		continue;
+	    }
 	    releaseList.add(newRelease);
 	}
 

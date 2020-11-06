@@ -54,6 +54,14 @@ public class DiscogsServiceTest {
     public void searchRequest1() {
 	ArrayList<Release> results = discogsService.getReleaseList(testTag1, accessToken);
     }
+    
+    @SuppressWarnings("unused")
+    @DisplayName("Check there's no exceptions from a simple search request. ")
+    @Test
+    public void searchRequest2() {
+	ArrayList<Release> results = discogsService.getReleaseList("si00 Autechre", accessToken);
+	results.stream().forEach(result -> System.out.println(result.toString()));
+    }
 
     @DisplayName("Check we're escaping question marks from query parameters")
     @Test
@@ -62,5 +70,15 @@ public class DiscogsServiceTest {
 	String expected = "https://api.discogs.com/database/search?type=release&release_title=Are%20'Friends'%20Electric%3F%20-%20Single&artist=Tubeway%20Army&label=Beggars%20Banquet&year=1979";
 	assertEquals(expected, DiscogsService.stripIllegalQueryChars(input));
     }
+    
+    @DisplayName("Check we're escaping semicolons from query parameters")
+    @Test
+    public void queryStringRemoveSemicolonsTest() {
+	String input = "https://api.discogs.com/database/search?query=Red%20(Original%20Mix;Asot%20391)%20Rafael%20Frost";
+	String expected = "https://api.discogs.com/database/search?query=Red%20(Original%20Mix%3BAsot%20391)%20Rafael%20Frost";
+	assertEquals(expected, DiscogsService.stripIllegalQueryChars(input));
+    }
 
+    
+    
 }

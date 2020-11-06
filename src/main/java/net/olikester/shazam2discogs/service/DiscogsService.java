@@ -32,6 +32,16 @@ public interface DiscogsService {
     ArrayList<Release> getReleaseList(Tag currTag, JpaOAuthConsumerToken accessToken);
 
     /**
+     * A less precise search for use when we don't get any results with
+     * getReleaseList(Tag currTag, JpaOAuthConsumerToken accessToken);
+     * 
+     * @param currTag
+     * @param accessToken
+     * @return
+     */
+    ArrayList<Release> getReleaseList(String searchString, JpaOAuthConsumerToken accessToken);
+
+    /**
      * For test purposes - create an access token using the keys in the hidden
      * properties file.
      * 
@@ -50,7 +60,7 @@ public interface DiscogsService {
     public static String stripIllegalQueryChars(String uriString) {
 	int queryStartIndex = uriString.indexOf('?') + 1;
 	String params = uriString.substring(queryStartIndex);
-	return uriString.substring(0, queryStartIndex) + params.replace("?", "%3F");
+	return uriString.substring(0, queryStartIndex) + params.replace("?", "%3F").replace(";", "%3B");
     }
 
 }

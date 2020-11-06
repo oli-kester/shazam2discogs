@@ -39,6 +39,14 @@ public class Tag {
 	this.releaseYear = releaseYear;
     }
 
+    /**
+     * Creates a simple search string for this tag. 
+     * @return
+     */
+    public String getSimpleSearchTerm() {
+	return trackTitle + " " + artist;
+    }
+
     public String getId() {
 	return id;
     }

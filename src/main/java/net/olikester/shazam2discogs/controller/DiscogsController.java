@@ -87,17 +87,27 @@ public class DiscogsController {
 	    SessionData sessionData = sessionDataDao.findById(sessionId).orElseThrow();
 	    List<Tag> userTags = sessionData.getTags();
 
-	   userTags.stream().forEach(currTag -> {
-		//search Discogs database for best match for each tag
+	    userTags.stream().forEach(currTag -> {
+		// search Discogs database for best match for each tag
 		ArrayList<Release> discogsSearchResults = discogsService.getReleaseList(currTag, userToken.get());
-		if (discogsSearchResults.size() > 0) {
-		//add best match to release database
-		Release bestMatch =  Release.selectPreferredReleaseByFormat(discogsSearchResults, preferredFormat);
-		releaseDao.save(bestMatch);
+		
+		if (discogsSearchResults.isEmpty()) {
+		    // if we didn't find any results, try a less specific search.
+		    String searchTerm = currTag.getSimpleSearchTerm();
+		    discogsSearchResults = discogsService.getReleaseList(searchTerm, userToken.get());
+
+		    if (discogsSearchResults.isEmpty()) {
+			System.err.println("No results found for - " + searchTerm);
+			return; //if there's still no results found, skip this one. 
+		    }
 		}
+
+		// add best match to release database
+		Release bestMatch = Release.selectPreferredReleaseByFormat(discogsSearchResults, preferredFormat);
+		releaseDao.save(bestMatch);
+
 	    });
-	    
-	    
+
 	}
     }
 
