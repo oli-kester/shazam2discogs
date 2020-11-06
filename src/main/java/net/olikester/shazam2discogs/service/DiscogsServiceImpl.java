@@ -117,15 +117,13 @@ public class DiscogsServiceImpl implements DiscogsService {
 	ArrayList<Release> releases = new ArrayList<>();
 
 	try {
-	    double sleepValue =  rateLimiter.acquire();
-	    System.out.println("Slept for - " + sleepValue); //TODO remove
+	    rateLimiter.acquire();
 	    InputStream inputStream = consumerSupport.readProtectedResource(new URL(query),
 		    accessToken.toOAuthConsumerToken(), "GET");
 
 	    Scanner s = new Scanner(inputStream).useDelimiter("\\A");
 	    String json = s.hasNext() ? s.next() : "";
 	    s.close();
-	    System.out.println("Request succeeded - " + query); // TODO remove
 
 	    ObjectMapper mapper = new ObjectMapper();
 	    SimpleModule module = new SimpleModule("DiscogsReleaseSearchResultsDeserializer",
@@ -144,7 +142,7 @@ public class DiscogsServiceImpl implements DiscogsService {
 	} catch (OAuthRequestFailedException | IOException e) {
 	    // TODO Discogs access denied
 	    System.err.println("Request failed - " + query);
-//	    e.printStackTrace();
+	    e.printStackTrace();
 	}
 
 	return releases;
