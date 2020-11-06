@@ -19,6 +19,7 @@ import org.springframework.web.servlet.view.RedirectView;
 import net.olikester.shazam2discogs.dao.ConsumerTokenDao;
 import net.olikester.shazam2discogs.dao.ReleaseDao;
 import net.olikester.shazam2discogs.dao.SessionDataDao;
+import net.olikester.shazam2discogs.dao.TagDao;
 import net.olikester.shazam2discogs.model.JpaOAuthConsumerToken;
 import net.olikester.shazam2discogs.model.MediaFormats;
 import net.olikester.shazam2discogs.model.Release;
@@ -42,6 +43,8 @@ public class DiscogsController {
     private ReleaseDao releaseDao;
     @Autowired
     private SessionDataDao sessionDataDao;
+    @Autowired
+    private TagDao tagDao;
 
     @Value("${shazam2discogs.site-title}")
     private String SITE_TITLE;
@@ -76,7 +79,7 @@ public class DiscogsController {
     }
 
     @GetMapping("searchTags")
-    public void searchTags(HttpSession session) {
+    public ModelAndView searchTags(HttpSession session) {
 	// TODO enable user selection of media type
 	MediaFormats preferredFormat = MediaFormats.DIGITAL_HI_RES;
 
@@ -104,11 +107,13 @@ public class DiscogsController {
 
 		// add best match to release database
 		Release bestMatch = Release.selectPreferredReleaseByFormat(discogsSearchResults, preferredFormat);
+		currTag.setLinkedDiscogsRelease(bestMatch);
+		tagDao.save(currTag);
 		releaseDao.save(bestMatch);
-
 	    });
 
 	}
+	return null;
     }
 
     /**

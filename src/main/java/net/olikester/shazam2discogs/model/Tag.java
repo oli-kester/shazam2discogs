@@ -1,5 +1,6 @@
 package net.olikester.shazam2discogs.model;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
@@ -17,6 +18,9 @@ public class Tag {
     @ManyToOne
     @JoinColumn(name = "sessionId", nullable = false)
     private SessionData session;
+    @ManyToOne(cascade = {CascadeType.ALL})
+    @JoinColumn(name = "discogsReleaseId", nullable = true)
+    private Release linkedDiscogsRelease;
 
     /**
      * Default constructor to allow Jackson to use the class
@@ -40,7 +44,8 @@ public class Tag {
     }
 
     /**
-     * Creates a simple search string for this tag. 
+     * Creates a simple search string for this tag.
+     * 
      * @return
      */
     public String getSimpleSearchTerm() {
@@ -127,10 +132,25 @@ public class Tag {
 	this.session = session;
     }
 
+    /**
+     * @return the linkedDiscogsRelease
+     */
+    public Release getLinkedDiscogsRelease() {
+	return linkedDiscogsRelease;
+    }
+
+    /**
+     * @param linkedDiscogsRelease the linkedDiscogsRelease to set
+     */
+    public void setLinkedDiscogsRelease(Release linkedDiscogsRelease) {
+	this.linkedDiscogsRelease = linkedDiscogsRelease;
+    }
+
     @Override
     public String toString() {
 	return "Tag [id=" + id + ", trackTitle=" + trackTitle + ", artist=" + artist + ", album=" + album + ", label="
-		+ label + ", releaseYear=" + releaseYear + ", session=" + session + "]";
+		+ label + ", releaseYear=" + releaseYear + ", session=" + session + ", linkedDiscogsRelease="
+		+ linkedDiscogsRelease + "]";
     }
 
 }

@@ -7,6 +7,7 @@ import java.util.stream.Collectors;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  * Represents the required data from a Release in the Discogs Database
@@ -26,12 +27,46 @@ public class Release {
     private String label;
     private String thumbnailPath;
     private int popularity; // the number of users that have this in their collection.
+    @OneToMany(mappedBy = "linkedDiscogsRelease")
+    private List<Tag> linkedTags;
 
     /**
      * Default constructor to allow Jackson to use the class
      */
     public Release() {
 
+    }
+
+    /**
+     * Selects the preferred release by the given format. If no format matches, then
+     * the most popular Release is returned.
+     * 
+     * @param releases        - A list of Release objects
+     * @param preferredFormat - The preferred media format.
+     * @return The Release that best matches the preference.
+     */
+    public static Release selectPreferredReleaseByFormat(ArrayList<Release> releases, MediaFormats preferredFormat) {
+	List<Release> filteredResultsByFormat = releases.stream().filter(release -> {
+	    String formatTitle = release.getFormatType();
+	    String formatDesc = release.getFormatDesc();
+	    switch (preferredFormat) {
+	    case DIGITAL_HI_RES:
+		return formatTitle.equals("File") && (formatDesc.equals("FLAC") || formatDesc.equals("WAV"));
+	    case DIGITAL_MP3:
+		return formatTitle.equals("File") && formatDesc.equals("MP3");
+	    case PHYSICAL_CD:
+		return formatTitle.equals("CD");
+	    case PHYSICAL_VINYL:
+		return formatTitle.equals("Vinyl");
+	    }
+	    return false;
+	}).collect(Collectors.toList());
+
+	// if we have any filtered results, select the most popular - else just select
+	// the most popular, non-filtered result.
+	Comparator<Release> popularityComparator = Comparator.comparing(Release::getPopularity);
+	return filteredResultsByFormat.size() > 0 ? filteredResultsByFormat.stream().max(popularityComparator).get()
+		: releases.stream().max(popularityComparator).get();
     }
 
     /**
@@ -155,42 +190,24 @@ public class Release {
     }
 
     /**
-     * Selects the preferred release by the given format. If no format matches, then
-     * the most popular Release is returned.
-     * 
-     * @param releases        - A list of Release objects
-     * @param preferredFormat - The preferred media format.
-     * @return The Release that best matches the preference.
+     * @return the linkedTags
      */
-    public static Release selectPreferredReleaseByFormat(ArrayList<Release> releases, MediaFormats preferredFormat) {
-	List<Release> filteredResultsByFormat = releases.stream().filter(release -> {
-	    String formatTitle = release.getFormatType();
-	    String formatDesc = release.getFormatDesc();
-	    switch (preferredFormat) {
-	    case DIGITAL_HI_RES:
-		return formatTitle.equals("File") && (formatDesc.equals("FLAC") || formatDesc.equals("WAV"));
-	    case DIGITAL_MP3:
-		return formatTitle.equals("File") && formatDesc.equals("MP3");
-	    case PHYSICAL_CD:
-		return formatTitle.equals("CD");
-	    case PHYSICAL_VINYL:
-		return formatTitle.equals("Vinyl");
-	    }
-	    return false;
-	}).collect(Collectors.toList());
+    public List<Tag> getLinkedTags() {
+	return linkedTags;
+    }
 
-	// if we have any filtered results, select the most popular - else just select
-	// the most popular, non-filtered result.
-	Comparator<Release> popularityComparator = Comparator.comparing(Release::getPopularity);
-	return filteredResultsByFormat.size() > 0 ? filteredResultsByFormat.stream().max(popularityComparator).get()
-		: releases.stream().max(popularityComparator).get();
+    /**
+     * @param linkedTags the linkedTags to set
+     */
+    public void setLinkedTags(List<Tag> linkedTags) {
+	this.linkedTags = linkedTags;
     }
 
     @Override
     public String toString() {
 	return "Release [id=" + id + ", title=" + title + ", country=" + country + ", releaseYear=" + releaseYear
 		+ ", formatType=" + formatType + ", formatDesc=" + formatDesc + ", label=" + label + ", thumbnailPath="
-		+ thumbnailPath + ", popularity=" + popularity + "]";
+		+ thumbnailPath + ", popularity=" + popularity + ", linkedTags=" + linkedTags + "]";
     }
 
 }
