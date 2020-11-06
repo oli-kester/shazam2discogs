@@ -53,7 +53,8 @@ public class DiscogsServiceImpl implements DiscogsService {
     private InMemoryProtectedResourceDetailsService protectedResourceDetailsService;
     private HashMap<String, BaseProtectedResourceDetails> resourceDetailsStore;
 
-    private static final RateLimiter rateLimiter = RateLimiter.create(1);
+    //Discogs allows up to 60 requests per minute. This is found to be a save value to prevent errors. 
+    private static final RateLimiter rateLimiter = RateLimiter.create(0.75);
 
     @PostConstruct
     private void init() {
@@ -141,7 +142,7 @@ public class DiscogsServiceImpl implements DiscogsService {
 	    }
 
 	} catch (OAuthRequestFailedException | IOException e) {
-	    // TODO URL was malformed.
+	    // TODO Discogs access denied
 	    System.err.println("Request failed - " + query);
 //	    e.printStackTrace();
 	}
