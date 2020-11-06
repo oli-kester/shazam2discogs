@@ -154,13 +154,6 @@ public class Release {
 	this.popularity = popularity;
     }
 
-    @Override
-    public String toString() {
-	return "Release [id=" + id + ", title=" + title + ", country=" + country + ", releaseYear=" + releaseYear
-		+ ", formatType=" + formatType + ", formatDesc=" + formatDesc + ", label=" + label + ", thumbnailPath="
-		+ thumbnailPath + ", popularity=" + popularity + "]";
-    }
-
     /**
      * Selects the preferred release by the given format. If no format matches, then
      * the most popular Release is returned.
@@ -191,6 +184,13 @@ public class Release {
 	Comparator<Release> popularityComparator = Comparator.comparing(Release::getPopularity);
 	return filteredResultsByFormat.size() > 0 ? filteredResultsByFormat.stream().max(popularityComparator).get()
 		: releases.stream().max(popularityComparator).get();
+    }
+
+    @Override
+    public String toString() {
+	return "Release [id=" + id + ", title=" + title + ", country=" + country + ", releaseYear=" + releaseYear
+		+ ", formatType=" + formatType + ", formatDesc=" + formatDesc + ", label=" + label + ", thumbnailPath="
+		+ thumbnailPath + ", popularity=" + popularity + "]";
     }
 
 }

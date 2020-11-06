@@ -2,17 +2,21 @@ package net.olikester.shazam2discogs.model;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 @Entity
 public class Tag {
     @Id
     private int key;
-    private String sessionId;
     private String trackTitle;
     private String artist;
     private String album;
     private String label;
     private int releaseYear;
+    @ManyToOne
+    @JoinColumn(name = "sessionId", nullable = false)
+    private SessionData session;
 
     /**
      * Default constructor to allow Jackson to use the class
@@ -101,18 +105,24 @@ public class Tag {
 	this.releaseYear = releaseYear;
     }
 
-    public String getSessionId() {
-	return sessionId;
+    /**
+     * @return the session
+     */
+    public SessionData getSession() {
+	return session;
     }
 
-    public void setSessionId(String sessionId) {
-	this.sessionId = sessionId;
+    /**
+     * @param session the session to set
+     */
+    public void setSession(SessionData session) {
+	this.session = session;
     }
 
     @Override
     public String toString() {
-	return "Tag [key=" + key + ", sessionId=" + sessionId + ", trackTitle=" + trackTitle + ", artist=" + artist
-		+ ", album=" + album + ", label=" + label + ", releaseYear=" + releaseYear + "]";
+	return "Tag [key=" + key + ", trackTitle=" + trackTitle + ", artist=" + artist + ", album=" + album + ", label="
+		+ label + ", releaseYear=" + releaseYear + ", session=" + session + "]";
     }
 
 }

@@ -25,8 +25,10 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
+import net.olikester.shazam2discogs.dao.SessionDataDao;
 import net.olikester.shazam2discogs.dao.TagDao;
 import net.olikester.shazam2discogs.json.ShazamTagsDeserializer;
+import net.olikester.shazam2discogs.model.SessionData;
 import net.olikester.shazam2discogs.model.Tag;
 
 @Controller
@@ -39,6 +41,8 @@ public class MainController {
 
     @Autowired
     private TagDao tagDao;
+    @Autowired
+    private SessionDataDao sessionDataDao;
 
     @GetMapping("/")
     public ModelAndView home() {
@@ -74,9 +78,14 @@ public class MainController {
 	    ra.addFlashAttribute("parseSuccess", false);
 	    e.printStackTrace();
 	}
+	
+	SessionData sessionData = new SessionData();
+	sessionData.setSessionId(session.getId());
+	
+	sessionDataDao.save(sessionData);
 
 	tags.stream().forEach(currTag -> {
-	    currTag.setSessionId(session.getId());
+	    currTag.setSession(sessionData);
 	    tagDao.save(currTag);
 	});
 

@@ -1,11 +1,9 @@
 package net.olikester.shazam2discogs.controller;
 
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
 
@@ -19,10 +17,12 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import net.olikester.shazam2discogs.dao.ConsumerTokenDao;
-import net.olikester.shazam2discogs.dao.TagDao;
+import net.olikester.shazam2discogs.dao.ReleaseDao;
+import net.olikester.shazam2discogs.dao.SessionDataDao;
 import net.olikester.shazam2discogs.model.JpaOAuthConsumerToken;
 import net.olikester.shazam2discogs.model.MediaFormats;
 import net.olikester.shazam2discogs.model.Release;
+import net.olikester.shazam2discogs.model.SessionData;
 import net.olikester.shazam2discogs.model.Tag;
 import net.olikester.shazam2discogs.service.DiscogsService;
 
@@ -39,7 +39,9 @@ public class DiscogsController {
     @Autowired
     private ConsumerTokenDao tokenStore;
     @Autowired
-    private TagDao tagDao;
+    private ReleaseDao releaseDao;
+    @Autowired
+    private SessionDataDao sessionDataDao;
 
     @Value("${shazam2discogs.site-title}")
     private String SITE_TITLE;
@@ -82,12 +84,18 @@ public class DiscogsController {
 	Optional<JpaOAuthConsumerToken> userToken = tokenStore.findById(sessionId);
 
 	if (authCheck(userToken)) {
-	    ArrayList<Tag> userTags = tagDao.findBySessionId(sessionId);
+	    SessionData sessionData = sessionDataDao.findById(sessionId).orElseThrow();
+	    List<Tag> userTags = sessionData.getTags();
 
-	    List<Release> results = userTags.stream().map(currTag -> {
+	   userTags.stream().forEach(currTag -> {
+		//search Discogs database for best match for each tag
 		ArrayList<Release> discogsSearchResults = discogsService.getReleaseList(currTag, userToken.get());
-		return Release.selectPreferredReleaseByFormat(discogsSearchResults, preferredFormat);
-	    }).collect(Collectors.toList());
+		//add best match to release database
+		Release bestMatch =  Release.selectPreferredReleaseByFormat(discogsSearchResults, preferredFormat);
+		releaseDao.save(bestMatch);
+	    });
+	    
+	    
 	}
     }
 
