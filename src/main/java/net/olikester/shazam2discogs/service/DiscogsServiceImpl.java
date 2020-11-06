@@ -53,7 +53,7 @@ public class DiscogsServiceImpl implements DiscogsService {
     private InMemoryProtectedResourceDetailsService protectedResourceDetailsService;
     private HashMap<String, BaseProtectedResourceDetails> resourceDetailsStore;
 
-    private static final RateLimiter rateLimiter = RateLimiter.create(0.9);
+    private static final RateLimiter rateLimiter = RateLimiter.create(1);
 
     @PostConstruct
     private void init() {
@@ -101,39 +101,49 @@ public class DiscogsServiceImpl implements DiscogsService {
 
 	UriComponentsBuilder uriComponents = UriComponentsBuilder.fromHttpUrl(DISCOGS_SEARCH_URL)
 		.queryParam("type", "release").queryParam("release_title", currTag.getAlbum())
-		.queryParam("artist", currTag.getArtist()).queryParam("label", currTag.getLabel())
-		.queryParam("year", currTag.getReleaseYear());
+		.queryParam("artist", currTag.getArtist());
 
-	String json = "";
-
-	try {
-	    rateLimiter.acquire();
-	    InputStream inputStream = consumerSupport.readProtectedResource(new URL(uriComponents.toUriString()),
-		    accessToken.toOAuthConsumerToken(), "GET");
-
-	    Scanner s = new Scanner(inputStream).useDelimiter("\\A");
-	    json = s.hasNext() ? s.next() : "";
-	    s.close();
-
-	} catch (OAuthRequestFailedException | IOException e) {
-	    // TODO URL was malformed.
-	    e.printStackTrace();
+	//only add these search parameters if they're not null
+	if (currTag.getLabel() != null) {
+	    uriComponents.queryParam("label", currTag.getLabel());
 	}
-
-	ObjectMapper mapper = new ObjectMapper();
-	SimpleModule module = new SimpleModule("DiscogsReleaseSearchResultsDeserializer",
-		new Version(1, 0, 0, null, null, null));
-	module.addDeserializer(ArrayList.class, new DiscogsReleaseSearchResultsDeserializer());
-	mapper.registerModule(module);
+	if (currTag.getReleaseYear() != 0) {
+	    uriComponents.queryParam("year", currTag.getReleaseYear());
+	}
+	
+	String query = DiscogsService.stripIllegalQueryChars(uriComponents.toUriString());
 
 	ArrayList<Release> releases = new ArrayList<>();
 
 	try {
-	    releases = mapper.readValue(json, new TypeReference<ArrayList<Release>>() {
-	    });
-	} catch (JsonProcessingException e) {
-	    // TODO Discogs JSON not mapped properly
-	    e.printStackTrace();
+	    double sleepValue =  rateLimiter.acquire();
+	    System.out.println("Slept for - " + sleepValue); //TODO remove
+	    InputStream inputStream = consumerSupport.readProtectedResource(new URL(query),
+		    accessToken.toOAuthConsumerToken(), "GET");
+
+	    Scanner s = new Scanner(inputStream).useDelimiter("\\A");
+	    String json = s.hasNext() ? s.next() : "";
+	    s.close();
+	    System.out.println("Request succeeded - " + query); // TODO remove
+
+	    ObjectMapper mapper = new ObjectMapper();
+	    SimpleModule module = new SimpleModule("DiscogsReleaseSearchResultsDeserializer",
+		    new Version(1, 0, 0, null, null, null));
+	    module.addDeserializer(ArrayList.class, new DiscogsReleaseSearchResultsDeserializer());
+	    mapper.registerModule(module);
+
+	    try {
+		releases = mapper.readValue(json, new TypeReference<ArrayList<Release>>() {
+		});
+	    } catch (JsonProcessingException e) {
+		// TODO Discogs JSON not mapped properly
+		e.printStackTrace();
+	    }
+
+	} catch (OAuthRequestFailedException | IOException e) {
+	    // TODO URL was malformed.
+	    System.err.println("Request failed - " + query);
+//	    e.printStackTrace();
 	}
 
 	return releases;

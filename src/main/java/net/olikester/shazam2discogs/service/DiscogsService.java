@@ -32,9 +32,25 @@ public interface DiscogsService {
     ArrayList<Release> getReleaseList(Tag currTag, JpaOAuthConsumerToken accessToken);
 
     /**
-     * For test purposes - create an access token using the keys in the hidden properties file. 
+     * For test purposes - create an access token using the keys in the hidden
+     * properties file.
+     * 
      * @param sessionId - The session ID to bind the access token to
-     * @return - A JPA-compliant access token. 
+     * @return - A JPA-compliant access token.
      */
     JpaOAuthConsumerToken createTestAccessToken(String sessionId);
+
+    /**
+     * Strips illegal characters from the query string and returns the corrected
+     * version.
+     * 
+     * @param uriString
+     * @return
+     */
+    public static String stripIllegalQueryChars(String uriString) {
+	int queryStartIndex = uriString.indexOf('?') + 1;
+	String params = uriString.substring(queryStartIndex);
+	return uriString.substring(0, queryStartIndex) + params.replace("?", "%3F");
+    }
+
 }

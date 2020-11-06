@@ -1,5 +1,7 @@
 package net.olikester.shazam2discogs.service;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -16,7 +18,7 @@ import net.olikester.shazam2discogs.model.Release;
 import net.olikester.shazam2discogs.model.Tag;
 
 @SpringBootTest
-@TestPropertySource(locations="classpath:apiSecret.properties") // API keys are hidden in second properties file.
+@TestPropertySource(locations = "classpath:apiSecret.properties") // API keys are hidden in second properties file.
 public class DiscogsServiceTest {
 
     @Value("${shazam2discogs.test-access-token}")
@@ -51,6 +53,14 @@ public class DiscogsServiceTest {
     @Test
     public void searchRequest1() {
 	ArrayList<Release> results = discogsService.getReleaseList(testTag1, accessToken);
+    }
+
+    @DisplayName("Check we're escaping question marks from query parameters")
+    @Test
+    public void queryStringRemoveQuestionMarksTest() {
+	String input = "https://api.discogs.com/database/search?type=release&release_title=Are%20'Friends'%20Electric?%20-%20Single&artist=Tubeway%20Army&label=Beggars%20Banquet&year=1979";
+	String expected = "https://api.discogs.com/database/search?type=release&release_title=Are%20'Friends'%20Electric%3F%20-%20Single&artist=Tubeway%20Army&label=Beggars%20Banquet&year=1979";
+	assertEquals(expected, DiscogsService.stripIllegalQueryChars(input));
     }
 
 }
