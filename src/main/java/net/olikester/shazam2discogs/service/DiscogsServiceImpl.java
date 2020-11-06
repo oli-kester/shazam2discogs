@@ -40,6 +40,12 @@ public class DiscogsServiceImpl implements DiscogsService {
     private String API_KEY;
     @Value("${shazam2discogs.api-secret}")
     private String API_SECRET;
+    
+    @Value("${shazam2discogs.test-access-token}")
+    private String DEV_OAUTH_TOKEN;
+    @Value("${shazam2discogs.test-access-secret}")
+    private String DEV_OAUTH_SECRET;
+
 
     private BaseProtectedResourceDetails resource;
     private HashMap<String, String> extraHeaderParams;
@@ -126,5 +132,17 @@ public class DiscogsServiceImpl implements DiscogsService {
 	}
 
 	return releases;
+    }
+    
+    @Override
+    public JpaOAuthConsumerToken createTestAccessToken(String sessionId) {
+	JpaOAuthConsumerToken oauthToken = new JpaOAuthConsumerToken();
+	oauthToken.setHttpSessionId(sessionId);
+	oauthToken.setAdditionalParameters(new HashMap<String, String>());
+	oauthToken.setOauthResourceId(DiscogsService.APP_ID);
+	oauthToken.setAccessToken(true);
+	oauthToken.setOauthToken(DEV_OAUTH_TOKEN);
+	oauthToken.setOauthSecret(DEV_OAUTH_SECRET);
+	return oauthToken;
     }
 }

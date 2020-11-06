@@ -25,11 +25,14 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
+import net.olikester.shazam2discogs.dao.ConsumerTokenDao;
 import net.olikester.shazam2discogs.dao.SessionDataDao;
 import net.olikester.shazam2discogs.dao.TagDao;
 import net.olikester.shazam2discogs.json.ShazamTagsDeserializer;
+import net.olikester.shazam2discogs.model.JpaOAuthConsumerToken;
 import net.olikester.shazam2discogs.model.SessionData;
 import net.olikester.shazam2discogs.model.Tag;
+import net.olikester.shazam2discogs.service.DiscogsService;
 
 @Controller
 public class MainController {
@@ -43,10 +46,21 @@ public class MainController {
     private TagDao tagDao;
     @Autowired
     private SessionDataDao sessionDataDao;
+    @Autowired
+    private ConsumerTokenDao tokenDao;
+    @Autowired
+    private DiscogsService discogsService;
 
     @GetMapping("/")
-    public ModelAndView home() {
+    public ModelAndView home(HttpSession session) {
 	ModelAndView mv = new ModelAndView("home");
+
+	// if we're in OAUTH_BYPASS mode, add test keys to database
+	if (OAUTH_BYPASS) {
+	    JpaOAuthConsumerToken testToken = discogsService.createTestAccessToken(session.getId());
+	    tokenDao.save(testToken);
+	}
+
 	mv.addObject("SITE_TITLE", SITE_TITLE);
 	return mv;
     }
@@ -72,16 +86,17 @@ public class MainController {
 	mapper.registerModule(module);
 
 	try {
-	    tags = mapper.readValue(fileContents, new TypeReference<ArrayList<Tag>>() {});
+	    tags = mapper.readValue(fileContents, new TypeReference<ArrayList<Tag>>() {
+	    });
 	    ra.addFlashAttribute("parseSuccess", true);
 	} catch (JsonProcessingException e) {
 	    ra.addFlashAttribute("parseSuccess", false);
 	    e.printStackTrace();
 	}
-	
+
 	SessionData sessionData = new SessionData();
 	sessionData.setSessionId(session.getId());
-	
+
 	sessionDataDao.save(sessionData);
 
 	tags.stream().forEach(currTag -> {

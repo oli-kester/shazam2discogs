@@ -31,4 +31,10 @@ public interface DiscogsService {
      */
     ArrayList<Release> getReleaseList(Tag currTag, JpaOAuthConsumerToken accessToken);
 
+    /**
+     * For test purposes - create an access token using the keys in the hidden properties file. 
+     * @param sessionId - The session ID to bind the access token to
+     * @return - A JPA-compliant access token. 
+     */
+    JpaOAuthConsumerToken createTestAccessToken(String sessionId);
 }
