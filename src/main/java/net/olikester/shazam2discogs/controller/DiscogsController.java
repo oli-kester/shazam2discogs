@@ -90,9 +90,11 @@ public class DiscogsController {
 	   userTags.stream().forEach(currTag -> {
 		//search Discogs database for best match for each tag
 		ArrayList<Release> discogsSearchResults = discogsService.getReleaseList(currTag, userToken.get());
+		if (discogsSearchResults.size() > 0) {
 		//add best match to release database
 		Release bestMatch =  Release.selectPreferredReleaseByFormat(discogsSearchResults, preferredFormat);
 		releaseDao.save(bestMatch);
+		}
 	    });
 	    
 	    

@@ -43,7 +43,9 @@ public class DiscogsReleaseSearchResultsDeserializer extends StdDeserializer<Arr
 
 	    JsonNode formatDetails = currResult.get("format");
 	    newRelease.setFormatType(formatDetails.get(0).asText());
-	    newRelease.setFormatDesc(formatDetails.get(1).asText());
+	    if (formatDetails.has(1)) {
+		newRelease.setFormatDesc(formatDetails.get(1).asText());
+	    }
 
 	    newRelease.setLabel(currResult.get("label").get(0).asText());
 	    newRelease.setPopularity(currResult.get("community").get("have").asInt());
