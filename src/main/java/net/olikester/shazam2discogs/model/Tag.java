@@ -8,7 +8,7 @@ import javax.persistence.ManyToOne;
 @Entity
 public class Tag {
     @Id
-    private int key;
+    private String id;
     private String trackTitle;
     private String artist;
     private String album;
@@ -24,14 +24,14 @@ public class Tag {
     public Tag() {
     }
 
-    public Tag(int key, String trackTitle, String artist) {
-	this.key = key;
+    public Tag(String id, String trackTitle, String artist) {
+	this.id = id;
 	this.trackTitle = trackTitle;
 	this.artist = artist;
     }
 
-    public Tag(int key, String trackTitle, String artist, String album, String label, int releaseYear) {
-	this.key = key;
+    public Tag(String id, String trackTitle, String artist, String album, String label, int releaseYear) {
+	this.id = id;
 	this.trackTitle = trackTitle;
 	this.artist = artist;
 	this.album = album;
@@ -39,12 +39,12 @@ public class Tag {
 	this.releaseYear = releaseYear;
     }
 
-    public int getKey() {
-	return key;
+    public String getId() {
+	return id;
     }
 
-    public void setKey(int key) {
-	this.key = key;
+    public void setId(String id) {
+	this.id = id;
     }
 
     public String getTrackTitle() {
@@ -121,7 +121,7 @@ public class Tag {
 
     @Override
     public String toString() {
-	return "Tag [key=" + key + ", trackTitle=" + trackTitle + ", artist=" + artist + ", album=" + album + ", label="
+	return "Tag [id=" + id + ", trackTitle=" + trackTitle + ", artist=" + artist + ", album=" + album + ", label="
 		+ label + ", releaseYear=" + releaseYear + ", session=" + session + "]";
     }
 

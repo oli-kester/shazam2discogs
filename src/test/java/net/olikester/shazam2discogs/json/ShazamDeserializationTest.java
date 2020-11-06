@@ -58,7 +58,7 @@ class ShazamDeserializationTest {
 	Tag tag = tags.get(0);
 
 	assertNotNull(tag);
-	assertEquals(524476162, tag.getKey());
+	assertEquals("f36e1600-2d1e-41d0-987e-87b4b9b1ca4f", tag.getId());
 	assertEquals("Model Village", tag.getTrackTitle());
 	assertEquals("IDLES", tag.getArtist());
 	assertEquals("Ultra Mono", tag.getAlbum());
@@ -77,7 +77,7 @@ class ShazamDeserializationTest {
 	Tag tag = tags.get(0);
 
 	assertNotNull(tag);
-	assertEquals(5996069, tag.getKey());
+	assertEquals("ebd7145c-6542-41fa-9794-84bacdec0b18", tag.getId());
 	assertEquals("Lazy", tag.getTrackTitle());
 	assertEquals("X-Press 2 Feat. David Byrne", tag.getArtist());
 	assertEquals("Lazy (feat. David Byrne) - Single", tag.getAlbum());
