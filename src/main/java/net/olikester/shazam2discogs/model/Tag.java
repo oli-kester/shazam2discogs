@@ -15,10 +15,11 @@ public class Tag {
     private String album;
     private String label;
     private int releaseYear;
+    private String imageUrl;
     @ManyToOne
     @JoinColumn(name = "sessionId", nullable = false)
     private SessionData session;
-    @ManyToOne(cascade = {CascadeType.ALL})
+    @ManyToOne(cascade = { CascadeType.ALL })
     @JoinColumn(name = "discogsReleaseId", nullable = true)
     private Release linkedDiscogsRelease;
 
@@ -34,13 +35,15 @@ public class Tag {
 	this.artist = artist;
     }
 
-    public Tag(String id, String trackTitle, String artist, String album, String label, int releaseYear) {
+    public Tag(String id, String trackTitle, String artist, String album, String label, int releaseYear,
+	    String imageUrl) {
 	this.id = id;
 	this.trackTitle = trackTitle;
 	this.artist = artist;
 	this.album = album;
 	this.label = label;
 	this.releaseYear = releaseYear;
+	this.imageUrl = imageUrl;
     }
 
     /**
@@ -146,11 +149,25 @@ public class Tag {
 	this.linkedDiscogsRelease = linkedDiscogsRelease;
     }
 
+    /**
+     * @return the imageUrl
+     */
+    public String getImageUrl() {
+	return imageUrl;
+    }
+
+    /**
+     * @param imageUrl the imageUrl to set
+     */
+    public void setImageUrl(String imageUrl) {
+	this.imageUrl = imageUrl;
+    }
+
     @Override
     public String toString() {
 	return "Tag [id=" + id + ", trackTitle=" + trackTitle + ", artist=" + artist + ", album=" + album + ", label="
-		+ label + ", releaseYear=" + releaseYear + ", session=" + session + ", linkedDiscogsRelease="
-		+ linkedDiscogsRelease + "]";
+		+ label + ", releaseYear=" + releaseYear + ", imageUrl=" + imageUrl + ", session=" + session
+		+ ", linkedDiscogsRelease=" + linkedDiscogsRelease + "]";
     }
 
 }

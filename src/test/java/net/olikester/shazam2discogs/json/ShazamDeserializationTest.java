@@ -64,6 +64,7 @@ class ShazamDeserializationTest {
 	assertEquals("Ultra Mono", tag.getAlbum());
 	assertEquals("Partisan Records", tag.getLabel());
 	assertEquals(2020, tag.getReleaseYear());
+	assertEquals("https://images.shazam.com/coverart/t524476162-i1517641329_s400.jpg", tag.getImageUrl());
     }
 
     /**
@@ -83,6 +84,7 @@ class ShazamDeserializationTest {
 	assertEquals("Lazy (feat. David Byrne) - Single", tag.getAlbum());
 	assertEquals("Skint Records", tag.getLabel());
 	assertEquals(2002, tag.getReleaseYear());
+	assertEquals("https://images.shazam.com/coverart/t5996069-i1141927898_s400.jpg", tag.getImageUrl());
     }
 
     // TODO skip these extended tests if the files don't exist.

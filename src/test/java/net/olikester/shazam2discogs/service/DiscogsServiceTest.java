@@ -27,7 +27,7 @@ public class DiscogsServiceTest {
     private String OAUTH_SECRET;
 
     private final JpaOAuthConsumerToken accessToken = new JpaOAuthConsumerToken();
-    private final Tag testTag1 = new Tag("0", "si00", "Autechre", "SIGN", "Warp Records", 2020);
+    private final Tag testTag1 = new Tag("0", "si00", "Autechre", "SIGN", "Warp Records", 2020, "");
 
     @Autowired
     DiscogsService discogsService;

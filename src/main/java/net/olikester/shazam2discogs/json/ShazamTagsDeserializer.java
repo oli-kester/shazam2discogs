@@ -39,6 +39,11 @@ public class ShazamTagsDeserializer extends StdDeserializer<ArrayList<Tag>> {
 	    newTag.setId(currTag.get("tagid").asText());
 	    newTag.setTrackTitle(headers.get("title").asText());
 	    newTag.setArtist(headers.get("subtitle").asText());
+	    if (currTag.get("track").get("images").has("default")) {
+		newTag.setImageUrl(currTag.get("track").get("images").get("default").asText());
+	    } else {
+		newTag.setImageUrl("");
+	    }
 
 	    for (JsonNode currFootnote : currTag.get("track").get("footnotes")) {
 		switch (currFootnote.get("title").asText()) {
