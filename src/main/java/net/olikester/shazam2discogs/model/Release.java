@@ -2,7 +2,9 @@ package net.olikester.shazam2discogs.model;
 
 import java.util.ArrayList;
 import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.persistence.Entity;
@@ -28,13 +30,13 @@ public class Release {
     private String thumbnailPath;
     private int popularity; // the number of users that have this in their collection.
     @OneToMany(mappedBy = "linkedDiscogsRelease")
-    private List<Tag> linkedTags;
+    private Set<Tag> linkedTags;
 
     /**
      * Default constructor to allow Jackson to use the class
      */
     public Release() {
-
+	linkedTags = new HashSet<>();
     }
 
     /**
@@ -192,14 +194,14 @@ public class Release {
     /**
      * @return the linkedTags
      */
-    public List<Tag> getLinkedTags() {
+    public Set<Tag> getLinkedTags() {
 	return linkedTags;
     }
 
     /**
      * @param linkedTags the linkedTags to set
      */
-    public void setLinkedTags(List<Tag> linkedTags) {
+    public void setLinkedTags(Set<Tag> linkedTags) {
 	this.linkedTags = linkedTags;
     }
 

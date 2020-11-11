@@ -1,9 +1,12 @@
 package net.olikester.shazam2discogs.controller;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.function.Function;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
 
@@ -83,6 +86,7 @@ public class DiscogsController {
 	// TODO enable user selection of media type
 	MediaFormats preferredFormat = MediaFormats.DIGITAL_HI_RES;
 
+	ModelAndView mv = new ModelAndView();
 	String sessionId = session.getId();
 	Optional<JpaOAuthConsumerToken> userToken = tokenStore.findById(sessionId);
 
@@ -108,12 +112,16 @@ public class DiscogsController {
 		// add best match to release database
 		Release bestMatch = Release.selectPreferredReleaseByFormat(discogsSearchResults, preferredFormat);
 		currTag.setLinkedDiscogsRelease(bestMatch);
+		bestMatch.getLinkedTags().add(currTag);
 		tagDao.save(currTag);
 		releaseDao.save(bestMatch);
 	    });
-
+	    
+	    // create results view
+	    mv.setViewName("results");
+	    mv.addObject("tags", tagDao.findAll());	    
 	}
-	return null;
+	return mv;
     }
 
     /**

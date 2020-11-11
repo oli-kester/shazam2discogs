@@ -1,0 +1,57 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<title>Insert Title Here</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<link th:rel="stylesheet"
+	th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css} " />
+</head>
+<body>
+	<div class="container-fluid">
+		<h1>Here are your matches</h1>
+		<div class="matches-table">
+			<div class="table-headings row">
+				<div class="table-heading col-5">
+					<h3>Shazam Tag</h3>
+				</div>
+				<div class="table-heading col-7">
+					<h3>Matched Discogs Release</h3>
+				</div>
+			</div>
+			<div class="row" th:each="tag : ${tags}">
+				<div class="tag col-5 row">
+					<div class="tag-image col-4"></div>
+					<div class="tag-data col-8">
+						<div class="tag-artist" th:text="${tag.getArtist()}">null</div>
+						<div class="tag-track-title" th:text="${tag.getTrackTitle()}">null</div>
+						<div class="tag-album" th:text="${tag.getAlbum()}">null</div>
+						<div class="tag-label" th:text="${tag.getLabel()}">null</div>
+						<div class="tag-release-year" th:text="${tag.getReleaseYear()}">null</div>
+					</div>
+				</div>
+				<div class="matched-release-list col-7 row"
+					th:each="release : ${tag.getLinkedDiscogsRelease()}">
+					<div class="release-image col-4">
+					<img th:alt="'Image for - ' + ${release.getTitle()}" th:src="${release.getThumbnailPath()}">
+					</div>
+					<div class="tag-data col-7">
+						<div class="release-title" th:text="${release.getTitle()}">null</div>
+						<div class="release-country" th:text="${release.getCountry()}">null</div>
+						<div class="release-year" th:text="${release.getReleaseYear()}">null</div>
+						<div class="release-format-type"
+							th:text="${release.getFormatType()}">null</div>
+						<div class="release-format-desc"
+							th:text="${release.getFormatDesc()}">null</div>
+						<div class="release-label" th:text="${release.getLabel()}">null</div>
+						<div class="release-popularity"
+							th:text="${release.getPopularity()}">null</div>
+					</div>
+					<div class="col-1">
+						<input type="checkbox" class="tag-select" checked/>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
