@@ -75,10 +75,7 @@ public class DiscogsController {
     }
 
     @GetMapping("searchTags")
-    public ModelAndView searchTags(HttpSession session) {
-	// TODO enable user selection of media type
-	MediaFormats preferredFormat = MediaFormats.DIGITAL_HI_RES;
-
+    public ModelAndView searchTags(@RequestParam(name = "media-type") MediaFormats preferredFormat ,HttpSession session) {
 	ModelAndView mv = new ModelAndView();
 	String sessionId = session.getId();
 	Optional<JpaOAuthConsumerToken> userToken = tokenStore.findById(sessionId);

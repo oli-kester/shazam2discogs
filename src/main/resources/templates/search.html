@@ -1,12 +1,26 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/htmlHead:: common_header(subtitle='Search')"/>
+<head th:replace="fragments/htmlHead:: common_header(subtitle='Search')" />
 <body>
-<h1>Search for Releases</h1>
-	<p>Click the button below to search Discogs for releases matching your Shazams. </p>
-	<br/>
-	<form method="get" action="/searchTags">
-		<input type="submit" value="Search"/>
-	</form>
+	<div class="container-fluid">
+		<h1>Search for Releases</h1>
+		<p>Click the button below to search Discogs for releases matching
+			your Shazams.</p>
+		<br />
+		<form method="get" action="/searchTags">
+			<label for="media-type">Choose your preferred media type - </label> <select
+				id="media-type" name="media-type">
+				<option value="PHYSICAL_VINYL">Physical (Vinyl)</option>
+				<option value="PHYSICAL_CD">Physical (CD)</option>
+				<option value="DIGITAL_HI_RES">Digital (Hi-Res)</option>
+				<option value="DIGITAL_MP3">Digital (MP3)</option>
+			</select>
+			<p class="alert alert-warning">Note that if your preferred format for a release is not
+				matched in the Discogs database, <span th:replace="fragments/strings:: site_name"></span> will automatically
+				select the most popular match (the one that the largest number of
+				users have in their collection).</p>
+			<input type="submit" class="btn btn-primary btn-lg" value="Search" />
+		</form>
+	</div>
 </body>
 </html>

@@ -3,7 +3,7 @@
 <head th:replace="fragments/htmlHead:: common_header(subtitle='Start')"/>
 <body>
 	<div class="jumbotron">
-		<h1  th:text="'Welcome to the ' + ${SITE_TITLE} + ' tool.'">Welcome.</h1>
+		<h1>Welcome to the <span th:replace="fragments/strings:: site_name"></span> tool. </h1>
 		<p>Use this to import all of your Shazamed tracks into a Discogs list. </p>
 	</div>
 	<div class="container">
