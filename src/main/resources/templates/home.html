@@ -1,10 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title th:text="${SITE_TITLE}"></title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css} "/>
-</head>
+<head th:replace="fragments/htmlHead:: common_header(subtitle='Start')"/>
 <body>
 	<div class="jumbotron">
 		<h1  th:text="'Welcome to the ' + ${SITE_TITLE} + ' tool.'">Welcome.</h1>

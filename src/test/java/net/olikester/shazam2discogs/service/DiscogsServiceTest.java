@@ -55,7 +55,6 @@ public class DiscogsServiceTest {
 	ArrayList<Release> results = discogsService.getReleaseList(testTag1, accessToken);
     }
     
-    @SuppressWarnings("unused")
     @DisplayName("Check there's no exceptions from a simple search request. ")
     @Test
     public void searchRequest2() {

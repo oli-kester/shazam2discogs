@@ -1,10 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title th:text="${SITE_TITLE}"></title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css} "/>
-</head>
+<head th:replace="fragments/htmlHead:: common_header(subtitle='Link Discogs')"/>
 <body>
 <h1>Link to Discogs</h1>
 	<p>Click the button below to authenticate with Discogs for access. </p>

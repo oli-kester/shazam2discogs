@@ -37,8 +37,6 @@ import net.olikester.shazam2discogs.service.DiscogsService;
 @Controller
 public class MainController {
 
-    @Value("${shazam2discogs.site-title}")
-    private String SITE_TITLE;
     @Value("${shazam2discogs.oauth-bypass}")
     private boolean OAUTH_BYPASS; // TODO add some sort of display that this is active
 
@@ -61,7 +59,6 @@ public class MainController {
 	    tokenDao.save(testToken);
 	}
 
-	mv.addObject("SITE_TITLE", SITE_TITLE);
 	return mv;
     }
 
@@ -117,12 +114,11 @@ public class MainController {
 	if (inputFlashMap != null) {
 	    boolean ioSuccess = (boolean) inputFlashMap.get("ioSuccess");
 	    boolean parseSuccess = (boolean) inputFlashMap.get("parseSuccess");
-	    mv.addObject("SITE_TITLE", SITE_TITLE);
 	    mv.addAllObjects(inputFlashMap);
 
 	    if (ioSuccess && parseSuccess) {
 		if (OAUTH_BYPASS) {
-		    mv.setViewName("main");
+		    mv.setViewName("search");
 		} else {
 		    mv.setViewName("linkDiscogs");
 		}

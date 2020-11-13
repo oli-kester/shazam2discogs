@@ -1,17 +1,13 @@
 package net.olikester.shazam2discogs.controller;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
-import java.util.function.Function;
-import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.oauth.consumer.OAuthConsumerToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -49,9 +45,6 @@ public class DiscogsController {
     @Autowired
     private TagDao tagDao;
 
-    @Value("${shazam2discogs.site-title}")
-    private String SITE_TITLE;
-
     @GetMapping("/login")
     public RedirectView login(HttpSession session) {
 	RedirectView rv = new RedirectView();
@@ -74,7 +67,7 @@ public class DiscogsController {
 	    OAuthConsumerToken accessToken = discogsService.fetchAccessToken(requestToken.toOAuthConsumerToken(),
 		    requestParams.get("oauth_verifier"));
 	    tokenStore.save(new JpaOAuthConsumerToken(session.getId(), accessToken));
-	    mv.setViewName("main");
+	    mv.setViewName("search");
 	} else {
 	    mv.setViewName("error");
 	}

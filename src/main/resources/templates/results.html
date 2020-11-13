@@ -1,12 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-<title>Insert Title Here</title>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-<link th:rel="stylesheet"
-	th:href="@{/webjars/bootstrap/4.5.3/css/bootstrap.min.css} " />
-<link th:rel="stylesheet" th:href="@{mainStyles.css} " />
-</head>
+<head th:replace="fragments/htmlHead:: common_header(subtitle='Results')"/>
 <body>
 	<div class="container-fluid">
 		<h1 class="pb-3 pt-3">Here are your matches</h1>
@@ -51,8 +45,7 @@
 							th:text="${release.getTitle()}"></div>
 						<span class="release-format-desc"
 							th:text="${release.getFormatDesc()} + ' '"></span><span
-							class="release-format-type"
-							th:text="${release.getFormatType()}"></span>
+							class="release-format-type" th:text="${release.getFormatType()}"></span>
 						<div>
 							<span class="release-country"
 								th:text="${release.getCountry()} + ' - '"></span> <span
