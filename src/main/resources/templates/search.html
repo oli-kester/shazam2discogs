@@ -7,7 +7,7 @@
 		<p>Click the button below to search Discogs for releases matching
 			your Shazams.</p>
 		<br />
-		<form method="get" action="/searchTags">
+		<form id="searchForm">
 			<label for="media-type">Choose your preferred media type - </label> <select
 				id="media-type" name="media-type">
 				<option value="PHYSICAL_VINYL">Physical (Vinyl)</option>
@@ -15,12 +15,22 @@
 				<option value="DIGITAL_HI_RES">Digital (Hi-Res)</option>
 				<option value="DIGITAL_MP3">Digital (MP3)</option>
 			</select>
-			<p class="alert alert-warning">Note that if your preferred format for a release is not
-				matched in the Discogs database, <span th:replace="fragments/strings:: site_name"></span> will automatically
-				select the most popular match (the one that the largest number of
-				users have in their collection).</p>
+			<p class="alert alert-warning">
+				Note that if your preferred format for a release is not matched in
+				the Discogs database, <span
+					th:replace="fragments/strings:: site_name"></span> will
+				automatically select the most popular match (the one that the
+				largest number of users have in their collection).
+			</p>
 			<input type="submit" class="btn btn-primary btn-lg" value="Search" />
 		</form>
+		<p>Progress of Discogs search -</p>
+		<div class="progress">
+			<div id="searchProgress" class="progress-bar progress-bar-striped progress-bar-animated"
+				role="progressbar" aria-valuenow="0" aria-valuemin="0"
+				aria-valuemax="100" style="width: 0%"></div>
+		</div>
 	</div>
+	<script th:src="@{discogsSearchHandler.js}"></script>
 </body>
 </html>

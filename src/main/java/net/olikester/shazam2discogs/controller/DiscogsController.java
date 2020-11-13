@@ -4,21 +4,26 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.oauth.consumer.OAuthConsumerToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import net.olikester.shazam2discogs.dao.ConsumerTokenDao;
+import net.olikester.shazam2discogs.dao.DiscogsSearchProgressDao;
 import net.olikester.shazam2discogs.dao.ReleaseDao;
 import net.olikester.shazam2discogs.dao.SessionDataDao;
 import net.olikester.shazam2discogs.dao.TagDao;
+import net.olikester.shazam2discogs.model.DiscogsSearchProgress;
 import net.olikester.shazam2discogs.model.JpaOAuthConsumerToken;
 import net.olikester.shazam2discogs.model.MediaFormats;
 import net.olikester.shazam2discogs.model.Release;
@@ -44,6 +49,8 @@ public class DiscogsController {
     private SessionDataDao sessionDataDao;
     @Autowired
     private TagDao tagDao;
+    @Autowired
+    private DiscogsSearchProgressDao discogsSearchProgressDao;
 
     @GetMapping("/login")
     public RedirectView login(HttpSession session) {
@@ -75,10 +82,13 @@ public class DiscogsController {
     }
 
     @GetMapping("searchTags")
-    public ModelAndView searchTags(@RequestParam(name = "media-type") MediaFormats preferredFormat ,HttpSession session) {
+    public ModelAndView searchTags(@RequestParam(name = "mediaType") MediaFormats preferredFormat,
+	    HttpSession session) {
 	ModelAndView mv = new ModelAndView();
 	String sessionId = session.getId();
 	Optional<JpaOAuthConsumerToken> userToken = tokenStore.findById(sessionId);
+	discogsSearchProgressDao.save(new DiscogsSearchProgress(sessionId, 0));
+	final AtomicInteger progressCounter = new AtomicInteger();
 
 	if (authCheck(userToken)) {
 	    SessionData sessionData = sessionDataDao.findById(sessionId).orElseThrow();
@@ -87,7 +97,7 @@ public class DiscogsController {
 	    userTags.stream().forEach(currTag -> {
 		// search Discogs database for best match for each tag
 		ArrayList<Release> discogsSearchResults = discogsService.getReleaseList(currTag, userToken.get());
-		
+
 		if (discogsSearchResults.isEmpty()) {
 		    // if we didn't find any results, try a less specific search.
 		    String searchTerm = currTag.getSimpleSearchTerm();
@@ -95,7 +105,7 @@ public class DiscogsController {
 
 		    if (discogsSearchResults.isEmpty()) {
 			System.err.println("No results found for - " + searchTerm);
-			return; //if there's still no results found, skip this one. 
+			return; // if there's still no results found, skip this one.
 		    }
 		}
 
@@ -105,13 +115,24 @@ public class DiscogsController {
 		bestMatch.getLinkedTags().add(currTag);
 		tagDao.save(currTag);
 		releaseDao.save(bestMatch);
+
+		// update search progress so this can be requested by the webpage
+		double progressPercentage = (progressCounter.incrementAndGet() / (double) userTags.size()) * 100;
+		discogsSearchProgressDao.save(new DiscogsSearchProgress(sessionId, (int) progressPercentage));
 	    });
-	    
+
 	    // create results view
+	    // TODO add URL link for each Discogs release & a "select all" checkbox.
 	    mv.setViewName("results");
-	    mv.addObject("tags", tagDao.findAll());	    
+	    mv.addObject("tags", tagDao.findAll());
 	}
 	return mv;
+    }
+
+    @GetMapping("getProgress")
+    @ResponseBody
+    public int getDiscogsSearchProgress(HttpSession session) {
+	return discogsSearchProgressDao.getOne(session.getId()).getSearchProgress();
     }
 
     /**
