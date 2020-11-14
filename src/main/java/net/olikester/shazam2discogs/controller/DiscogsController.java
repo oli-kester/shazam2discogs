@@ -149,19 +149,20 @@ public class DiscogsController {
 	String sessionId = session.getId();
 	Optional<JpaOAuthConsumerToken> userToken = tokenStore.findById(sessionId);
 	ModelAndView mv = new ModelAndView();
-	Map<String, Boolean> releaseAddSuccessMap = new HashMap<String, Boolean>();
+	Map<Release, Boolean> releaseAddSuccessMap = new HashMap<Release, Boolean>();
 
 	if (authCheck(userToken)) {
 	    releaseAddSuccessMap = params.entrySet().stream().filter(e -> e.getValue().equals("on")).map(e -> {
 		String releaseId = e.getKey().substring(4);
 		Release release = releaseDao.findById(releaseId).orElseThrow();
 		boolean wasAdded = discogsService.addReleaseToUserWantlist(release, userToken.get());
-		AbstractMap.SimpleEntry<String, Boolean> returnEntry = wasAdded
-			? new AbstractMap.SimpleEntry<>(release.getId(), true)
-			: new AbstractMap.SimpleEntry<>(release.getId(), false);
+		AbstractMap.SimpleEntry<Release, Boolean> returnEntry = wasAdded
+			? new AbstractMap.SimpleEntry<>(release, true)
+			: new AbstractMap.SimpleEntry<>(release, false);
 		return returnEntry;
 	    }).collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue));
 	}
+	mv.addObject("releaseAddSuccessMap", releaseAddSuccessMap);
 	mv.setViewName("finished");
 	return mv;
     }

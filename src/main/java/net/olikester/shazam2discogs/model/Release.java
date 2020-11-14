@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -210,6 +211,26 @@ public class Release {
 	return "Release [id=" + id + ", title=" + title + ", country=" + country + ", releaseYear=" + releaseYear
 		+ ", formatType=" + formatType + ", formatDesc=" + formatDesc + ", label=" + label + ", thumbnailPath="
 		+ thumbnailPath + ", popularity=" + popularity + ", linkedTags=" + linkedTags + "]";
+    }
+
+    @Override
+    public int hashCode() {
+	return Objects.hash(country, formatDesc, formatType, id, label, linkedTags, popularity, releaseYear,
+		thumbnailPath, title);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+	if (this == obj)
+	    return true;
+	if (!(obj instanceof Release))
+	    return false;
+	Release other = (Release) obj;
+	return Objects.equals(country, other.country) && Objects.equals(formatDesc, other.formatDesc)
+		&& Objects.equals(formatType, other.formatType) && Objects.equals(id, other.id)
+		&& Objects.equals(label, other.label) && Objects.equals(linkedTags, other.linkedTags)
+		&& popularity == other.popularity && releaseYear == other.releaseYear
+		&& Objects.equals(thumbnailPath, other.thumbnailPath) && Objects.equals(title, other.title);
     }
 
 }

@@ -1,0 +1,37 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head
+	th:replace="fragments/htmlHead:: common_header(subtitle='Finished')" />
+<body>
+	<div class="container-fluid">
+		<h1 class="pb-3 pt-3">Finished</h1>
+		<p>
+			We have finished adding the Releases to your Discogs wantlist. The
+			results are displayed below, and you can head over to Discogs to
+			check <a href="https://www.discogs.com/mywantlist" target="_blank">your Discogs
+				wantlist</a>.
+		</p>
+		<div class="table-headings row">
+			<div class="table-heading col-10">
+				<h3>Discogs Release</h3>
+			</div>
+			<div class="table-heading col-2">
+				<h3>Added To Discogs?</h3>
+			</div>
+		</div>
+		<div class="row pb-3 pt-3 border"
+			th:each="entry : ${releaseAddSuccessMap.entrySet()}">
+			<div class="col-10">
+				<div class="release-title font-weight-bold"
+					th:text="${entry.getKey().getTitle()}"></div>
+			</div>
+			<div class="col-2" th:text="${entry.getValue()}">
+			</div>
+		</div>
+		<p>
+			Click the link below to delete all your data from <span
+				th:replace="fragments/strings:: site_name"></span>
+		</p>
+	</div>
+</body>
+</html>
