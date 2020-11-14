@@ -1,0 +1,123 @@
+{
+    "tags": [
+        {
+            "tagid": "9bc602de-dd1e-442c-93f7-7073edb4b70b",
+            "key": "516066362",
+            "timestamp": 1601671038585,
+            "timezone": "Europe/London",
+            "geolocation": {
+                "longitude": 0.0,
+                "latitude": 0.0
+            },
+            "type": "TAG",
+            "track": {
+                "type": "MUSIC",
+                "key": "516066362",
+                "heading": {
+                    "title": "FI3AC2031010",
+                    "subtitle": "Aleksi Perälä"
+                },
+                "images": {
+                    "default": "https://images.shazam.com/coverart/t516066362-i1510786795_s400.jpg",
+                    "blurred": "https://images.shazam.com/coverart/t516066362-i1510786795_s400b6.jpg",
+                    "play": "https://images.shazam.com/coverart/t516066362-i1510786795_s400play.jpg"
+                },
+                "stores": {
+                    "apple": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://music.apple.com/gb/album/fi3ac2031010/1510786783?i=1510786795&uo=5&at=1001l4DI&itscg=30201&ct=5348615A-616D-3235-3830-44754D6D5973&app=music&itsct=Shazam_1"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t516066362-b1510786795_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t516066362-b1510786795_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t516066362-b1510786795_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview123/v4/98/e3/56/98e3563a-2bc9-387c-aacb-486f94f89bac/mzaf_9246479407057603032.plus.aac.p.m4a",
+                        "trackid": "1510786795",
+                        "productid": "1510786783"
+                    },
+                    "itunes": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://itunes.apple.com/gb/album/fi3ac2031010/1510786783?i=1510786795&uo=5&at=11l3eE&ct=5348615A-616D-3235-3830-44754D6D5973&app=itunes"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t516066362-i1510786795_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t516066362-i1510786795_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t516066362-i1510786795_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview123/v4/98/e3/56/98e3563a-2bc9-387c-aacb-486f94f89bac/mzaf_9246479407057603032.plus.aac.p.m4a",
+                        "trackid": "1510786795",
+                        "productid": "1510786783"
+                    }
+                },
+                "streams": {},
+                "modules": [],
+                "content": {
+                    "videos": {
+                        "href": "https://cdn.shazam.com/video/v2/-/GB/web/track/-/videos?q=Aleksi+Per%C3%A4l%C3%A4+FI3AC2031010"
+                    },
+                    "artiststoptracks": {
+                        "href": "https://cdn.shazam.com/shazam/v2/en/GB/web/-/tracks/artisttoptracks_40211777"
+                    }
+                },
+                "artists": [
+                    {
+                        "follow": {
+                            "followkey": "A_40211777"
+                        },
+                        "alias": "aleksi-perälä",
+                        "id": "40211777"
+                    }
+                ],
+                "share": {
+                    "subject": "FI3AC2031010 - Aleksi Perälä",
+                    "text": "I used Shazam to discover FI3AC2031010 by Aleksi Perälä.",
+                    "href": "https://www.shazam.com/track/516066362/fi3ac2031010",
+                    "image": "https://images.shazam.com/coverart/t516066362-i1510786795_s400.jpg",
+                    "twitter": "I used @Shazam to discover FI3AC2031010 by Aleksi Perälä.",
+                    "html": "https://www.shazam.com/snippets/email-share/516066362?lang=en&country=GB",
+                    "snapchat": "https://www.shazam.com/partner/sc/track/516066362"
+                },
+                "footnotes": [
+                    {
+                        "title": "Album",
+                        "value": "Spectrum 3"
+                    },
+                    {
+                        "title": "Label",
+                        "value": "AP Musik"
+                    },
+                    {
+                        "title": "Released",
+                        "value": "2020"
+                    },
+                    {
+                        "title": "Artwork",
+                        "value": "Provided by iTunes"
+                    }
+                ],
+                "alias": "fi3ac2031010",
+                "url": "https://www.shazam.com/track/516066362/fi3ac2031010",
+                "actions": [
+                    {
+                        "name": "track:516066362",
+                        "type": "track",
+                        "id": "516066362"
+                    }
+                ],
+                "urlparams": {
+                    "{tracktitle}": "FI3AC2031010",
+                    "{trackartist}": "Aleksi+Per%C3%A4l%C3%A4"
+                }
+            }
+        }
+    ]
+}

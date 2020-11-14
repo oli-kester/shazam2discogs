@@ -9,6 +9,7 @@ import net.olikester.shazam2discogs.model.Tag;
 
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
@@ -24,6 +25,7 @@ class ShazamDeserializationTest {
 
     private static String oneTagJson1 = "";
     private static String oneTagJson2 = "";
+    private static String oneTagJsonUnicode1 = "";
     private static String largeShazamDoc = "";
     private static final String emptyDoc = "";
     private static String oneTagInvalidTrailingComma = "";
@@ -33,6 +35,7 @@ class ShazamDeserializationTest {
     public static void setup() throws IOException {
 	oneTagJson1 = Files.readString(Path.of("src/test/resources/one-tag-test.json"));
 	oneTagJson2 = Files.readString(Path.of("src/test/resources/one-tag-test2.json"));
+	oneTagJsonUnicode1 = Files.readString(Path.of("src/test/resources/one-tag-unicode-test.json"));
 	largeShazamDoc = Files.readString(Path.of("src/test/resources/personal-shazams-oct-2020.json"));
 	oneTagInvalidTrailingComma = Files
 		.readString(Path.of("src/test/resources/one-tag-invalid-trailing-comma.json"));
@@ -85,6 +88,24 @@ class ShazamDeserializationTest {
 	assertEquals("Skint Records", tag.getLabel());
 	assertEquals(2002, tag.getReleaseYear());
 	assertEquals("https://images.shazam.com/coverart/t5996069-i1141927898_s400.jpg", tag.getImageUrl());
+    }
+
+    @DisplayName("Check we can parse complex Unicode characters properly. ")
+    @Test
+    public void oneTagParseTestUnicode1() throws JsonProcessingException {
+	ArrayList<Tag> tags = mapper.readValue(oneTagJsonUnicode1, new TypeReference<ArrayList<Tag>>() {
+	});
+
+	Tag tag = tags.get(0);
+
+	assertNotNull(tag);
+	assertEquals("9bc602de-dd1e-442c-93f7-7073edb4b70b", tag.getId());
+	assertEquals("FI3AC2031010", tag.getTrackTitle());
+	assertEquals("Aleksi Perälä", tag.getArtist());
+	assertEquals("Spectrum 3", tag.getAlbum());
+	assertEquals("AP Musik", tag.getLabel());
+	assertEquals(2020, tag.getReleaseYear());
+	assertEquals("https://images.shazam.com/coverart/t516066362-i1510786795_s400.jpg", tag.getImageUrl());
     }
 
     // TODO skip these extended tests if the files don't exist.
