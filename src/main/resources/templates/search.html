@@ -6,6 +6,9 @@
 		<h1>Search for Releases</h1>
 		<p>Click the button below to search Discogs for releases matching
 			your Shazams.</p>
+			<p>
+				Note that due to restrictions from Discogs, this system can only send around 60 search requests per minute across all user sessions. This means that many people using this service will make it slow. Be patient and wait for the matching to complete. 
+			</p>
 		<br />
 		<form id="searchForm">
 			<label for="media-type">Choose your preferred media type - </label> <select
@@ -16,11 +19,13 @@
 				<option value="DIGITAL_MP3">Digital (MP3)</option>
 			</select>
 			<p class="alert alert-warning">
-				Note that if your preferred format for a release is not matched in
+				If your preferred format is not matched for a release in
 				the Discogs database, <span
 					th:replace="fragments/strings:: site_name"></span> will
-				automatically select the most popular match (the one that the
-				largest number of users have in their collection).
+				automatically select the most popular match for all formats.
+			</p>
+			<p class="alert alert-info">
+				Selecting "Vinyl" for your preferred format often gives more precise matches. 
 			</p>
 			<input type="submit" class="btn btn-primary btn-lg" value="Search" />
 		</form>

@@ -81,6 +81,7 @@ public class DiscogsController {
 	return mv;
     }
 
+    //TODO refactor this so that a new page is loaded when the Release search completes.  
     @GetMapping("searchTags")
     public ModelAndView searchTags(@RequestParam(name = "mediaType") MediaFormats preferredFormat,
 	    HttpSession session) {
@@ -122,7 +123,7 @@ public class DiscogsController {
 	    });
 
 	    // create results view
-	    // TODO add URL link for each Discogs release & a "select all" checkbox.
+	    // TODO add "select all" checkbox.
 	    mv.setViewName("results");
 	    mv.addObject("tags", tagDao.findAll());
 	}
