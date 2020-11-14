@@ -9,7 +9,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.oauth.consumer.OAuthConsumerToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -69,12 +68,15 @@ public class DiscogsController {
 	if (requestParams.containsKey("denied")) {
 	    // TODO request cancelled by user. Give try again option?
 	} else if (requestParams.containsKey("oauth_token") && requestParams.containsKey("oauth_verifier")) {
+	    System.out.println("Session ID - " + session.getId()); //TODO remove
 	    JpaOAuthConsumerToken requestToken = tokenStore.findById(session.getId()).orElseThrow();
 	    // TODO check if request token is already an access token (that means OAuth has
 	    // been completed).
 	    OAuthConsumerToken accessToken = discogsService.fetchAccessToken(requestToken.toOAuthConsumerToken(),
 		    requestParams.get("oauth_verifier"));
-	    tokenStore.save(new JpaOAuthConsumerToken(session.getId(), accessToken));
+	    JpaOAuthConsumerToken jpaToken = new JpaOAuthConsumerToken(session.getId(), accessToken);
+	    jpaToken.setUsername(discogsService.getUserName(jpaToken));
+	    tokenStore.save(jpaToken);
 	    mv.setViewName("search");
 	} else {
 	    mv.setViewName("error");
@@ -119,7 +121,7 @@ public class DiscogsController {
 		tagDao.save(currTag);
 		releaseDao.save(bestMatch);
 
-		// update search progress so this can be requested by the webpage
+		// update search progress so this can be requested by the webpage (casting to avoid rounding errors)
 		double progressPercentage = (progressCounter.incrementAndGet() / (double) userTags.size()) * 100;
 		discogsSearchProgressDao.save(new DiscogsSearchProgress(sessionId, (int) progressPercentage));
 	    });

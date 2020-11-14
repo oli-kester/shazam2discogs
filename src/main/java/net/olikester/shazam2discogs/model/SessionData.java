@@ -39,16 +39,19 @@ public class SessionData {
      * @return the tags
      */
     public List<Tag> getTags() {
-        return tags;
+	return tags;
     }
 
     /**
      * @param tags the tags to set
      */
     public void setTags(List<Tag> tags) {
-        this.tags = tags;
+	this.tags = tags;
     }
-    
-    
+
+    @Override
+    public String toString() {
+	return "SessionData [sessionId=" + sessionId + ", tags=" + tags + "]";
+    }
 
 }

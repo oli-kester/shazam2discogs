@@ -10,7 +10,6 @@ import java.util.Scanner;
 
 import javax.annotation.PostConstruct;
 
-import org.hibernate.mapping.Map;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.oauth.common.signature.SharedConsumerSecretImpl;
@@ -134,8 +133,7 @@ public class DiscogsServiceImpl implements DiscogsService {
 
     @Override
     public boolean addReleaseToUserWantlist(Release release, JpaOAuthConsumerToken accessToken) {
-	// get username - TODO improve performance by saving this with session data.
-	String username = getUserName(accessToken);
+	String username = accessToken.getUsername();
 	String releaseId = release.getId();
 
 	rateLimiter.acquire();
@@ -246,6 +244,7 @@ public class DiscogsServiceImpl implements DiscogsService {
 	oauthToken.setAccessToken(true);
 	oauthToken.setOauthToken(DEV_OAUTH_TOKEN);
 	oauthToken.setOauthSecret(DEV_OAUTH_SECRET);
+	oauthToken.setUsername(getUserName(oauthToken));
 	return oauthToken;
     }
 }

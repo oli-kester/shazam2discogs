@@ -10,7 +10,6 @@ import javax.persistence.MapKeyColumn;
 
 import org.springframework.security.oauth.consumer.OAuthConsumerToken;
 
-
 /**
  * Custom implementation of the OAuth1 library Consumer Token class to allow
  * storage as a JPA entity.
@@ -23,6 +22,7 @@ import org.springframework.security.oauth.consumer.OAuthConsumerToken;
 public class JpaOAuthConsumerToken {
     @Id
     private String httpSessionId;
+    private String username;
     private String oauthResourceId;
     private String oauthToken;
     private String oauthSecret;
@@ -42,6 +42,7 @@ public class JpaOAuthConsumerToken {
      * Turn a plain OAuthConsumerToken into a JpaOAuthConsumerToken
      * 
      * @param httpSessionId
+     * @param username
      * @param oauthToken
      */
     public JpaOAuthConsumerToken(String httpSessionId, OAuthConsumerToken oauthToken) {
@@ -51,6 +52,16 @@ public class JpaOAuthConsumerToken {
 	this.oauthSecret = oauthToken.getSecret();
 	this.isAccessToken = oauthToken.isAccessToken();
 	this.additionalParameters = oauthToken.getAdditionalParameters();
+    }
+
+    public OAuthConsumerToken toOAuthConsumerToken() {
+	OAuthConsumerToken returnToken = new OAuthConsumerToken();
+	returnToken.setResourceId(getOauthResourceId());
+	returnToken.setValue(getOauthToken());
+	returnToken.setSecret(getOauthSecret());
+	returnToken.setAccessToken(isAccessToken());
+	returnToken.setAdditionalParameters(getAdditionalParameters());
+	return returnToken;
     }
 
     /**
@@ -137,21 +148,25 @@ public class JpaOAuthConsumerToken {
 	this.additionalParameters = additionalParameters;
     }
 
-    @Override
-    public String toString() {
-	return "JpaOAuthConsumerToken [httpSessionId=" + httpSessionId + ", oauthResourceId=" + oauthResourceId
-		+ ", oauthToken=" + oauthToken + ", oauthSecret=" + oauthSecret + ", isAccessToken=" + isAccessToken
-		+ ", additionalParameters=" + additionalParameters + "]";
+    /**
+     * @return the username
+     */
+    public String getUsername() {
+	return username;
     }
 
-    public OAuthConsumerToken toOAuthConsumerToken() {
-	OAuthConsumerToken returnToken = new OAuthConsumerToken();	
-	returnToken.setResourceId(getOauthResourceId());
-	returnToken.setValue(getOauthToken());
-	returnToken.setSecret(getOauthSecret());
-	returnToken.setAccessToken(isAccessToken());
-	returnToken.setAdditionalParameters(getAdditionalParameters());
-	return returnToken;
+    /**
+     * @param username the username to set
+     */
+    public void setUsername(String username) {
+	this.username = username;
+    }
+
+    @Override
+    public String toString() {
+	return "JpaOAuthConsumerToken [httpSessionId=" + httpSessionId + ", username=" + username + ", oauthResourceId="
+		+ oauthResourceId + ", oauthToken=" + oauthToken + ", oauthSecret=" + oauthSecret + ", isAccessToken="
+		+ isAccessToken + ", additionalParameters=" + additionalParameters + "]";
     }
 
 }
