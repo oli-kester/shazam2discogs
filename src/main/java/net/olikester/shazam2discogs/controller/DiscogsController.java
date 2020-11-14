@@ -1,10 +1,13 @@
 package net.olikester.shazam2discogs.controller;
 
+import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
 
@@ -68,7 +71,7 @@ public class DiscogsController {
 	if (requestParams.containsKey("denied")) {
 	    // TODO request cancelled by user. Give try again option?
 	} else if (requestParams.containsKey("oauth_token") && requestParams.containsKey("oauth_verifier")) {
-	    System.out.println("Session ID - " + session.getId()); //TODO remove
+	    System.out.println("Session ID - " + session.getId()); // TODO remove
 	    JpaOAuthConsumerToken requestToken = tokenStore.findById(session.getId()).orElseThrow();
 	    // TODO check if request token is already an access token (that means OAuth has
 	    // been completed).
@@ -121,7 +124,8 @@ public class DiscogsController {
 		tagDao.save(currTag);
 		releaseDao.save(bestMatch);
 
-		// update search progress so this can be requested by the webpage (casting to avoid rounding errors)
+		// update search progress so this can be requested by the webpage (casting to
+		// avoid rounding errors)
 		double progressPercentage = (progressCounter.incrementAndGet() / (double) userTags.size()) * 100;
 		discogsSearchProgressDao.save(new DiscogsSearchProgress(sessionId, (int) progressPercentage));
 	    });
@@ -145,13 +149,18 @@ public class DiscogsController {
 	String sessionId = session.getId();
 	Optional<JpaOAuthConsumerToken> userToken = tokenStore.findById(sessionId);
 	ModelAndView mv = new ModelAndView();
+	Map<String, Boolean> releaseAddSuccessMap = new HashMap<String, Boolean>();
 
 	if (authCheck(userToken)) {
-	    params.entrySet().stream().filter(e -> e.getValue().equals("on")).forEach(e -> {
+	    releaseAddSuccessMap = params.entrySet().stream().filter(e -> e.getValue().equals("on")).map(e -> {
 		String releaseId = e.getKey().substring(4);
 		Release release = releaseDao.findById(releaseId).orElseThrow();
-		discogsService.addReleaseToUserWantlist(release, userToken.get());
-	    });
+		boolean wasAdded = discogsService.addReleaseToUserWantlist(release, userToken.get());
+		AbstractMap.SimpleEntry<String, Boolean> returnEntry = wasAdded
+			? new AbstractMap.SimpleEntry<>(release.getId(), true)
+			: new AbstractMap.SimpleEntry<>(release.getId(), false);
+		return returnEntry;
+	    }).collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue));
 	}
 	mv.setViewName("finished");
 	return mv;
