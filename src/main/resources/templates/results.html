@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/htmlHead:: common_header(subtitle='Results')"/>
+<head
+	th:replace="fragments/htmlHead:: common_header(subtitle='Results')" />
 <body>
 	<div class="container-fluid">
 		<h1 class="pb-3 pt-3">Here are your matches</h1>
@@ -16,52 +17,55 @@
 					<h3>Add To Discogs?</h3>
 				</div>
 			</div>
-			<div class="row pb-3 pt-3 border" th:each="tag : ${tags}">
-				<div class="tag col-5 row">
-					<div class="tag-image col-4">
-						<img class="img-thumbnail"
-							th:alt="'Image for - ' + ${tag.getTrackTitle()}"
-							th:src="${tag.getImageUrl()}">
-					</div>
-					<div class="tag-data col-8">
-						<div class="tag-artist font-weight-bold"
-							th:text="${tag.getArtist()}"></div>
-						<div class="tag-track-title font-weight-bold"
-							th:text="${tag.getTrackTitle()}"></div>
-						<div class="tag-album" th:text="${tag.getAlbum()}"></div>
-						<div class="tag-release-year" th:text="${tag.getReleaseYear()}"></div>
-						<div class="tag-label" th:text="${tag.getLabel()}"></div>
-					</div>
-				</div>
-				<div class="matched-release-list col-7 row"
-					th:each="release : ${tag.getLinkedDiscogsRelease()}">
-					<div class="release-image col-3">
-						<img class="img-thumbnail"
-							th:alt="'Image for - ' + ${release.getTitle()}"
-							th:src="${release.getThumbnailPath()}">
-					</div>
-					<div class="tag-data col-6">
-						<div class="release-title font-weight-bold"
-							th:text="${release.getTitle()}"></div>
-						<span class="release-format-desc"
-							th:text="${release.getFormatDesc()} + ' '"></span><span
-							class="release-format-type" th:text="${release.getFormatType()}"></span>
-						<div>
-							<span class="release-country"
-								th:text="${release.getCountry()} + ' - '"></span> <span
-								class="release-year" th:text="${release.getReleaseYear()}"></span>
+			<form method="POST" action="addToDiscogs">
+				<div class="row pb-3 pt-3 border" th:each="tag : ${tags}">
+					<div class="tag col-5 row">
+						<div class="tag-image col-4">
+							<img class="img-thumbnail"
+								th:alt="'Image for - ' + ${tag.getTrackTitle()}"
+								th:src="${tag.getImageUrl()}">
 						</div>
-						<div class="release-label" th:text="${release.getLabel()}"></div>
-						<span data-toggle="tooltip"
-							title="How many users on Discogs have this Release in their collection. "><em>Popularity
-								-</em></span> <span class="release-popularity"
-							th:text="${release.getPopularity()}"></span>
+						<div class="tag-data col-8">
+							<div class="tag-artist font-weight-bold"
+								th:text="${tag.getArtist()}"></div>
+							<div class="tag-track-title font-weight-bold"
+								th:text="${tag.getTrackTitle()}"></div>
+							<div class="tag-album" th:text="${tag.getAlbum()}"></div>
+							<div class="tag-release-year" th:text="${tag.getReleaseYear()}"></div>
+							<div class="tag-label" th:text="${tag.getLabel()}"></div>
+						</div>
 					</div>
-					<div class="col-3 text-center">
-						<input type="checkbox" class="tag-select" checked />
+					<div class="matched-release-list col-7 row"
+						th:each="release : ${tag.getLinkedDiscogsRelease()}">
+						<div class="release-image col-3">
+							<img class="img-thumbnail"
+								th:alt="'Image for - ' + ${release.getTitle()}"
+								th:src="${release.getThumbnailPath()}">
+						</div>
+						<div class="tag-data col-6">
+							<div class="release-title font-weight-bold"
+								th:text="${release.getTitle()}"></div>
+							<span class="release-format-desc"
+								th:text="${release.getFormatDesc()} + ' '"></span><span
+								class="release-format-type" th:text="${release.getFormatType()}"></span>
+							<div>
+								<span class="release-country"
+									th:text="${release.getCountry()} + ' - '"></span> <span
+									class="release-year" th:text="${release.getReleaseYear()}"></span>
+							</div>
+							<div class="release-label" th:text="${release.getLabel()}"></div>
+							<span data-toggle="tooltip"
+								title="How many users on Discogs have this Release in their collection. "><em>Popularity
+									-</em></span> <span class="release-popularity"
+								th:text="${release.getPopularity()}"></span>
+						</div>
+						<div class="col-3 text-center">
+							<input th:name="'add-' + ${release.getId()}" type="checkbox" class="tag-select" checked />
+						</div>
 					</div>
 				</div>
-			</div>
+			<input type="submit" class="btn btn-primary btn-lg" value="Add to Discogs Wantlist" />
+			</form>
 		</div>
 	</div>
 </body>

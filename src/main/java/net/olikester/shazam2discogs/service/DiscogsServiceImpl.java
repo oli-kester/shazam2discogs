@@ -2,6 +2,7 @@ package net.olikester.shazam2discogs.service;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -9,6 +10,7 @@ import java.util.Scanner;
 
 import javax.annotation.PostConstruct;
 
+import org.hibernate.mapping.Map;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.security.oauth.common.signature.SharedConsumerSecretImpl;
@@ -23,6 +25,7 @@ import org.springframework.web.util.UriComponentsBuilder;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.google.common.util.concurrent.RateLimiter;
@@ -127,6 +130,68 @@ public class DiscogsServiceImpl implements DiscogsService {
 	String query = DiscogsService.stripIllegalQueryChars(uriComponents.toUriString());
 
 	return sendDiscogsSearch(query, accessToken);
+    }
+
+    @Override
+    public boolean addReleaseToUserWantlist(Release release, JpaOAuthConsumerToken accessToken) {
+	// get username - TODO improve performance by saving this with session data.
+	String username = getUserName(accessToken);
+	String releaseId = release.getId();
+
+	rateLimiter.acquire();
+	UriComponentsBuilder uriComponents = UriComponentsBuilder
+		.fromHttpUrl(DISCOGS_USERS_URL + '/' + username + "/wants/" + releaseId);
+	String query = DiscogsService.stripIllegalQueryChars(uriComponents.toUriString());
+
+	try {
+	    InputStream inputStream = consumerSupport.readProtectedResource(new URL(query),
+		    accessToken.toOAuthConsumerToken(), "PUT");
+	    Scanner s = new Scanner(inputStream).useDelimiter("\\A");
+	    String json = s.hasNext() ? s.next() : "";
+	    s.close();
+	    return true;
+	} catch (OAuthRequestFailedException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	} catch (MalformedURLException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+
+	return false;
+    }
+
+    @Override
+    public String getUserName(JpaOAuthConsumerToken accessToken) {
+	rateLimiter.acquire();
+	String username = "";
+	try {
+	    InputStream inputStream = consumerSupport.readProtectedResource(new URL(IDENTITY_CHECK_URL),
+		    accessToken.toOAuthConsumerToken(), "GET");
+	    Scanner s = new Scanner(inputStream).useDelimiter("\\A");
+	    String json = s.hasNext() ? s.next() : "";
+	    s.close();
+
+	    ObjectMapper mapper = new ObjectMapper();
+	    HashMap<String, String> map = mapper.readValue(json, new TypeReference<HashMap<String, String>>() {
+	    });
+	    username = map.get("username");
+
+	} catch (OAuthRequestFailedException e) {
+	    // TODO Not authenticated.
+	    e.printStackTrace();
+	} catch (MalformedURLException e) {
+	    // TODO URL parsing error (not likely)
+	    e.printStackTrace();
+	} catch (JsonMappingException e) {
+	    // TODO Could not map JSON properly (not likely)
+	    e.printStackTrace();
+	} catch (JsonProcessingException e) {
+	    // TODO Auto-generated catch block
+	    e.printStackTrace();
+	}
+
+	return username;
     }
 
     /**

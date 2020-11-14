@@ -15,8 +15,10 @@ public interface DiscogsService {
     public final String REQUEST_TOKEN_URL = "https://api.discogs.com/oauth/request_token";
     public final String AUTHORIZATION_URL = "https://www.discogs.com/oauth/authorize";
     public final String ACCESS_TOKEN_URL = "https://api.discogs.com/oauth/access_token";
+    public final String IDENTITY_CHECK_URL = "https://api.discogs.com/oauth/identity";
     public final String USER_AGENT = "Shazam2Discogs/0.1 +http://oli-kester.net";
     public final String DISCOGS_SEARCH_URL = "https://api.discogs.com/database/search";
+    public final String DISCOGS_USERS_URL = "https://api.discogs.com/users";
 
     OAuthConsumerToken fetchRequestToken(String callbackURL);
 
@@ -42,6 +44,16 @@ public interface DiscogsService {
     ArrayList<Release> getReleaseList(String searchString, JpaOAuthConsumerToken accessToken);
 
     /**
+     * Adds the given release to the authenticated user's wantlist. Returns
+     * success/failure status.
+     * 
+     * @param release
+     * @param accessToken
+     * @return
+     */
+    boolean addReleaseToUserWantlist(Release release, JpaOAuthConsumerToken accessToken);
+
+    /**
      * For test purposes - create an access token using the keys in the hidden
      * properties file.
      * 
@@ -62,5 +74,12 @@ public interface DiscogsService {
 	String params = uriString.substring(queryStartIndex);
 	return uriString.substring(0, queryStartIndex) + params.replace("?", "%3F").replace(";", "%3B");
     }
+
+    /**
+     * Get the Discogs username that the given access token relates to. 
+     * @param accessToken
+     * @return
+     */
+    String getUserName(JpaOAuthConsumerToken accessToken);
 
 }

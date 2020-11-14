@@ -13,6 +13,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.oauth.consumer.OAuthConsumerToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -81,7 +82,8 @@ public class DiscogsController {
 	return mv;
     }
 
-    //TODO refactor this so that a new page is loaded when the Release search completes.  
+    // TODO refactor this so that a new page is loaded when the Release search
+    // completes.
     @GetMapping("searchTags")
     public ModelAndView searchTags(@RequestParam(name = "mediaType") MediaFormats preferredFormat,
 	    HttpSession session) {
@@ -134,6 +136,23 @@ public class DiscogsController {
     @ResponseBody
     public int getDiscogsSearchProgress(HttpSession session) {
 	return discogsSearchProgressDao.getOne(session.getId()).getSearchProgress();
+    }
+
+    @PostMapping("addToDiscogs")
+    public ModelAndView addToDiscogs(@RequestParam Map<String, String> params, HttpSession session) {
+	String sessionId = session.getId();
+	Optional<JpaOAuthConsumerToken> userToken = tokenStore.findById(sessionId);
+	ModelAndView mv = new ModelAndView();
+
+	if (authCheck(userToken)) {
+	    params.entrySet().stream().filter(e -> e.getValue().equals("on")).forEach(e -> {
+		String releaseId = e.getKey().substring(4);
+		Release release = releaseDao.findById(releaseId).orElseThrow();
+		discogsService.addReleaseToUserWantlist(release, userToken.get());
+	    });
+	}
+	mv.setViewName("finished");
+	return mv;
     }
 
     /**

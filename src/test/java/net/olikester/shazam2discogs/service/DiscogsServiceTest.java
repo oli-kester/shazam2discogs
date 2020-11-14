@@ -21,6 +21,8 @@ import net.olikester.shazam2discogs.model.Tag;
 @TestPropertySource(locations = "classpath:apiSecret.properties") // API keys are hidden in second properties file.
 public class DiscogsServiceTest {
 
+    @Value("${shazam2discogs.test-username}")
+    private String TEST_USERNAME;
     @Value("${shazam2discogs.test-access-token}")
     private String OAUTH_TOKEN;
     @Value("${shazam2discogs.test-access-secret}")
@@ -77,7 +79,11 @@ public class DiscogsServiceTest {
 	String expected = "https://api.discogs.com/database/search?query=Red%20(Original%20Mix%3BAsot%20391)%20Rafael%20Frost";
 	assertEquals(expected, DiscogsService.stripIllegalQueryChars(input));
     }
-
     
+    @DisplayName("Test that we can get a valid username back")
+    @Test
+    public void testUsernameRetrieval() {
+	assertEquals(TEST_USERNAME, discogsService.getUserName(accessToken));
+    }
     
 }
