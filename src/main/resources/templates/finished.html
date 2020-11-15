@@ -52,11 +52,9 @@
 									<div>
 										<span class="release-country"
 											th:text="${release.getCountry()} + ' - '"></span> <span
-											class="release-year"
-											th:text="${release.getReleaseYear()}"></span>
+											class="release-year" th:text="${release.getReleaseYear()}"></span>
 									</div>
-									<div class="release-label"
-										th:text="${release.getLabel()}"></div>
+									<div class="release-label" th:text="${release.getLabel()}"></div>
 									<span data-toggle="tooltip"
 										title="How many users on Discogs have this Release in their collection. "><em>Popularity
 											-</em></span> <span class="release-popularity"
@@ -68,10 +66,18 @@
 				</tbody>
 			</table>
 		</div>
-		<p>
-			Click the link below to delete all your data from <span
-				th:replace="fragments/strings:: site_name"></span>
-		</p>
+		<div>
+			<p>Click here to export your unmatched Shazam tags to a CSV file
+				-</p>
+			<a href="csvExport" class="badge badge-primary">Export CSV</a>
+		</div>
+		<div>
+			<p>
+				Click the link below to delete all your data from <span
+					th:replace="fragments/strings:: site_name"></span>
+			</p>
+			<a href="exit" class="badge badge-danger">Delete Data &amp; Exit</a>
+		</div>
 	</div>
 </body>
 </html>

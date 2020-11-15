@@ -2,9 +2,11 @@ package net.olikester.shazam2discogs.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.support.RequestContextUtils;
 import org.springframework.web.servlet.view.RedirectView;
+import org.supercsv.io.CsvBeanWriter;
+import org.supercsv.io.ICsvBeanWriter;
+import org.supercsv.prefs.CsvPreference;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.Version;
@@ -131,5 +136,34 @@ public class MainController {
 	    mv.setViewName("error");
 	}
 	return mv;
+    }
+
+    /**
+     * Export a CSV file of all the Shazam tags we couldn't match to Discogs
+     * releases.
+     * 
+     * @param response
+     * @throws IOException
+     */
+    @GetMapping("csvExport")
+    public void exportUnmatchedTags(HttpServletResponse response, HttpSession session) throws IOException {
+	response.setContentType("text/csv");
+	String headerKey = "Content-Disposition";
+	String headerValue = "attachment; filename=s2d_unmatched_discogs_releases.csv";
+	response.setHeader(headerKey, headerValue);
+
+	List<Tag> unmatchedTags = tagDao.getAllUnmatchedTagsForSession(session.getId());
+
+	ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
+	String[] csvHeader = { "Tag ID", "Track Title", "Artist", "Album", "Label", "Release Year", "Image URL" };
+	String[] nameMapping = { "id", "trackTitle", "artist", "album", "label", "releaseYear", "imageUrl" };
+
+	csvWriter.writeHeader(csvHeader);
+
+	for (Tag tag : unmatchedTags) {
+	    csvWriter.write(tag, nameMapping);
+	}
+
+	csvWriter.close();
     }
 }
