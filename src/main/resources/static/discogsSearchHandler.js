@@ -1,9 +1,12 @@
 // handle search button presses
 document.getElementById("searchForm").addEventListener('submit', (event) => {
   event.preventDefault() // stop the page refreshing straight away. 
-  let searchProgressWorker
-
+  const searchBtn = document.getElementById('searchBtn')
+  searchBtn.value = 'Please Wait...'
+  searchBtn.disabled = true
+	
   // add worker to keep progress bar updated
+  let searchProgressWorker
   if (window.Worker) {
     searchProgressWorker = new Worker('searchProgressUpdater.js');
     searchProgressWorker.onmessage = (event) => {
