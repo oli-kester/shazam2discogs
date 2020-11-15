@@ -1,9 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import
+	url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
 body {
 	font-family: 'Lato', Verdana;
 }
 
 .img-thumbnail {
-	width: 140px; 
+	width: 140px;
+}
+
+.checkbox-cell {
+	vertical-align: middle !important;
+	text-align: center;
 }
