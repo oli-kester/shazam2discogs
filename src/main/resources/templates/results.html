@@ -67,7 +67,18 @@
 							<td class="checkbox-cell"
 								th:each="release : ${tag.getLinkedDiscogsRelease()}"><input
 								th:name="'add-' + ${release.getId()}" type="checkbox"
-								class="tag-select" checked /></td>
+								class="tag-select enlarged-checkbox" checked /></td>
+						</tr>
+						<tr>
+							<td></td>
+							<td></td>
+							<td class="checkbox-cell">
+								<div>
+									<label for="checkAll"><input name="checkAll" id="checkAll" type="checkbox"
+										class="enlarged-checkbox mr-2" />
+										<strong>Select All</strong></label>
+								</div>
+							</td>
 						</tr>
 					</tbody>
 				</table>

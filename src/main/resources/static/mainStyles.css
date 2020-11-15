@@ -13,3 +13,7 @@ body {
 	vertical-align: middle !important;
 	text-align: center;
 }
+
+input.enlarged-checkbox {
+  transform: scale(1.5);
+}
