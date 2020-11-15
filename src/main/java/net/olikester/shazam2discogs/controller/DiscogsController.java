@@ -152,7 +152,7 @@ public class DiscogsController {
 	Map<Release, Boolean> releaseAddSuccessMap = new HashMap<Release, Boolean>();
 
 	if (authCheck(userToken)) {
-	    releaseAddSuccessMap = params.entrySet().stream().filter(e -> e.getValue().equals("on")).map(e -> {
+	    releaseAddSuccessMap = params.entrySet().stream().filter(e -> e.getValue().equals("on") && e.getKey().startsWith("add-")).map(e -> {
 		String releaseId = e.getKey().substring(4);
 		Release release = releaseDao.findById(releaseId).orElseThrow();
 		boolean wasAdded = discogsService.addReleaseToUserWantlist(release, userToken.get());
@@ -161,7 +161,7 @@ public class DiscogsController {
 			: new AbstractMap.SimpleEntry<>(release, false);
 		return returnEntry;
 	    }).collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue));
-	}
+	} 
 	mv.addObject("releaseAddSuccessMap", releaseAddSuccessMap);
 	mv.setViewName("finished");
 	return mv;
