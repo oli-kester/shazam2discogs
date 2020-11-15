@@ -8,25 +8,65 @@
 		<p>
 			We have finished adding the Releases to your Discogs wantlist. The
 			results are displayed below, and you can head over to Discogs to
-			check <a href="https://www.discogs.com/mywantlist" target="_blank">your Discogs
-				wantlist</a>.
+			check <a href="https://www.discogs.com/mywantlist" target="_blank">your
+				Discogs wantlist</a>.
 		</p>
-		<div class="table-headings row">
-			<div class="table-heading col-10">
-				<h3>Discogs Release</h3>
-			</div>
-			<div class="table-heading col-2">
-				<h3>Added To Discogs?</h3>
-			</div>
+		<div class="row">
+			<table class="table table-dark table-bordered col-5 mx-auto">
+				<tr>
+					<td class="text-right">Wantlist additions send to Discogs</td>
+					<td th:text="${numReleases}"></td>
+				</tr>
+				<tr>
+					<td class="text-right">Releases added successfully</td>
+					<td th:text="${numReleasesAdded}"></td>
+				</tr>
+				<tr>
+					<td class="text-right">Failed additions</td>
+					<td th:text="${numFailedReleases}"></td>
+				</tr>
+			</table>
 		</div>
-		<div class="row pb-3 pt-3 border"
-			th:each="entry : ${releaseAddSuccessMap.entrySet()}">
-			<div class="col-10">
-				<div class="release-title font-weight-bold"
-					th:text="${entry.getKey().getTitle()}"></div>
-			</div>
-			<div class="col-2" th:text="${entry.getValue()}">
-			</div>
+		<div>
+			<p>You can find the releases that failed to add listed below -</p>
+		</div>
+		<div class="row">
+			<table
+				class="table table-dark table-striped table-bordered col-8 mx-auto">
+				<tbody>
+					<tr th:each="release : ${releaseFailedAdditions}">
+						<td>
+							<div class="d-flex align-items-center">
+								<div class="release-image mr-2">
+									<img class="img-thumbnail"
+										th:alt="'Image for - ' + ${release.getTitle()}"
+										th:src="${release.getThumbnailPath()}">
+								</div>
+								<div class="tag-data ml-2">
+									<div class="release-title font-weight-bold"
+										th:text="${release.getTitle()}"></div>
+									<span class="release-format-desc"
+										th:text="${release.getFormatDesc()} + ' '"></span><span
+										class="release-format-type"
+										th:text="${release.getFormatType()}"></span>
+									<div>
+										<span class="release-country"
+											th:text="${release.getCountry()} + ' - '"></span> <span
+											class="release-year"
+											th:text="${release.getReleaseYear()}"></span>
+									</div>
+									<div class="release-label"
+										th:text="${release.getLabel()}"></div>
+									<span data-toggle="tooltip"
+										title="How many users on Discogs have this Release in their collection. "><em>Popularity
+											-</em></span> <span class="release-popularity"
+										th:text="${release.getPopularity()}"></span>
+								</div>
+							</div>
+						</td>
+					</tr>
+				</tbody>
+			</table>
 		</div>
 		<p>
 			Click the link below to delete all your data from <span

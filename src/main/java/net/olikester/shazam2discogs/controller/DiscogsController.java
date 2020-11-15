@@ -146,24 +146,33 @@ public class DiscogsController {
 
     @PostMapping("addToDiscogs")
     public ModelAndView addToDiscogs(@RequestParam Map<String, String> params, HttpSession session) {
+	ModelAndView mv = new ModelAndView();
 	String sessionId = session.getId();
 	Optional<JpaOAuthConsumerToken> userToken = tokenStore.findById(sessionId);
-	ModelAndView mv = new ModelAndView();
-	Map<Release, Boolean> releaseAddSuccessMap = new HashMap<Release, Boolean>();
-
 	if (authCheck(userToken)) {
-	    releaseAddSuccessMap = params.entrySet().stream().filter(e -> e.getValue().equals("on") && e.getKey().startsWith("add-")).map(e -> {
-		String releaseId = e.getKey().substring(4);
-		Release release = releaseDao.findById(releaseId).orElseThrow();
+	    List<Release> releasesToAdd = params.entrySet().stream()
+		    .filter(e -> e.getValue().equals("on") && e.getKey().startsWith("add-")).map((e) -> {
+			String releaseId = e.getKey().substring(4);
+			Release release = releaseDao.findById(releaseId).orElseThrow();
+			return release;
+		    }).collect(Collectors.toList());
+
+	    List<Release> releaseFailedAdditions = new ArrayList<Release>();
+	    releasesToAdd.stream().forEach(release -> {
 		boolean wasAdded = discogsService.addReleaseToUserWantlist(release, userToken.get());
-		AbstractMap.SimpleEntry<Release, Boolean> returnEntry = wasAdded
-			? new AbstractMap.SimpleEntry<>(release, true)
-			: new AbstractMap.SimpleEntry<>(release, false);
-		return returnEntry;
-	    }).collect(Collectors.toMap(AbstractMap.SimpleEntry::getKey, AbstractMap.SimpleEntry::getValue));
-	} 
-	mv.addObject("releaseAddSuccessMap", releaseAddSuccessMap);
-	mv.setViewName("finished");
+		if (!wasAdded) {
+		    releaseFailedAdditions.add(release);
+		}
+	    });
+
+	    mv.addObject("numReleases", releasesToAdd.size());
+	    mv.addObject("numReleasesAdded", releasesToAdd.size() - releaseFailedAdditions.size());
+	    mv.addObject("numFailedReleases", releaseFailedAdditions.size());
+	    mv.addObject("releaseFailedAdditions", releaseFailedAdditions);
+	    mv.setViewName("finished");
+	    return mv;
+	}
+	mv.setViewName("error"); // TODO this is an authentication error
 	return mv;
     }
 
