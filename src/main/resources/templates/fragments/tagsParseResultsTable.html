@@ -1,0 +1,14 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="parse_results(numTags)" class="col-7 mx-auto">
+	<p>Shazam tags upload was successful. You can find the results
+		below -</p>
+	<div class="row">
+		<table class="table table-dark table-bordered mx-auto col-7">
+			<tr>
+				<td class="text-right">Number of Shazam Tags detected</td>
+				<td th:text="${numTags}"></td>
+			</tr>
+		</table>
+	</div>
+</div>

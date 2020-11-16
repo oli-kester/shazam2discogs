@@ -82,7 +82,7 @@ public class DiscogsController {
 	    tokenStore.save(jpaToken);
 	    mv.setViewName("search");
 	} else {
-	    mv.setViewName("error");
+	    mv.setViewName("error"); // TODO unrecognised OAuth response from Discogs. 
 	}
 	return mv;
     }

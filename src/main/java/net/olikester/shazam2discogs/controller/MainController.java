@@ -91,6 +91,7 @@ public class MainController {
 	    tags = mapper.readValue(fileContents, new TypeReference<ArrayList<Tag>>() {
 	    });
 	    ra.addFlashAttribute("parseSuccess", true);
+	    ra.addFlashAttribute("numTags", tags.size());
 	} catch (JsonProcessingException e) {
 	    ra.addFlashAttribute("parseSuccess", false);
 	    e.printStackTrace();
@@ -119,6 +120,8 @@ public class MainController {
 	if (inputFlashMap != null) {
 	    boolean ioSuccess = (boolean) inputFlashMap.get("ioSuccess");
 	    boolean parseSuccess = (boolean) inputFlashMap.get("parseSuccess");
+	    mv.addObject("numTags", inputFlashMap.get("numTags"));
+	    
 	    mv.addAllObjects(inputFlashMap);
 
 	    if (ioSuccess && parseSuccess) {

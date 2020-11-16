@@ -4,11 +4,15 @@
 <body>
 	<div class="container-fluid">
 		<h1>Search for Releases</h1>
+		<div class="row"
+			th:insert="fragments/tagsParseResultsTable:: parse_results(numTags=${numTags})">
+		</div>
 		<p>Click the button below to search Discogs for releases matching
 			your Shazams.</p>
-			<p>
-				Note that due to restrictions from Discogs, this system can only send around 60 search requests per minute across all user sessions. This means that many people using this service will make it slow. Be patient and wait for the matching to complete. 
-			</p>
+		<p>Note that due to restrictions from Discogs, this system can
+			only send around 60 search requests per minute across all user
+			sessions. This means that many people using this service will make it
+			slow. Be patient and wait for the matching to complete.</p>
 		<br />
 		<form id="searchForm">
 			<label for="media-type">Choose your preferred media type - </label> <select
@@ -19,19 +23,19 @@
 				<option value="DIGITAL_MP3">Digital (MP3)</option>
 			</select>
 			<p class="alert alert-warning">
-				If your preferred format is not matched for a release in
-				the Discogs database, <span
-					th:replace="fragments/strings:: site_name"></span> will
-				automatically select the most popular match for all formats.
+				If your preferred format is not matched for a release in the Discogs
+				database, <span th:replace="fragments/strings:: site_name"></span>
+				will automatically select the most popular match for all formats.
 			</p>
-			<p class="alert alert-info">
-				Selecting "Vinyl" for your preferred format often gives more precise matches. 
-			</p>
-			<input type="submit" class="btn btn-primary btn-lg" id="searchBtn" value="Search" />
+			<p class="alert alert-info">Selecting "Vinyl" for your preferred
+				format often gives more precise matches.</p>
+			<input type="submit" class="btn btn-primary btn-lg" id="searchBtn"
+				value="Search" />
 		</form>
 		<p>Progress of Discogs search -</p>
 		<div class="progress">
-			<div id="searchProgress" class="progress-bar progress-bar-striped progress-bar-animated"
+			<div id="searchProgress"
+				class="progress-bar progress-bar-striped progress-bar-animated"
 				role="progressbar" aria-valuenow="0" aria-valuemin="0"
 				aria-valuemax="100" style="width: 0%"></div>
 		</div>
