@@ -1,6 +1,10 @@
+const STOP_SEARCH_URL = 'stopSearch'
+let searching = false
+
 // handle search button presses
 document.getElementById("searchForm").addEventListener('submit', (event) => {
   event.preventDefault() // stop the page refreshing straight away. 
+  searching = true
   const searchBtn = document.getElementById('searchBtn')
   searchBtn.value = 'Please Wait...'
   searchBtn.disabled = true
@@ -16,11 +20,23 @@ document.getElementById("searchForm").addEventListener('submit', (event) => {
     }
   }
 
+  // when the user tries to exit our page, send a request to 
+  // stop the search on the server & re-enable the search button
+  window.addEventListener("beforeunload", (event) => {
+	if (searching) {
+		windowUnloadCanceller(event, STOP_SEARCH_URL)
+	    searchProgressWorker.terminate()
+	    searchBtn.value = 'Search'
+	    searchBtn.disabled = false
+		searching = false
+    }
+  })
+
   // send request to S2D API
   const xhttp = new XMLHttpRequest()
   xhttp.onreadystatechange = function () {
     if (this.readyState == 4 && this.status == 200) {
-      searchProgressWorker.terminate();
+      searchProgressWorker.terminate()
       document.open()
       document.write(xhttp.responseText)
       document.close()

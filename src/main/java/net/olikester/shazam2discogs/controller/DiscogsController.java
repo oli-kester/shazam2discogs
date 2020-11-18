@@ -1,8 +1,7 @@
 package net.olikester.shazam2discogs.controller;
 
-import java.util.AbstractMap;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -55,6 +54,9 @@ public class DiscogsController {
     @Autowired
     private DiscogsSearchProgressDao discogsSearchProgressDao;
 
+    @Autowired
+    private HashSet<String> cancelSearchRequestSessionIds;
+
     @GetMapping("/login")
     public RedirectView login(HttpSession session) {
 	RedirectView rv = new RedirectView();
@@ -82,7 +84,7 @@ public class DiscogsController {
 	    tokenStore.save(jpaToken);
 	    mv.setViewName("search");
 	} else {
-	    mv.setViewName("error"); // TODO unrecognised OAuth response from Discogs. 
+	    mv.setViewName("error"); // TODO unrecognised OAuth response from Discogs.
 	}
 	return mv;
     }
@@ -102,7 +104,8 @@ public class DiscogsController {
 	    SessionData sessionData = sessionDataDao.findById(sessionId).orElseThrow();
 	    List<Tag> userTags = sessionData.getTags();
 
-	    userTags.stream().forEach(currTag -> {
+	    // stream is broken when the user cancels the search
+	    userTags.stream().takeWhile(x -> !cancelSearchRequestSessionIds.contains(sessionId)).forEach(currTag -> {
 		// search Discogs database for best match for each tag
 		ArrayList<Release> discogsSearchResults = discogsService.getReleaseList(currTag, userToken.get());
 
@@ -130,6 +133,9 @@ public class DiscogsController {
 		discogsSearchProgressDao.save(new DiscogsSearchProgress(sessionId, (int) progressPercentage));
 	    });
 
+	    // reset map for search cancellations
+	    cancelSearchRequestSessionIds.remove(sessionId);
+
 	    // create results view
 	    // TODO add "select all" checkbox.
 	    mv.setViewName("results");
@@ -142,6 +148,12 @@ public class DiscogsController {
     @ResponseBody
     public int getDiscogsSearchProgress(HttpSession session) {
 	return discogsSearchProgressDao.getOne(session.getId()).getSearchProgress();
+    }
+
+    @GetMapping("stopSearch")
+    @ResponseBody
+    public void stopDiscogsSearch(HttpSession session) {
+	cancelSearchRequestSessionIds.add(session.getId());
     }
 
     @PostMapping("addToDiscogs")

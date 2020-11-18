@@ -8,7 +8,7 @@ function updateProgressBar() {
   }
   xhttp.open('GET', 'getProgress', false)
   xhttp.send()
-  setTimeout(updateProgressBar, 1000)
+  setTimeout(updateProgressBar, 3000)
 }
 
 updateProgressBar()
