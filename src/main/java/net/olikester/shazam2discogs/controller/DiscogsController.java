@@ -11,6 +11,8 @@ import java.util.stream.Collectors;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth.consumer.OAuthConsumerToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -89,12 +91,10 @@ public class DiscogsController {
 	return mv;
     }
 
-    // TODO refactor this so that a new page is loaded when the Release search
-    // completes.
     @GetMapping("searchTags")
-    public ModelAndView searchTags(@RequestParam(name = "mediaType") MediaFormats preferredFormat,
+    @ResponseBody
+    public ResponseEntity<String> searchTags(@RequestParam(name = "mediaType") MediaFormats preferredFormat,
 	    HttpSession session) {
-	ModelAndView mv = new ModelAndView();
 	String sessionId = session.getId();
 	Optional<JpaOAuthConsumerToken> userToken = tokenStore.findById(sessionId);
 	discogsSearchProgressDao.save(new DiscogsSearchProgress(sessionId, 0));
@@ -104,8 +104,15 @@ public class DiscogsController {
 	    SessionData sessionData = sessionDataDao.findById(sessionId).orElseThrow();
 	    List<Tag> userTags = sessionData.getTags();
 
-	    // stream is broken when the user cancels the search
-	    userTags.stream().takeWhile(x -> !cancelSearchRequestSessionIds.contains(sessionId)).forEach(currTag -> {
+	    // reset cancellation status
+	    cancelSearchRequestSessionIds.remove(sessionId);
+
+	    // for loop lets us break stream when the user cancels the search
+	    for (Tag currTag : userTags) {
+		if (cancelSearchRequestSessionIds.contains(sessionId)) {
+		    break;
+		}
+
 		// search Discogs database for best match for each tag
 		ArrayList<Release> discogsSearchResults = discogsService.getReleaseList(currTag, userToken.get());
 
@@ -116,7 +123,7 @@ public class DiscogsController {
 
 		    if (discogsSearchResults.isEmpty()) {
 			System.err.println("No results found for - " + searchTerm);
-			return; // if there's still no results found, skip this one.
+			continue; // if there's still no results found, skip this one.
 		    }
 		}
 
@@ -131,17 +138,13 @@ public class DiscogsController {
 		// avoid rounding errors)
 		double progressPercentage = (progressCounter.incrementAndGet() / (double) userTags.size()) * 100;
 		discogsSearchProgressDao.save(new DiscogsSearchProgress(sessionId, (int) progressPercentage));
-	    });
-
-	    // reset map for search cancellations
-	    cancelSearchRequestSessionIds.remove(sessionId);
-
-	    // create results view
-	    // TODO add "select all" checkbox.
-	    mv.setViewName("results");
-	    mv.addObject("tags", tagDao.findAll());
+	    }
+	    if (cancelSearchRequestSessionIds.contains(sessionId)) {
+		return ResponseEntity.status(499).build();
+	    }
+	    return ResponseEntity.ok().build();
 	}
-	return mv;
+	return ResponseEntity.status(401).build();
     }
 
     @GetMapping("getProgress")
@@ -154,6 +157,14 @@ public class DiscogsController {
     @ResponseBody
     public void stopDiscogsSearch(HttpSession session) {
 	cancelSearchRequestSessionIds.add(session.getId());
+    }
+
+    @GetMapping("searchResults")
+    public ModelAndView searchResults(HttpSession session) {
+	ModelAndView mv = new ModelAndView();
+	mv.setViewName("results");
+	mv.addObject("tags", tagDao.findAll()); // TODO need to restrict to just our session.
+	return mv;
     }
 
     @PostMapping("addToDiscogs")

@@ -1,6 +1,7 @@
 const STOP_SEARCH_URL = 'stopSearch'
 const cancelBtn = document.getElementById('cancelBtn')
 const searchBtn = document.getElementById('searchBtn')
+const resultsBtn = document.getElementById('resultsBtn')
 const progressBar = document.getElementById('searchProgress')
 
 let searching = false
@@ -10,6 +11,7 @@ function resetGui() {
   searchBtn.disabled = false
   searching = false
   cancelBtn.hidden = true
+  resultsBtn.hidden = true
 }
 
 // handle search button presses
@@ -42,12 +44,10 @@ document.getElementById('searchForm').addEventListener('submit', (event) => {
 
   // send request to S2D API
   const xhttp = new XMLHttpRequest()
-  xhttp.onreadystatechange = function () {
+  xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
       searchProgressWorker.terminate()
-      document.open()
-      document.write(xhttp.responseText)
-      document.close()
+      resultsBtn.hidden = false
     }
   };
   const mediaFormat = document.getElementById('media-type').value
