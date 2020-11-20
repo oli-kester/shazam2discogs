@@ -2,10 +2,11 @@ plugins {
 	id 'org.springframework.boot' version '2.3.4.RELEASE'
 	id 'io.spring.dependency-management' version '1.0.10.RELEASE'
 	id 'java'
+    id "org.kravemir.gradle.sass" version "1.2.2"
 }
 
-group = 'com.example'
-version = '0.0.1-SNAPSHOT'
+group = 'net.olikester'
+version = '0.1.0'
 sourceCompatibility = '11'
 
 repositories {
@@ -16,9 +17,9 @@ dependencies {
 	// https://mvnrepository.com/artifact/org.springframework.security.oauth/spring-security-oauth
 	implementation 'org.springframework.security.oauth:spring-security-oauth:2.5.0.RELEASE'
 	
-  	compile 'org.springframework.session:spring-session-jdbc'
-  	compile 'org.webjars:bootstrap:4.5.3'  	
-  	compile 'com.google.guava:guava:28.0-jre'
+  	implementation 'org.springframework.session:spring-session-jdbc'
+  	implementation 'org.webjars:bootstrap:4.5.3'  	
+  	implementation 'com.google.guava:guava:28.0-jre'
   	implementation 'net.sf.supercsv:super-csv:2.4.0'
 	
 	//implementation 'org.springframework.boot:spring-boot-starter-security'	
@@ -39,3 +40,14 @@ test {
 	testLogging.showStandardStreams = true
 }
 
+sass {
+    main {
+        srcDir = file("$projectDir/src/main/sass")
+        outDir = file("$projectDir/src/main/resources/static")
+        
+        outSubDir = "css"
+        registerInSourceSets ( 'main' )
+    }
+}
+
+compileJava.dependsOn(mainSass)
