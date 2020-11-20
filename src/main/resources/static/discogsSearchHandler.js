@@ -1,20 +1,30 @@
 const STOP_SEARCH_URL = 'stopSearch'
+const cancelBtn = document.getElementById('cancelBtn')
+const searchBtn = document.getElementById('searchBtn')
+const progressBar = document.getElementById('searchProgress')
+
 let searching = false
 
+function resetGui() {
+  searchBtn.value = 'Search'
+  searchBtn.disabled = false
+  searching = false
+  cancelBtn.hidden = true
+}
+
 // handle search button presses
-document.getElementById("searchForm").addEventListener('submit', (event) => {
+document.getElementById('searchForm').addEventListener('submit', (event) => {
   event.preventDefault() // stop the page refreshing straight away. 
   searching = true
-  const searchBtn = document.getElementById('searchBtn')
   searchBtn.value = 'Please Wait...'
   searchBtn.disabled = true
-	
+  cancelBtn.hidden = false
+
   // add worker to keep progress bar updated
   let searchProgressWorker
   if (window.Worker) {
     searchProgressWorker = new Worker('searchProgressUpdater.js');
     searchProgressWorker.onmessage = (event) => {
-      const progressBar = document.getElementById('searchProgress')
       progressBar.setAttribute('aria-valuenow', event.data)
       progressBar.setAttribute('style', `width: ${event.data}%`)
     }
@@ -22,13 +32,11 @@ document.getElementById("searchForm").addEventListener('submit', (event) => {
 
   // when the user tries to exit our page, send a request to 
   // stop the search on the server & re-enable the search button
-  window.addEventListener("beforeunload", (event) => {
-	if (searching) {
-		windowUnloadCanceller(event, STOP_SEARCH_URL)
-	    searchProgressWorker.terminate()
-	    searchBtn.value = 'Search'
-	    searchBtn.disabled = false
-		searching = false
+  window.addEventListener('beforeunload', (event) => {
+    if (searching) {
+      windowUnloadCanceller(event, STOP_SEARCH_URL)
+      searchProgressWorker.terminate()
+      resetGui()
     }
   })
 
@@ -45,4 +53,10 @@ document.getElementById("searchForm").addEventListener('submit', (event) => {
   const mediaFormat = document.getElementById('media-type').value
   xhttp.open('GET', `/searchTags?mediaType=${mediaFormat}`)
   xhttp.send()
+})
+
+//handle cancel button presses
+cancelBtn.addEventListener('click', () => {
+  serverRequestCanceller(STOP_SEARCH_URL)
+  resetGui()
 })
