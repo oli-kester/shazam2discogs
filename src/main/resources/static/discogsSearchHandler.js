@@ -48,6 +48,9 @@ document.getElementById('searchForm').addEventListener('submit', (event) => {
     if (this.readyState == 4 && this.status == 200) {
       searchProgressWorker.terminate()
       resultsBtn.hidden = false
+      searchBtn.value = 'Done!'
+      cancelBtn.hidden = true
+      searching = false
     }
   };
   const mediaFormat = document.getElementById('media-type').value
