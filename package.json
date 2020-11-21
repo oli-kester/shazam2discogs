@@ -1,0 +1,17 @@
+{
+	"name": "bootstrap-spring-boot",
+	"description": "Integrating Node to allow us to theme & extend Bootstrap",
+	"repository": "net.olikester",
+	"license": "GPL-3.0",
+	"scripts": {
+		"build": "sass src/main/sass/mainStyles.scss src/main/resources/static/css/mainStyles.css"
+	},
+	"dependencies": {
+		"bootstrap": "^4.5.3",
+		"jquery": "^3.5.1"
+	},
+	"devDependencies": {
+		"sass": "^1.29.0",
+		"popper.js": "^1.16.1"
+	}
+}

@@ -1,7 +1,23 @@
 @import
 	url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
 
-@import "/webjars/bootstrap/4.5.3/css/bootstrap.min.css";
+/* S2D colour scheme */
+$raisin-black: hsla(240, 11%, 11%, 1);
+$mountain-meadow: hsla(167, 77%, 43%, 1);
+$rebecca-purple: hsla(268, 57%, 45%, 1);
+$maximum-yellow-red: hsla(40, 88%, 60%, 1);
+$up-maroon: hsla(1, 71%, 28%, 1);
+$platinum: hsla(240, 6%, 93%, 1);
+
+$theme-colors: (
+  "primary": $rebecca-purple,
+  "danger": $up-maroon,
+);
+
+/* Enable desired Bootstrap features */
+$enable-gradients: true;
+$enable-transitions: true;
+
 
 body {
 	font-family: 'Lato', Verdana;
@@ -19,3 +35,5 @@ body {
 input.enlarged-checkbox {
   transform: scale(1.5);
 }
+
+@import '../../../node_modules/bootstrap/scss/bootstrap';
