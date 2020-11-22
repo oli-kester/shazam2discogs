@@ -8,7 +8,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class AppConfig {
     @Bean
-    public HashSet<String> cancelSearchRequestSessionIds() {
+    public HashSet<String> cancelTaskSessionIds() {
         return new HashSet<String>();
     }
 }

@@ -15,15 +15,15 @@
 			<table class="table table-dark table-bordered col-5 mx-auto">
 				<tr>
 					<td class="text-right">Wantlist additions send to Discogs</td>
-					<td th:text="${numReleases}"></td>
+					<td th:text="${additionStatus.getNumReleasesProcessed()}"></td>
 				</tr>
 				<tr>
 					<td class="text-right">Releases added successfully</td>
-					<td th:text="${numReleasesAdded}"></td>
+					<td th:text="${additionStatus.getNumReleasesAdded()}"></td>
 				</tr>
 				<tr>
 					<td class="text-right">Failed additions</td>
-					<td th:text="${numFailedReleases}"></td>
+					<td th:text="${additionStatus.getNumFailedReleases()}"></td>
 				</tr>
 			</table>
 		</div>
@@ -34,7 +34,7 @@
 			<table
 				class="table table-dark table-striped table-bordered col-8 mx-auto">
 				<tbody>
-					<tr th:each="release : ${releaseFailedAdditions}">
+					<tr th:each="release : ${additionStatus.getFailedReleases()}">
 						<td>
 							<div class="d-flex align-items-center">
 								<div class="release-image mr-2">

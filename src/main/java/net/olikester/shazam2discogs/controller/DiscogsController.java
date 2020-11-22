@@ -11,7 +11,6 @@ import java.util.stream.Collectors;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth.consumer.OAuthConsumerToken;
 import org.springframework.stereotype.Controller;
@@ -23,11 +22,13 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import net.olikester.shazam2discogs.dao.ConsumerTokenDao;
-import net.olikester.shazam2discogs.dao.DiscogsSearchProgressDao;
+import net.olikester.shazam2discogs.dao.DiscogsAdditionStatusDao;
+import net.olikester.shazam2discogs.dao.TaskProgressDao;
 import net.olikester.shazam2discogs.dao.ReleaseDao;
 import net.olikester.shazam2discogs.dao.SessionDataDao;
 import net.olikester.shazam2discogs.dao.TagDao;
-import net.olikester.shazam2discogs.model.DiscogsSearchProgress;
+import net.olikester.shazam2discogs.model.TaskProgress;
+import net.olikester.shazam2discogs.model.DiscogsAdditionStatus;
 import net.olikester.shazam2discogs.model.JpaOAuthConsumerToken;
 import net.olikester.shazam2discogs.model.MediaFormats;
 import net.olikester.shazam2discogs.model.Release;
@@ -54,10 +55,12 @@ public class DiscogsController {
     @Autowired
     private TagDao tagDao;
     @Autowired
-    private DiscogsSearchProgressDao discogsSearchProgressDao;
+    private TaskProgressDao taskProgressDao;
+    @Autowired
+    private DiscogsAdditionStatusDao discogsAdditionStatusDao;
 
     @Autowired
-    private HashSet<String> cancelSearchRequestSessionIds;
+    private HashSet<String> cancelTaskSessionIds;
 
     @GetMapping("/login")
     public RedirectView login(HttpSession session) {
@@ -97,7 +100,7 @@ public class DiscogsController {
 	    HttpSession session) {
 	String sessionId = session.getId();
 	Optional<JpaOAuthConsumerToken> userToken = tokenStore.findById(sessionId);
-	discogsSearchProgressDao.save(new DiscogsSearchProgress(sessionId, 0));
+	taskProgressDao.save(new TaskProgress(sessionId, 0));
 	final AtomicInteger progressCounter = new AtomicInteger();
 
 	if (authCheck(userToken)) {
@@ -105,11 +108,11 @@ public class DiscogsController {
 	    List<Tag> userTags = sessionData.getTags();
 
 	    // reset cancellation status
-	    cancelSearchRequestSessionIds.remove(sessionId);
+	    cancelTaskSessionIds.remove(sessionId);
 
 	    // for loop lets us break stream when the user cancels the search
 	    for (Tag currTag : userTags) {
-		if (cancelSearchRequestSessionIds.contains(sessionId)) {
+		if (cancelTaskSessionIds.contains(sessionId)) {
 		    break;
 		}
 
@@ -137,9 +140,9 @@ public class DiscogsController {
 		// update search progress so this can be requested by the webpage (casting to
 		// avoid rounding errors)
 		double progressPercentage = (progressCounter.incrementAndGet() / (double) userTags.size()) * 100;
-		discogsSearchProgressDao.save(new DiscogsSearchProgress(sessionId, (int) progressPercentage));
+		taskProgressDao.save(new TaskProgress(sessionId, (int) progressPercentage));
 	    }
-	    if (cancelSearchRequestSessionIds.contains(sessionId)) {
+	    if (cancelTaskSessionIds.contains(sessionId)) {
 		return ResponseEntity.status(499).build();
 	    }
 	    return ResponseEntity.ok().build();
@@ -150,13 +153,13 @@ public class DiscogsController {
     @GetMapping("getProgress")
     @ResponseBody
     public int getDiscogsSearchProgress(HttpSession session) {
-	return discogsSearchProgressDao.getOne(session.getId()).getSearchProgress();
+	return taskProgressDao.getOne(session.getId()).getSearchProgress();
     }
 
     @GetMapping("stopSearch")
     @ResponseBody
     public void stopDiscogsSearch(HttpSession session) {
-	cancelSearchRequestSessionIds.add(session.getId());
+	cancelTaskSessionIds.add(session.getId());
     }
 
     @GetMapping("searchResults")
@@ -168,10 +171,16 @@ public class DiscogsController {
     }
 
     @PostMapping("addToDiscogs")
-    public ModelAndView addToDiscogs(@RequestParam Map<String, String> params, HttpSession session) {
-	ModelAndView mv = new ModelAndView();
+    @ResponseBody
+    public ResponseEntity<String> addToDiscogs(@RequestParam Map<String, String> params, HttpSession session) {
 	String sessionId = session.getId();
 	Optional<JpaOAuthConsumerToken> userToken = tokenStore.findById(sessionId);
+	taskProgressDao.save(new TaskProgress(sessionId, 0));
+	final AtomicInteger progressCounter = new AtomicInteger();
+
+	// reset cancellation status
+	cancelTaskSessionIds.remove(sessionId);
+
 	if (authCheck(userToken)) {
 	    List<Release> releasesToAdd = params.entrySet().stream()
 		    .filter(e -> e.getValue().equals("on") && e.getKey().startsWith("add-")).map((e) -> {
@@ -181,21 +190,43 @@ public class DiscogsController {
 		    }).collect(Collectors.toList());
 
 	    List<Release> releaseFailedAdditions = new ArrayList<Release>();
-	    releasesToAdd.stream().forEach(release -> {
+
+	    // for loop lets us break stream when the user cancels the search
+	    for (Release release : releasesToAdd) {
+		if (cancelTaskSessionIds.contains(sessionId)) {
+		    break;
+		}
+
 		boolean wasAdded = discogsService.addReleaseToUserWantlist(release, userToken.get());
-		if (!wasAdded) {
+		if (wasAdded) {
 		    releaseFailedAdditions.add(release);
 		}
-	    });
 
-	    mv.addObject("numReleases", releasesToAdd.size());
-	    mv.addObject("numReleasesAdded", releasesToAdd.size() - releaseFailedAdditions.size());
-	    mv.addObject("numFailedReleases", releaseFailedAdditions.size());
-	    mv.addObject("releaseFailedAdditions", releaseFailedAdditions);
-	    mv.setViewName("finished");
-	    return mv;
+		double progressPercentage = (progressCounter.incrementAndGet() / (double) releasesToAdd.size()) * 100;
+		taskProgressDao.save(new TaskProgress(sessionId, (int) progressPercentage));
+	    }
+
+	    DiscogsAdditionStatus additionStatus = new DiscogsAdditionStatus();
+	    additionStatus.setSessionId(sessionId);
+	    additionStatus.setNumReleasesProcessed(releasesToAdd.size());
+	    additionStatus.setNumReleasesAdded(releasesToAdd.size() - releaseFailedAdditions.size());
+	    additionStatus.setNumFailedReleases(releaseFailedAdditions.size());
+	    additionStatus.setFailedReleases(releaseFailedAdditions);
+	    discogsAdditionStatusDao.save(additionStatus);
+	    
+	    if (cancelTaskSessionIds.contains(sessionId)) {
+		return ResponseEntity.status(499).build();
+	    }
+	    return ResponseEntity.ok().build();
 	}
-	mv.setViewName("error"); // TODO this is an authentication error
+	return ResponseEntity.status(401).build();
+    }
+    
+    @GetMapping("finished")
+    public ModelAndView finishedResults(HttpSession session) {
+	ModelAndView mv = new ModelAndView();
+	mv.addObject("additionStatus", discogsAdditionStatusDao.findById(session.getId()).orElseThrow());
+	mv.setViewName("finished");
 	return mv;
     }
 

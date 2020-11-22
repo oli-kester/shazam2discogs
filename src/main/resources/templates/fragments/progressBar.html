@@ -1,6 +1,6 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<div th:fragment="progress_bar(title)">
+<div th:fragment="progress_bar(title, resultsUrl)">
 	<div class="mt-3">
 		<h5 class="mb-4" th:text="${title}">Progress</h5>
 		<div class="progress">
@@ -15,7 +15,7 @@
 		<div>
 			<button id="cancelBtn" class="btn btn-danger btn-lg" hidden="true">Cancel</button>
 		</div>
-		<a href="searchResults"><button id="resultsBtn"
+		<a th:href="${resultsUrl}"><button id="resultsBtn"
 				class="btn btn-danger btn-lg" hidden="true">Go To Results</button></a>
 	</div>
 </div>

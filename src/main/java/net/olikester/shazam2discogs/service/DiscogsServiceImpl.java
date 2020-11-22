@@ -142,11 +142,13 @@ public class DiscogsServiceImpl implements DiscogsService {
 	String query = DiscogsService.stripIllegalQueryChars(uriComponents.toUriString());
 
 	try {
-	    InputStream inputStream = consumerSupport.readProtectedResource(new URL(query),
-		    accessToken.toOAuthConsumerToken(), "PUT");
-	    Scanner s = new Scanner(inputStream).useDelimiter("\\A");
-	    String json = s.hasNext() ? s.next() : "";
-	    s.close();
+	    consumerSupport.readProtectedResource(new URL(query), accessToken.toOAuthConsumerToken(), "PUT");
+	    // TODO switch to this implementation for error handling.
+//	    InputStream inputStream = consumerSupport.readProtectedResource(new URL(query),
+//	    accessToken.toOAuthConsumerToken(), "PUT");
+//	    Scanner s = new Scanner(inputStream).useDelimiter("\\A");
+//	    String json = s.hasNext() ? s.next() : "";
+//	    s.close();
 	    return true;
 	} catch (OAuthRequestFailedException e) {
 	    // TODO Auto-generated catch block

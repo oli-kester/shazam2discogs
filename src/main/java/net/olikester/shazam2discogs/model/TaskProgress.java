@@ -10,15 +10,15 @@ import javax.persistence.Id;
  *
  */
 @Entity
-public class DiscogsSearchProgress {
+public class TaskProgress {
     @Id
     private String sessionId;
     private int searchProgress;
 
-    public DiscogsSearchProgress() {
+    public TaskProgress() {
     }
 
-    public DiscogsSearchProgress(String sessionId, int searchProgress) {
+    public TaskProgress(String sessionId, int searchProgress) {
 	super();
 	this.sessionId = sessionId;
 	this.searchProgress = searchProgress;

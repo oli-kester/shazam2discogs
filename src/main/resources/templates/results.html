@@ -9,7 +9,7 @@
 			<div class="page-contents">
 				<div class="row">
 					<h1 class="pb-3 pt-3">Here are your matches</h1>
-					<form method="POST" action="addToDiscogs" class="mx-auto">
+					<form method="POST" action="addToDiscogs" class="mx-auto" id="resultsForm">
 						<div class="row">
 							<table
 								class="table table-dark table-striped table-bordered col-12">
@@ -96,13 +96,18 @@
 							<strong>Discogs limits our speed here too, so please be
 								patient and let the magic happen.</strong>
 						</p>
-						<input type="submit" class="btn btn-primary btn-lg"
+						<input type="submit" class="btn btn-primary btn-lg" id="addBtn"
 							value="Add to Discogs Wantlist" />
 					</form>
+				<hr />
+				<div
+					th:replace="fragments/progressBar:: progress_bar(title='Progress of Discogs wantlist additions', resultsUrl='finished')"></div>
 				</div>
 			</div>
 		</div>
 	</div>
 	<script th:src="@{toggleAllCheckboxes.js}"></script>
+	<script th:src="@{windowUnloadCanceller.js}"></script>
+	<script th:src="@{discogsWantlistHandler.js}"></script>
 </body>
 </html>
