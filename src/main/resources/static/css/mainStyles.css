@@ -9953,6 +9953,7 @@ h3 {
     border-color: #dee2e6;
   }
 }
+/* Background Styling */
 body {
   letter-spacing: 0.4px;
   background: repeating-linear-gradient(-45deg, #9726afc4, #38186778 15px, #264ca6 15px, #040405 30px), linear-gradient(45deg, white, #959595);
@@ -9962,9 +9963,12 @@ body {
   margin: 7vh 7vw 7vh 7vw;
   background: linear-gradient(35deg, #2c2c34, #30303c 80%);
   min-height: 86vh;
-  padding: 30px;
   border-radius: 10px 10px 1% 1%;
   box-shadow: 0px 2px 3px 3px rgba(28, 1, 1, 0.5);
+}
+
+.page-contents {
+  padding: 0px 30px 30px 30px;
 }
 
 .jumbotron {
@@ -9991,6 +9995,30 @@ body {
   mix-blend-mode: screen;
 }
 
+/* Nav Styling */
+.navbar-expand {
+  flex-direction: column;
+  width: 100%;
+}
+.navbar-expand .navbar-collapse {
+  width: 100%;
+}
+.navbar-expand .navbar-brand {
+  font-family: "Handlee", serif;
+  letter-spacing: 1.5px;
+  font-size: 150%;
+  text-shadow: 0px 0px 6px #905f8b;
+}
+
+.navbar-collapse {
+  margin-top: -4.5vh;
+}
+
+/* Element Styling */
+p {
+  margin-bottom: 3rem;
+}
+
 .btn {
   min-width: 100px;
   margin: 5px 10px 5px 10px;
@@ -10000,7 +10028,8 @@ body {
 }
 
 .alert {
-  max-width: 400px;
+  max-width: 600px;
+  margin-bottom: 3rem;
 }
 
 .img-thumbnail {
