@@ -7,7 +7,7 @@
 		<div class="site-container">
 			<div th:replace="fragments/navBar:: nav_bar()"></div>
 			<div class="page-contents">
-				<div class="row">
+				<div>
 					<h1 class="pb-3 pt-3">Finished</h1>
 					<p>
 						We have finished adding the Releases to your Discogs wantlist. The
@@ -15,8 +15,8 @@
 						check <a href="https://www.discogs.com/mywantlist" target="_blank">your
 							Discogs wantlist</a>.
 					</p>
-					<div class="mx-auto">
-						<table class="table table-dark table-bordered additions-table">
+					<div>
+						<table class="table table-dark table-bordered additions-table mx-auto">
 							<tr>
 								<td class="text-right">Wantlist additions send to Discogs</td>
 								<td th:text="${additionStatus.getNumReleasesProcessed()}"></td>
@@ -31,15 +31,15 @@
 							</tr>
 						</table>
 					</div>
-					<div th:insert="~{}"
-						th:if="${additionStatus.getNumFailedReleases() == 0}">
-						<div>
-							<p>You can find the releases that failed to add listed below
+					<div
+						th:if="${not #lists.isEmpty(additionStatus.getFailedReleases())}">
+						<div class="row">
+							<p class="mt-4">You can find the releases that failed to add listed below
 								-</p>
 						</div>
 						<div class="row">
 							<table
-								class="table table-dark table-striped table-bordered col-8 mx-auto">
+								class="table table-dark table-striped table-bordered col-8 mx-auto mt-n3">
 								<tbody>
 									<tr th:each="release : ${additionStatus.getFailedReleases()}">
 										<td>
