@@ -9996,6 +9996,10 @@ body {
 }
 
 /* Nav Styling */
+.navbar {
+  background: linear-gradient(0deg, #25232e, #39363e 20%, #2e2e43 60%);
+}
+
 .navbar-expand {
   flex-direction: column;
   width: 100%;
