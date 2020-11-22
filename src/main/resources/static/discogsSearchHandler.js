@@ -12,6 +12,12 @@ function resetGui() {
   searching = false
   cancelBtn.hidden = true
   resultsBtn.hidden = true
+  setProgressBar(0)
+}
+
+function setProgressBar(newValue) {
+  progressBar.setAttribute('aria-valuenow', newValue)
+  progressBar.setAttribute('style', `width: ${newValue}%`)
 }
 
 // handle search button presses
@@ -27,8 +33,7 @@ document.getElementById('searchForm').addEventListener('submit', (event) => {
   if (window.Worker) {
     searchProgressWorker = new Worker('searchProgressUpdater.js');
     searchProgressWorker.onmessage = (event) => {
-      progressBar.setAttribute('aria-valuenow', event.data)
-      progressBar.setAttribute('style', `width: ${event.data}%`)
+	  setProgressBar(event.data)
     }
   }
 
@@ -52,8 +57,7 @@ document.getElementById('searchForm').addEventListener('submit', (event) => {
       searchBtn.value = 'Done!'
       cancelBtn.hidden = true
       searching = false
-      progressBar.setAttribute('aria-valuenow', 100)
-      progressBar.setAttribute('style', `width: ${100}%`)
+      setProgressBar(100)
     }
   };
   const mediaFormat = document.getElementById('media-type').value

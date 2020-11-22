@@ -10097,6 +10097,10 @@ hr {
   height: 100px;
 }
 
+.progress {
+  color: #19191f;
+}
+
 .parse-results {
   max-width: 500px;
 }
