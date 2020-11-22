@@ -2,29 +2,35 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:replace="fragments/htmlHead:: common_header(subtitle='Start')" />
 <body>
-	<div class="jumbotron">
-		<h1>
-			Welcome to the <span th:replace="fragments/strings:: site_name"></span>
-			tool.
-		</h1>
-		<p>Use this to import all of your Shazamed tracks into your Discogs
-			wantlist.</p>
-	</div>
 	<div class="container-fluid">
-		<p>Follow this video to get your JSON file of Shazam tracks -</p>
+		<div class="site-container">
+			<div class="row">
+				<div class="jumbotron mx-auto col-10">
+					<h1>
+						Welcome to the <span th:replace="fragments/strings:: site_name"></span>
+						tool.
+					</h1>
+					<p>Use this to import all of your Shazamed tracks into your
+						Discogs wantlist.</p>
+				</div>
+			</div>
+			<p>Follow this video to get your JSON file of Shazam tracks -</p>
 
-		<p>---- VIDEO HERE ----</p>
+			<p>---- VIDEO HERE ----</p>
 
 
-		<p class="alert alert-info">It's a good idea to go listen
-			through all of your Shazams on the app first, and remove any false
-			matches. Shazam is amazing, but sometimes gets it very, very wrong.</p>
+			<p class="alert alert-info">It's a good idea to go and listen
+				through all of your Shazams on the app first, and remove any false
+				matches. Shazam is amazing, but sometimes gets it very, very wrong.</p>
 
-		<form method="POST" enctype="multipart/form-data" action="/">
-			<p>Upload your JSON file below -</p>
-			<input type="file" name="shazam-json-file" accept=".json" required class="btn btn-primary btn-lg" />
-			<input type="submit" value="Upload" class="btn btn-primary btn-lg" />
-		</form>
+			<form method="POST" enctype="multipart/form-data" action="/"
+				class="row">
+				<p class="col-3">Upload your JSON file here:</p>
+					<input type="file" name="shazam-json-file" accept=".json" required
+						class="btn btn-secondary file-upload] col-6"/> <input type="submit" value="Upload"
+						class="btn btn-primary btn-lg col-3" />
+			</form>
+		</div>
 	</div>
 </body>
 </html>

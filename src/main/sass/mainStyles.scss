@@ -1,39 +1,100 @@
-@import
-	url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+
+@import url("https://fonts.googleapis.com/css2?family=Handlee&display=swap");
+
+@import url('https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap');
 
 /* S2D colour scheme */
 $raisin-black: hsla(240, 11%, 11%, 1);
+$raisin-grey: hsla(240, 11%, 21%, 1);
 $mountain-meadow: hsla(167, 77%, 43%, 1);
 $rebecca-purple: hsla(268, 57%, 45%, 1);
 $maximum-yellow-red: hsla(40, 88%, 60%, 1);
 $up-maroon: hsla(1, 71%, 28%, 1);
 $platinum: hsla(240, 6%, 93%, 1);
+$platinum-trans: hsla(240, 30%, 43%, 0.5);
+$dark-liver: hsl(240, 4.65%, 16.86%);
 
 $theme-colors: (
-  "primary": $rebecca-purple,
-  "danger": $up-maroon,
+	"primary": $rebecca-purple,
+	"secondary": $maximum-yellow-red,
+	"danger": $up-maroon,
 );
 
 /* Enable desired Bootstrap features */
 $enable-gradients: true;
 $enable-transitions: true;
 
+// Body
+$body-color: $platinum;
+
+// Typography
+$font-family-base: "Lato", Verdana;
+
+// Jumbotron
+$jumbotron-color: $raisin-black;
+
+@import "../../../node_modules/bootstrap/scss/bootstrap";
 
 body {
-	font-family: 'Lato', Verdana;
+	letter-spacing: 0.4px;
+	background: repeating-linear-gradient(-45deg, #9726afc4, #38186778 15px, #264ca6 15px, #040405 30px), linear-gradient(45deg, white, #959595);
 }
+
+.site-container {
+	margin: 7vh 7vw 7vh 7vw;
+	background-color: $raisin-grey;
+	min-height: 86vh;
+	padding: 30px;
+	border-radius: 10px 10px 1% 1%;
+	box-shadow: 0px 2px 3px 3px rgba(28, 1, 1, 0.5);
+}
+
+.jumbotron {
+	background: linear-gradient(-35deg, #526ae824, #00578bd1 80%);
+	box-shadow: inset -1px 0px 10px 5px #000000ab;
+	width: 80%;
+
+	h1 {
+		    font-family: 'Fugaz One', cursive;
+		text-shadow: 1.5px 1px 0px #deb768;
+		text-transform: uppercase;
+		rotate: -2deg;
+		font-size: 330%;
+		color: #ad0625;
+		letter-spacing: 1.3px;
+	}
+
+	p {
+		font-family: "Handlee", serif;
+		font-size: 130%;
+		color: #c2c2c2;
+		text-align: right;
+		position: relative;
+		top: 5vh;
+		mix-blend-mode: screen;
+	}
+}
+
+.btn {
+	min-width: 100px;
+	margin: 5px 10px 5px 10px;
+	
+.file-upload {
+	min-width: 200px;
+}
+}
+
 
 .img-thumbnail {
 	width: 140px;
 }
 
 .checkbox-cell {
-	vertical-align: middle !important;
+	vertical-align: middle;
 	text-align: center;
 }
 
 input.enlarged-checkbox {
-  transform: scale(1.5);
+	transform: scale(1.5);
 }
-
-@import '../../../node_modules/bootstrap/scss/bootstrap';
