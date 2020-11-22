@@ -9960,7 +9960,7 @@ body {
 
 .site-container {
   margin: 7vh 7vw 7vh 7vw;
-  background-color: #30303b;
+  background: linear-gradient(35deg, #2c2c34, #30303c 80%);
   min-height: 86vh;
   padding: 30px;
   border-radius: 10px 10px 1% 1%;
@@ -9997,6 +9997,10 @@ body {
 }
 .btn .file-upload {
   min-width: 200px;
+}
+
+.alert {
+  max-width: 400px;
 }
 
 .img-thumbnail {
