@@ -30,6 +30,7 @@ $body-color: $platinum;
 
 // Typography
 $font-family-base: "Lato", Verdana;
+$enable-responsive-font-sizes: true;
 
 // Jumbotron
 $jumbotron-color: $raisin-black;
@@ -86,6 +87,7 @@ body {
 
 .navbar {
 	background: linear-gradient(0deg, hsl(250.9, 13.6%, 15.9%), hsl(262.5, 6.9%, 22.7%) 20%, hsl(240, 18.6%, 22.2%) 60%);
+	min-height: 100px;
 }
 
 .navbar-expand {
@@ -105,7 +107,7 @@ body {
 }
 
 .navbar-collapse {
-	margin-top: -4.5vh;
+	margin-top: -50px;
 }
 
 /* Element Styling */
