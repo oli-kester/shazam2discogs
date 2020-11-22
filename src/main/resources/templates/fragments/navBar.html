@@ -8,9 +8,7 @@
 		<ul class="navbar-nav mx-auto w-100 row">
 			<li class="nav-item col-6"><a class="nav-link" href="/"><button
 						class="btn btn-primary btn-sm">Home</button> </a></li>
-			<li class="nav-item col-6 text-right"><a
-				class="nav-link text-danger" href="exit"><button
-						class="btn btn-danger btn-sm">Delete Data &amp; Exit</button></a></li>
+			<li class="nav-item col-6 text-right"><div th:replace="fragments/buttons:: exit_btn"></div></li>
 		</ul>
 	</div>
 </nav>

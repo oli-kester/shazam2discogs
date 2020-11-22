@@ -31,6 +31,7 @@ $body-color: $platinum;
 // Typography
 $font-family-base: "Lato", Verdana;
 $enable-responsive-font-sizes: true;
+$link-color: $mountain-meadow;
 
 // Jumbotron
 $jumbotron-color: $raisin-black;
@@ -121,6 +122,10 @@ p {
 	margin-bottom: 3rem;
 }
 
+a {
+	color: $mountain-meadow;
+}
+
 .card {
 	p {
 		margin-bottom: 1rem;
@@ -138,6 +143,7 @@ p {
 		min-width: 200px;
 	}
 }
+
 hr {
 	border-top: 1px double rgb(122, 122, 122);
 }
@@ -152,6 +158,10 @@ hr {
 
 .parse-results {
 	max-width: 500px;
+}
+
+.additions-table {
+	max-width: 550px;
 }
 
 .alert {

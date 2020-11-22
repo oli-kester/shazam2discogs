@@ -157,12 +157,12 @@ sup {
 }
 
 a {
-  color: #6e31b4;
+  color: #19c29d;
   text-decoration: none;
   background-color: transparent;
 }
 a:hover {
-  color: #4a2178;
+  color: #107e67;
   text-decoration: underline;
 }
 
@@ -2923,11 +2923,11 @@ fieldset:disabled a.btn {
 
 .btn-link {
   font-weight: 400;
-  color: #6e31b4;
+  color: #19c29d;
   text-decoration: none;
 }
 .btn-link:hover {
-  color: #4a2178;
+  color: #107e67;
   text-decoration: underline;
 }
 .btn-link:focus, .btn-link.focus {
@@ -4607,13 +4607,13 @@ input[type=button].btn-block {
   padding: 0.5rem 0.75rem;
   margin-left: -1px;
   line-height: 1.25;
-  color: #6e31b4;
+  color: #19c29d;
   background-color: #fff;
   border: 1px solid #dee2e6;
 }
 .page-link:hover {
   z-index: 2;
-  color: #4a2178;
+  color: #107e67;
   text-decoration: none;
   background-color: #e9ecef;
   border-color: #dee2e6;
@@ -10074,6 +10074,10 @@ p {
   margin-bottom: 3rem;
 }
 
+a {
+  color: #19c29d;
+}
+
 .card {
   margin-bottom: 1rem;
   margin-top: 1rem;
@@ -10104,6 +10108,10 @@ hr {
 
 .parse-results {
   max-width: 500px;
+}
+
+.additions-table {
+  max-width: 550px;
 }
 
 .alert {
