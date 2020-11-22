@@ -99,9 +99,9 @@
 						<input type="submit" class="btn btn-primary btn-lg" id="addBtn"
 							value="Add to Discogs Wantlist" />
 					</form>
-				<hr />
-				<div
-					th:replace="fragments/progressBar:: progress_bar(title='Progress of Discogs wantlist additions', resultsUrl='finished')"></div>
+				<hr class="w-100" />
+				<div class="w-100"
+					th:insert="fragments/progressBar:: progress_bar(title='Progress of Discogs wantlist additions', resultsUrl='finished')"></div>
 				</div>
 			</div>
 		</div>
