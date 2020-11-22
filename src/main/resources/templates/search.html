@@ -18,19 +18,21 @@
 					sessions. This means that many people using this service will make
 					it slow. Be patient and wait for the matching to complete.</p>
 				<form id="searchForm">
-					<label for="media-type">Choose your preferred media type -
-					</label> <select id="media-type" name="media-type">
-						<option value="PHYSICAL_VINYL">Physical (Vinyl)</option>
-						<option value="PHYSICAL_CD">Physical (CD)</option>
-						<option value="DIGITAL_HI_RES">Digital (Hi-Res)</option>
-						<option value="DIGITAL_MP3">Digital (MP3)</option>
-					</select>
-					<p class="alert alert-warning">
+					<div class="mx-auto text-center">
+						<label for="media-type">Choose your preferred media type -
+						</label> <select id="media-type" name="media-type">
+							<option value="PHYSICAL_VINYL">Physical (Vinyl)</option>
+							<option value="PHYSICAL_CD">Physical (CD)</option>
+							<option value="DIGITAL_HI_RES">Digital (Hi-Res)</option>
+							<option value="DIGITAL_MP3">Digital (MP3)</option>
+						</select>
+					</div>
+					<p class="alert alert-warning mx-auto">
 						If your preferred format is not matched for a release in the
 						Discogs database, <span th:replace="fragments/strings:: site_name"></span>
 						will automatically select the most popular match for all formats.
 					</p>
-					<p class="alert alert-info">
+					<p class="alert alert-info mx-auto">
 						<strong>Note - </strong>Selecting "Vinyl" for your preferred
 						format often gives more precise matches.
 					</p>
@@ -41,7 +43,7 @@
 				</form>
 				<hr />
 				<div class="mt-3">
-					<p>Progress of Discogs search -</p>
+					<h5 class="mb-4">Progress of Discogs search</h5>
 					<div class="progress">
 						<div id="searchProgress"
 							class="progress-bar progress-bar-striped progress-bar-animated"

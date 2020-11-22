@@ -46,11 +46,14 @@ document.getElementById('searchForm').addEventListener('submit', (event) => {
   const xhttp = new XMLHttpRequest()
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
+	  //this is actioned when the search completes.
       searchProgressWorker.terminate()
       resultsBtn.hidden = false
       searchBtn.value = 'Done!'
       cancelBtn.hidden = true
       searching = false
+      progressBar.setAttribute('aria-valuenow', 100)
+      progressBar.setAttribute('style', `width: ${100}%`)
     }
   };
   const mediaFormat = document.getElementById('media-type').value

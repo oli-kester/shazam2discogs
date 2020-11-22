@@ -10097,6 +10097,10 @@ hr {
   height: 100px;
 }
 
+.parse-results {
+  max-width: 500px;
+}
+
 .alert {
   max-width: 600px;
   margin-bottom: 1.5rem;
