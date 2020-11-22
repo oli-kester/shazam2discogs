@@ -3,6 +3,7 @@ const cancelBtn = document.getElementById('cancelBtn')
 const searchBtn = document.getElementById('searchBtn')
 const resultsBtn = document.getElementById('resultsBtn')
 const progressBar = document.getElementById('searchProgress')
+const progressText = document.getElementById('progressText')
 
 let searching = false
 
@@ -18,6 +19,7 @@ function resetGui() {
 function setProgressBar(newValue) {
   progressBar.setAttribute('aria-valuenow', newValue)
   progressBar.setAttribute('style', `width: ${newValue}%`)
+  progressText.innerText = `${newValue}%`
 }
 
 // handle search button presses
