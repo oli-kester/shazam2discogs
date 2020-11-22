@@ -10012,7 +10012,6 @@ body {
 .site-container {
   margin: 7vh 7vw 7vh 7vw;
   background: linear-gradient(35deg, #2c2c34, #30303c 80%);
-  min-height: 86vh;
   border-radius: 10px 10px 1% 1%;
   box-shadow: 0px 2px 3px 3px rgba(28, 1, 1, 0.5);
 }
@@ -10074,6 +10073,14 @@ p {
   margin-bottom: 3rem;
 }
 
+.card {
+  margin-bottom: 1rem;
+  margin-top: 1rem;
+}
+.card p {
+  margin-bottom: 1rem;
+}
+
 .btn {
   min-width: 100px;
   margin: 5px 10px 5px 10px;
@@ -10082,9 +10089,18 @@ p {
   min-width: 200px;
 }
 
+hr {
+  border-top: 1px double #7a7a7a;
+}
+
+.search-buttons {
+  height: 100px;
+}
+
 .alert {
   max-width: 600px;
-  margin-bottom: 3rem;
+  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
 }
 
 .img-thumbnail {
