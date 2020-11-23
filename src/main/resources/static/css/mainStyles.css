@@ -2,6 +2,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Handlee&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Fugaz+One&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Righteous&display=swap");
 /* S2D colour scheme */
 /* Enable desired Bootstrap features */
 /*!
@@ -10021,6 +10022,10 @@ body {
   padding: 0px 30px 30px 30px;
 }
 
+h1 {
+  text-align: center;
+}
+
 .jumbotron {
   background: linear-gradient(-35deg, #526ae824, #00578bd1 80%);
   box-shadow: inset -1px 0px 10px 5px #000000ab;
@@ -10034,15 +10039,16 @@ body {
   font-size: 330%;
   color: #ad0625;
   letter-spacing: 1.3px;
+  text-align: left;
 }
 .jumbotron p {
-  font-family: "Handlee", serif;
-  font-size: 130%;
+  font-size: 120%;
   color: #c2c2c2;
   text-align: right;
   position: relative;
   top: 5vh;
   mix-blend-mode: screen;
+  width: 90%;
 }
 
 /* Nav Styling */
@@ -10059,9 +10065,9 @@ body {
   width: 100%;
 }
 .navbar-expand .navbar-brand {
-  font-family: "Handlee", serif;
+  font-family: "Righteous", cursive;
   letter-spacing: 1.5px;
-  font-size: 150%;
+  font-size: 200%;
   text-shadow: 0px 0px 6px #905f8b;
 }
 

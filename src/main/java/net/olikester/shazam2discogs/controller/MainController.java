@@ -135,7 +135,7 @@ public class MainController {
 		mv.setViewName("jsonError");
 	    }
 	} else {
-	    // TODO make error page - no input received
+	    // TODO pull Tag submissions for user anyway, if they exist. 
 	    mv.setViewName("error");
 	}
 	return mv;
