@@ -112,17 +112,14 @@ public class MainController {
     }
 
     @GetMapping("/jsonSumbit")
-    public ModelAndView jsonSumbit(HttpServletRequest request) {
+    public ModelAndView jsonSumbit(HttpSession session, HttpServletRequest request) {
 	Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
-
 	ModelAndView mv = new ModelAndView();
 
 	if (inputFlashMap != null) {
 	    boolean ioSuccess = (boolean) inputFlashMap.get("ioSuccess");
 	    boolean parseSuccess = (boolean) inputFlashMap.get("parseSuccess");
 	    mv.addObject("numTags", inputFlashMap.get("numTags"));
-	    
-	    mv.addAllObjects(inputFlashMap);
 
 	    if (ioSuccess && parseSuccess) {
 		if (OAUTH_BYPASS) {
@@ -132,11 +129,23 @@ public class MainController {
 		}
 	    } else {
 		// TODO better error messages in JSON Error document
+		mv.addAllObjects(inputFlashMap);
 		mv.setViewName("jsonError");
 	    }
 	} else {
-	    // TODO pull Tag submissions for user anyway, if they exist. 
-	    mv.setViewName("error");
+	    // Shazam tags not parsed in previous request. Let's still try and find them in
+	    // the database
+	    int numTags = tagDao.getAllTagsForSession(session.getId()).size();
+	    if (numTags > 0) {
+		mv.addObject("numTags", numTags);
+		if (OAUTH_BYPASS) {
+		    mv.setViewName("search");
+		} else {
+		    mv.setViewName("linkDiscogs");
+		}
+	    } else { // No tags parsed for this user, they shouldn't be here. 
+		mv.setViewName("home");
+	    }
 	}
 	return mv;
     }
