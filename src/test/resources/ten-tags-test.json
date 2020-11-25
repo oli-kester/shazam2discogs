@@ -1,0 +1,1203 @@
+{
+    "tags": [
+        {
+            "tagid": "ffcc4bbf-351b-4854-afa8-a6c1395c2e7a",
+            "key": "502010745",
+            "timestamp": 1601475499727,
+            "timezone": "Europe/London",
+            "geolocation": {
+                "longitude": 0.0,
+                "latitude": 0.0
+            },
+            "type": "TAG",
+            "track": {
+                "type": "MUSIC",
+                "key": "502010745",
+                "heading": {
+                    "title": "My Take",
+                    "subtitle": "Aux WoMdantso"
+                },
+                "images": {
+                    "default": "https://images.shazam.com/coverart/t502010745-i1485731763_s400.jpg",
+                    "blurred": "https://images.shazam.com/coverart/t502010745-i1485731763_s400b6.jpg",
+                    "play": "https://images.shazam.com/coverart/t502010745-i1485731763_s400play.jpg"
+                },
+                "stores": {
+                    "apple": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://music.apple.com/gb/album/my-take/1485731756?i=1485731763&uo=5&at=1001l4DI&itscg=30201&ct=5348615A-616D-3235-3830-44754D6D5973&app=music&itsct=Shazam_1"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t502010745-b1485731763_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t502010745-b1485731763_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t502010745-b1485731763_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview123/v4/39/90/97/399097fd-fb51-8181-7066-f3009d6f096c/mzaf_12790632420700393163.plus.aac.p.m4a",
+                        "trackid": "1485731763",
+                        "productid": "1485731756"
+                    },
+                    "itunes": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://itunes.apple.com/gb/album/my-take/1485731756?i=1485731763&uo=5&at=11l3eE&ct=5348615A-616D-3235-3830-44754D6D5973&app=itunes"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t502010745-i1485731763_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t502010745-i1485731763_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t502010745-i1485731763_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview123/v4/39/90/97/399097fd-fb51-8181-7066-f3009d6f096c/mzaf_12790632420700393163.plus.aac.p.m4a",
+                        "trackid": "1485731763",
+                        "productid": "1485731756"
+                    }
+                },
+                "streams": {},
+                "modules": [],
+                "content": {
+                    "videos": {
+                        "href": "https://cdn.shazam.com/video/v2/-/GB/web/track/-/videos?q=Aux+WoMdantso+My+Take"
+                    }
+                },
+                "share": {
+                    "subject": "My Take - Aux WoMdantso",
+                    "text": "I used Shazam to discover My Take by Aux WoMdantso.",
+                    "href": "https://www.shazam.com/track/502010745/my-take",
+                    "image": "https://images.shazam.com/coverart/t502010745-i1485731763_s400.jpg",
+                    "twitter": "I used @Shazam to discover My Take by Aux WoMdantso.",
+                    "html": "https://www.shazam.com/snippets/email-share/502010745?lang=en&country=GB",
+                    "snapchat": "https://www.shazam.com/partner/sc/track/502010745"
+                },
+                "footnotes": [
+                    {
+                        "title": "Album",
+                        "value": "My Take - EP"
+                    },
+                    {
+                        "title": "Label",
+                        "value": "1509459 Records DK"
+                    },
+                    {
+                        "title": "Released",
+                        "value": "2019"
+                    },
+                    {
+                        "title": "Artwork",
+                        "value": "Provided by iTunes"
+                    }
+                ],
+                "alias": "my-take",
+                "url": "https://www.shazam.com/track/502010745/my-take",
+                "actions": [
+                    {
+                        "name": "track:502010745",
+                        "type": "track",
+                        "id": "502010745"
+                    }
+                ],
+                "urlparams": {
+                    "{tracktitle}": "My+Take",
+                    "{trackartist}": "Aux+WoMdantso"
+                }
+            }
+        },
+        {
+            "tagid": "8b90a428-1dee-447c-a74f-9a36d088e641",
+            "key": "534293213",
+            "timestamp": 1601308119513,
+            "timezone": "Europe/London",
+            "geolocation": {
+                "longitude": 0.0,
+                "latitude": 0.0
+            },
+            "type": "TAG",
+            "track": {
+                "type": "MUSIC",
+                "key": "534293213",
+                "heading": {
+                    "title": "Make It Hot (Ray Mang's High Pressure Dub)",
+                    "subtitle": "JKriv & The Disco Machine"
+                },
+                "images": {
+                    "default": "https://images.shazam.com/coverart/t534293213-i1528229297_s400.jpg",
+                    "blurred": "https://images.shazam.com/coverart/t534293213-i1528229297_s400b6.jpg",
+                    "play": "https://images.shazam.com/coverart/t534293213-i1528229297_s400play.jpg"
+                },
+                "stores": {
+                    "apple": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://music.apple.com/gb/album/make-it-hot/1528229296?i=1528229297&uo=5&at=1001l4DI&itscg=30201&ct=5348615A-616D-3235-3830-44754D6D5973&app=music&itsct=Shazam_1"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t534293213-b1528229297_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t534293213-b1528229297_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t534293213-b1528229297_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview114/v4/55/ea/34/55ea34e8-e324-d31d-4780-2ec7b3deccc8/mzaf_7151812766886298442.plus.aac.p.m4a",
+                        "trackid": "1528229297",
+                        "productid": "1528229296"
+                    },
+                    "itunes": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://itunes.apple.com/gb/album/make-it-hot/1528229296?i=1528229297&uo=5&at=11l3eE&ct=5348615A-616D-3235-3830-44754D6D5973&app=itunes"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t534293213-i1528229297_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t534293213-i1528229297_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t534293213-i1528229297_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview114/v4/55/ea/34/55ea34e8-e324-d31d-4780-2ec7b3deccc8/mzaf_7151812766886298442.plus.aac.p.m4a",
+                        "trackid": "1528229297",
+                        "productid": "1528229296"
+                    }
+                },
+                "streams": {},
+                "modules": [],
+                "content": {
+                    "videos": {
+                        "href": "https://cdn.shazam.com/video/v2/-/GB/web/track/-/videos?q=JKriv+%26+The+Disco+Machine+Make+It+Hot+%28Ray+Mang%27s+High+Pressure+Dub%29"
+                    },
+                    "artiststoptracks": {
+                        "href": "https://cdn.shazam.com/shazam/v2/en/GB/web/-/tracks/artisttoptracks_42328092"
+                    }
+                },
+                "artists": [
+                    {
+                        "follow": {
+                            "followkey": "A_42328092"
+                        },
+                        "alias": "jkriv",
+                        "id": "42328092"
+                    },
+                    {
+                        "follow": {
+                            "followkey": "A_41236248"
+                        },
+                        "alias": "the-disco-machine",
+                        "id": "41236248"
+                    }
+                ],
+                "share": {
+                    "subject": "Make It Hot (Ray Mang's High Pressure Dub) - JKriv & The Disco Machine",
+                    "text": "I used Shazam to discover Make It Hot (Ray Mang's High Pressure Dub) by JKriv & The Disco Machine.",
+                    "href": "https://www.shazam.com/track/534293213/make-it-hot-ray-mangs-high-pressure-dub",
+                    "image": "https://images.shazam.com/coverart/t534293213-i1528229297_s400.jpg",
+                    "twitter": "I used @Shazam to discover Make It Hot (Ray Mang's High Pressure Dub) by JKriv & The Disco Machine.",
+                    "html": "https://www.shazam.com/snippets/email-share/534293213?lang=en&country=GB",
+                    "snapchat": "https://www.shazam.com/partner/sc/track/534293213"
+                },
+                "footnotes": [
+                    {
+                        "title": "Album",
+                        "value": "Make It Hot (Remixes) - Single"
+                    },
+                    {
+                        "title": "Label",
+                        "value": "File Under Disco"
+                    },
+                    {
+                        "title": "Released",
+                        "value": "2020"
+                    },
+                    {
+                        "title": "Artwork",
+                        "value": "Provided by iTunes"
+                    }
+                ],
+                "alias": "make-it-hot-ray-mangs-high-pressure-dub",
+                "url": "https://www.shazam.com/track/534293213/make-it-hot-ray-mangs-high-pressure-dub",
+                "actions": [
+                    {
+                        "name": "track:534293213",
+                        "type": "track",
+                        "id": "534293213"
+                    }
+                ],
+                "urlparams": {
+                    "{tracktitle}": "Make+It+Hot+%28Ray+Mang%27s+High+Pressure+Dub%29",
+                    "{trackartist}": "JKriv+%26+The+Disco+Machine"
+                }
+            }
+        },
+        {
+            "tagid": "63d5bbf4-60af-4bfe-8473-e5a5fc9684ea",
+            "key": "113865345",
+            "timestamp": 1601248627410,
+            "timezone": "Europe/London",
+            "geolocation": {
+                "longitude": 0.0,
+                "latitude": 0.0
+            },
+            "type": "TAG",
+            "track": {
+                "type": "MUSIC",
+                "key": "113865345",
+                "heading": {
+                    "title": "Sense Of An Ending (Original Mix)",
+                    "subtitle": "Scotty.A"
+                },
+                "images": {
+                    "default": "https://images.shazam.com/coverart/t113865345-i672875440_s400.jpg",
+                    "blurred": "https://images.shazam.com/coverart/t113865345-i672875440_s400b6.jpg",
+                    "play": "https://images.shazam.com/coverart/t113865345-i672875440_s400play.jpg"
+                },
+                "stores": {
+                    "apple": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://music.apple.com/gb/album/sense-of-an-ending/672875433?i=672875440&uo=5&at=1001l4DI&itscg=30201&ct=5348615A-616D-3235-3830-44754D6D5973&app=music&itsct=Shazam_1"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t113865345-b672875440_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t113865345-b672875440_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t113865345-b672875440_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/Music/v4/d6/44/e0/d644e0e9-49de-2c96-4800-cc3fda8d624b/mzaf_6789378059170940551.plus.aac.p.m4a",
+                        "trackid": "672875440",
+                        "productid": "672875433"
+                    },
+                    "itunes": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://itunes.apple.com/gb/album/sense-of-an-ending/672875433?i=672875440&uo=5&at=11l3eE&ct=5348615A-616D-3235-3830-44754D6D5973&app=itunes"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t113865345-i672875440_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t113865345-i672875440_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t113865345-i672875440_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/Music/v4/d6/44/e0/d644e0e9-49de-2c96-4800-cc3fda8d624b/mzaf_6789378059170940551.plus.aac.p.m4a",
+                        "trackid": "672875440",
+                        "productid": "672875433"
+                    }
+                },
+                "streams": {
+                    "spotify": {
+                        "actions": [
+                            {
+                                "name": "stream:spotify:web",
+                                "type": "uri",
+                                "uri": "https://open.spotify.com/track/1SHPIjEgj9RJc1S6AP7SFY?utm_campaign=ShazamSC&utm_source=Shazam&utm_medium=web"
+                            }
+                        ]
+                    }
+                },
+                "modules": [],
+                "content": {
+                    "videos": {
+                        "href": "https://cdn.shazam.com/video/v2/-/GB/web/track/-/videos?q=Scotty.A+Sense+Of+An+Ending+%28Original+Mix%29"
+                    },
+                    "artiststoptracks": {
+                        "href": "https://cdn.shazam.com/shazam/v2/en/GB/web/-/tracks/artisttoptracks_40843882"
+                    }
+                },
+                "artists": [
+                    {
+                        "follow": {
+                            "followkey": "A_40843882"
+                        },
+                        "alias": "scottya",
+                        "id": "40843882"
+                    }
+                ],
+                "share": {
+                    "subject": "Sense Of An Ending (Original Mix) - Scotty.A",
+                    "text": "I used Shazam to discover Sense Of An Ending (Original Mix) by Scotty.A.",
+                    "href": "https://www.shazam.com/track/113865345/sense-of-an-ending-original-mix",
+                    "image": "https://images.shazam.com/coverart/t113865345-i672875440_s400.jpg",
+                    "twitter": "I used @Shazam to discover Sense Of An Ending (Original Mix) by Scotty.A.",
+                    "html": "https://www.shazam.com/snippets/email-share/113865345?lang=en&country=GB",
+                    "snapchat": "https://www.shazam.com/partner/sc/track/113865345"
+                },
+                "footnotes": [
+                    {
+                        "title": "Album",
+                        "value": "Natural Senses - EP"
+                    },
+                    {
+                        "title": "Label",
+                        "value": "Proton Music"
+                    },
+                    {
+                        "title": "Released",
+                        "value": "2013"
+                    },
+                    {
+                        "title": "Artwork",
+                        "value": "Provided by iTunes"
+                    }
+                ],
+                "alias": "sense-of-an-ending-original-mix",
+                "url": "https://www.shazam.com/track/113865345/sense-of-an-ending-original-mix",
+                "actions": [
+                    {
+                        "name": "track:113865345",
+                        "type": "track",
+                        "id": "113865345"
+                    }
+                ],
+                "urlparams": {
+                    "{tracktitle}": "Sense+Of+An+Ending+%28Original+Mix%29",
+                    "{trackartist}": "Scotty.A"
+                }
+            }
+        },
+        {
+            "tagid": "3e10be6e-191c-43f8-9771-b70ce57b356d",
+            "key": "44334740",
+            "timestamp": 1601248051806,
+            "timezone": "Europe/London",
+            "geolocation": {
+                "longitude": 0.0,
+                "latitude": 0.0
+            },
+            "type": "TAG",
+            "track": {
+                "type": "MUSIC",
+                "key": "44334740",
+                "heading": {
+                    "title": "Up Against The Wall (Getaway Car Mix)",
+                    "subtitle": "Group Home"
+                },
+                "images": {
+                    "default": "https://images.shazam.com/coverart/t44334740-i1443600602_s400.jpg",
+                    "blurred": "https://images.shazam.com/coverart/t44334740-i1443600602_s400b6.jpg",
+                    "play": "https://images.shazam.com/coverart/t44334740-i1443600602_s400play.jpg"
+                },
+                "stores": {
+                    "apple": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://music.apple.com/gb/album/up-against-the-wall/1443600329?i=1443600602&uo=5&at=1001l4DI&itscg=30201&ct=5348615A-616D-3235-3830-44754D6D5973&app=music&itsct=Shazam_1"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t44334740-b1443600602_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t44334740-b1443600602_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t44334740-b1443600602_s400play.jpg"
+                        },
+                        "explicit": true,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview118/v4/b0/91/fd/b091fd0f-248e-b27d-12e7-cc59eef88e40/mzaf_4167598869064921962.plus.aac.p.m4a",
+                        "trackid": "1443600602",
+                        "productid": "1443600329"
+                    },
+                    "itunes": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://itunes.apple.com/gb/album/up-against-the-wall/1443600329?i=1443600602&uo=5&at=11l3eE&ct=5348615A-616D-3235-3830-44754D6D5973&app=itunes"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t44334740-i1443600602_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t44334740-i1443600602_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t44334740-i1443600602_s400play.jpg"
+                        },
+                        "explicit": true,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview118/v4/b0/91/fd/b091fd0f-248e-b27d-12e7-cc59eef88e40/mzaf_4167598869064921962.plus.aac.p.m4a",
+                        "trackid": "1443600602",
+                        "productid": "1443600329"
+                    }
+                },
+                "streams": {
+                    "spotify": {
+                        "actions": [
+                            {
+                                "name": "stream:spotify:web",
+                                "type": "uri",
+                                "uri": "https://open.spotify.com/track/2WgLHc1Jjf3PTGiNL6pDkq?utm_campaign=ShazamSC&utm_source=Shazam&utm_medium=web"
+                            }
+                        ]
+                    }
+                },
+                "modules": [],
+                "content": {
+                    "videos": {
+                        "href": "https://cdn.shazam.com/video/v2/-/GB/web/track/-/videos?q=Group+Home+Up+Against+The+Wall+%28Getaway+Car+Mix%29"
+                    },
+                    "artiststoptracks": {
+                        "href": "https://cdn.shazam.com/shazam/v2/en/GB/web/-/tracks/artisttoptracks_5782011"
+                    }
+                },
+                "artists": [
+                    {
+                        "follow": {
+                            "followkey": "A_5782011"
+                        },
+                        "alias": "group-home",
+                        "id": "5782011"
+                    }
+                ],
+                "share": {
+                    "subject": "Up Against The Wall (Getaway Car Mix) - Group Home",
+                    "text": "I used Shazam to discover Up Against The Wall (Getaway Car Mix) by Group Home.",
+                    "href": "https://www.shazam.com/track/44334740/up-against-the-wall-getaway-car-mix",
+                    "image": "https://images.shazam.com/coverart/t44334740-i1443600602_s400.jpg",
+                    "twitter": "I used @Shazam to discover Up Against The Wall (Getaway Car Mix) by Group Home.",
+                    "html": "https://www.shazam.com/snippets/email-share/44334740?lang=en&country=GB",
+                    "snapchat": "https://www.shazam.com/partner/sc/track/44334740"
+                },
+                "footnotes": [
+                    {
+                        "title": "Album",
+                        "value": "Livin' Proof"
+                    },
+                    {
+                        "title": "Label",
+                        "value": "Island Records"
+                    },
+                    {
+                        "title": "Released",
+                        "value": "1995"
+                    },
+                    {
+                        "title": "Artwork",
+                        "value": "Provided by iTunes"
+                    }
+                ],
+                "alias": "up-against-the-wall-getaway-car-mix",
+                "url": "https://www.shazam.com/track/44334740/up-against-the-wall-getaway-car-mix",
+                "actions": [
+                    {
+                        "name": "track:44334740",
+                        "type": "track",
+                        "id": "44334740"
+                    }
+                ],
+                "urlparams": {
+                    "{tracktitle}": "Up+Against+The+Wall+%28Getaway+Car+Mix%29",
+                    "{trackartist}": "Group+Home"
+                }
+            }
+        },
+        {
+            "tagid": "e26494f7-9d79-4e68-b32d-c84b1b5d17e5",
+            "key": "44334740",
+            "timestamp": 1601248039371,
+            "timezone": "Europe/London",
+            "geolocation": {
+                "longitude": 0.0,
+                "latitude": 0.0
+            },
+            "type": "TAG",
+            "track": {
+                "type": "MUSIC",
+                "key": "44334740",
+                "heading": {
+                    "title": "Up Against The Wall (Getaway Car Mix)",
+                    "subtitle": "Group Home"
+                },
+                "images": {
+                    "default": "https://images.shazam.com/coverart/t44334740-i1443600602_s400.jpg",
+                    "blurred": "https://images.shazam.com/coverart/t44334740-i1443600602_s400b6.jpg",
+                    "play": "https://images.shazam.com/coverart/t44334740-i1443600602_s400play.jpg"
+                },
+                "stores": {
+                    "apple": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://music.apple.com/gb/album/up-against-the-wall/1443600329?i=1443600602&uo=5&at=1001l4DI&itscg=30201&ct=5348615A-616D-3235-3830-44754D6D5973&app=music&itsct=Shazam_1"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t44334740-b1443600602_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t44334740-b1443600602_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t44334740-b1443600602_s400play.jpg"
+                        },
+                        "explicit": true,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview118/v4/b0/91/fd/b091fd0f-248e-b27d-12e7-cc59eef88e40/mzaf_4167598869064921962.plus.aac.p.m4a",
+                        "trackid": "1443600602",
+                        "productid": "1443600329"
+                    },
+                    "itunes": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://itunes.apple.com/gb/album/up-against-the-wall/1443600329?i=1443600602&uo=5&at=11l3eE&ct=5348615A-616D-3235-3830-44754D6D5973&app=itunes"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t44334740-i1443600602_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t44334740-i1443600602_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t44334740-i1443600602_s400play.jpg"
+                        },
+                        "explicit": true,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview118/v4/b0/91/fd/b091fd0f-248e-b27d-12e7-cc59eef88e40/mzaf_4167598869064921962.plus.aac.p.m4a",
+                        "trackid": "1443600602",
+                        "productid": "1443600329"
+                    }
+                },
+                "streams": {
+                    "spotify": {
+                        "actions": [
+                            {
+                                "name": "stream:spotify:web",
+                                "type": "uri",
+                                "uri": "https://open.spotify.com/track/2WgLHc1Jjf3PTGiNL6pDkq?utm_campaign=ShazamSC&utm_source=Shazam&utm_medium=web"
+                            }
+                        ]
+                    }
+                },
+                "modules": [],
+                "content": {
+                    "videos": {
+                        "href": "https://cdn.shazam.com/video/v2/-/GB/web/track/-/videos?q=Group+Home+Up+Against+The+Wall+%28Getaway+Car+Mix%29"
+                    },
+                    "artiststoptracks": {
+                        "href": "https://cdn.shazam.com/shazam/v2/en/GB/web/-/tracks/artisttoptracks_5782011"
+                    }
+                },
+                "artists": [
+                    {
+                        "follow": {
+                            "followkey": "A_5782011"
+                        },
+                        "alias": "group-home",
+                        "id": "5782011"
+                    }
+                ],
+                "share": {
+                    "subject": "Up Against The Wall (Getaway Car Mix) - Group Home",
+                    "text": "I used Shazam to discover Up Against The Wall (Getaway Car Mix) by Group Home.",
+                    "href": "https://www.shazam.com/track/44334740/up-against-the-wall-getaway-car-mix",
+                    "image": "https://images.shazam.com/coverart/t44334740-i1443600602_s400.jpg",
+                    "twitter": "I used @Shazam to discover Up Against The Wall (Getaway Car Mix) by Group Home.",
+                    "html": "https://www.shazam.com/snippets/email-share/44334740?lang=en&country=GB",
+                    "snapchat": "https://www.shazam.com/partner/sc/track/44334740"
+                },
+                "footnotes": [
+                    {
+                        "title": "Album",
+                        "value": "Livin' Proof"
+                    },
+                    {
+                        "title": "Label",
+                        "value": "Island Records"
+                    },
+                    {
+                        "title": "Released",
+                        "value": "1995"
+                    },
+                    {
+                        "title": "Artwork",
+                        "value": "Provided by iTunes"
+                    }
+                ],
+                "alias": "up-against-the-wall-getaway-car-mix",
+                "url": "https://www.shazam.com/track/44334740/up-against-the-wall-getaway-car-mix",
+                "actions": [
+                    {
+                        "name": "track:44334740",
+                        "type": "track",
+                        "id": "44334740"
+                    }
+                ],
+                "urlparams": {
+                    "{tracktitle}": "Up+Against+The+Wall+%28Getaway+Car+Mix%29",
+                    "{trackartist}": "Group+Home"
+                }
+            }
+        },
+        {
+            "tagid": "692ab19c-9ade-4f50-944b-007cf87fa784",
+            "key": "525238948",
+            "timestamp": 1601240738232,
+            "timezone": "Europe/London",
+            "geolocation": {
+                "longitude": 0.0,
+                "latitude": 0.0
+            },
+            "type": "TAG",
+            "track": {
+                "type": "MUSIC",
+                "key": "525238948",
+                "heading": {
+                    "title": "Molecular Geometry",
+                    "subtitle": "Lomidze"
+                },
+                "images": {
+                    "default": "https://images.shazam.com/coverart/t525238948-i1518070475_s400.jpg",
+                    "blurred": "https://images.shazam.com/coverart/t525238948-i1518070475_s400b6.jpg",
+                    "play": "https://images.shazam.com/coverart/t525238948-i1518070475_s400play.jpg"
+                },
+                "stores": {
+                    "apple": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://music.apple.com/gb/album/molecular-geometry/1518070474?i=1518070475&uo=5&at=1001l4DI&itscg=30201&ct=5348615A-616D-3235-3830-44754D6D5973&app=music&itsct=Shazam_1"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t525238948-b1518070475_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t525238948-b1518070475_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t525238948-b1518070475_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview114/v4/fe/09/e9/fe09e9f9-018f-03d7-e34b-8f615139a333/mzaf_11988697965106734823.plus.aac.p.m4a",
+                        "trackid": "1518070475",
+                        "productid": "1518070474"
+                    },
+                    "itunes": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://itunes.apple.com/gb/album/molecular-geometry/1518070474?i=1518070475&uo=5&at=11l3eE&ct=5348615A-616D-3235-3830-44754D6D5973&app=itunes"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t525238948-i1518070475_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t525238948-i1518070475_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t525238948-i1518070475_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview114/v4/fe/09/e9/fe09e9f9-018f-03d7-e34b-8f615139a333/mzaf_11988697965106734823.plus.aac.p.m4a",
+                        "trackid": "1518070475",
+                        "productid": "1518070474"
+                    }
+                },
+                "streams": {},
+                "modules": [],
+                "content": {
+                    "videos": {
+                        "href": "https://cdn.shazam.com/video/v2/-/GB/web/track/-/videos?q=Lomidze+Molecular+Geometry"
+                    },
+                    "artiststoptracks": {
+                        "href": "https://cdn.shazam.com/shazam/v2/en/GB/web/-/tracks/artisttoptracks_200500350"
+                    }
+                },
+                "artists": [
+                    {
+                        "follow": {
+                            "followkey": "A_200500350"
+                        },
+                        "alias": "lomidze",
+                        "id": "200500350"
+                    }
+                ],
+                "share": {
+                    "subject": "Molecular Geometry - Lomidze",
+                    "text": "I used Shazam to discover Molecular Geometry by Lomidze.",
+                    "href": "https://www.shazam.com/track/525238948/molecular-geometry",
+                    "image": "https://images.shazam.com/coverart/t525238948-i1518070475_s400.jpg",
+                    "twitter": "I used @Shazam to discover Molecular Geometry by Lomidze.",
+                    "html": "https://www.shazam.com/snippets/email-share/525238948?lang=en&country=GB",
+                    "avatar": "https://is2-ssl.mzstatic.com/image/thumb/Music123/v4/c3/48/78/c3487828-cb26-abfe-1873-af1b676ca28c/pr_source.png/800x800bb.jpeg",
+                    "snapchat": "https://www.shazam.com/partner/sc/track/525238948"
+                },
+                "footnotes": [
+                    {
+                        "title": "Album",
+                        "value": "Molecular Geometry - EP"
+                    },
+                    {
+                        "title": "Label",
+                        "value": "Fogpanique"
+                    },
+                    {
+                        "title": "Released",
+                        "value": "2020"
+                    },
+                    {
+                        "title": "Artwork",
+                        "value": "Provided by iTunes"
+                    }
+                ],
+                "alias": "molecular-geometry",
+                "url": "https://www.shazam.com/track/525238948/molecular-geometry",
+                "actions": [
+                    {
+                        "name": "track:525238948",
+                        "type": "track",
+                        "id": "525238948"
+                    }
+                ],
+                "urlparams": {
+                    "{tracktitle}": "Molecular+Geometry",
+                    "{trackartist}": "Lomidze"
+                }
+            }
+        },
+        {
+            "tagid": "7662323b-d834-4ef4-b168-40dc5570de7b",
+            "key": "410742200",
+            "timestamp": 1601156504372,
+            "timezone": "Europe/London",
+            "geolocation": {
+                "longitude": 0.0,
+                "latitude": 0.0
+            },
+            "type": "TAG",
+            "track": {
+                "type": "MUSIC",
+                "key": "410742200",
+                "heading": {
+                    "title": "Cape Town",
+                    "subtitle": "Sides"
+                },
+                "images": {
+                    "default": "https://images.shazam.com/coverart/t410742200-i1360390384_s400.jpg",
+                    "blurred": "https://images.shazam.com/coverart/t410742200-i1360390384_s400b6.jpg",
+                    "play": "https://images.shazam.com/coverart/t410742200-i1360390384_s400play.jpg"
+                },
+                "stores": {
+                    "apple": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://music.apple.com/gb/album/cape-town/1360390006?i=1360390384&uo=5&at=1001l4DI&itscg=30201&ct=5348615A-616D-3235-3830-44754D6D5973&app=music&itsct=Shazam_1"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t410742200-b1360390384_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t410742200-b1360390384_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t410742200-b1360390384_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview128/v4/8e/93/42/8e9342f5-4d00-64c1-e1e4-ca911a96ed53/mzaf_1248628978057020824.plus.aac.p.m4a",
+                        "trackid": "1360390384",
+                        "productid": "1360390006"
+                    },
+                    "itunes": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://itunes.apple.com/gb/album/cape-town/1360390006?i=1360390384&uo=5&at=11l3eE&ct=5348615A-616D-3235-3830-44754D6D5973&app=itunes"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t410742200-i1360390384_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t410742200-i1360390384_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t410742200-i1360390384_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview128/v4/8e/93/42/8e9342f5-4d00-64c1-e1e4-ca911a96ed53/mzaf_1248628978057020824.plus.aac.p.m4a",
+                        "trackid": "1360390384",
+                        "productid": "1360390006"
+                    }
+                },
+                "streams": {
+                    "spotify": {
+                        "actions": [
+                            {
+                                "name": "stream:spotify:web",
+                                "type": "uri",
+                                "uri": "https://open.spotify.com/track/6thW0yqQxgjs5MLIaFsCCb?utm_campaign=ShazamSC&utm_source=Shazam&utm_medium=web"
+                            }
+                        ]
+                    }
+                },
+                "modules": [],
+                "content": {
+                    "videos": {
+                        "href": "https://cdn.shazam.com/video/v2/-/GB/web/track/-/videos?q=Sides+Cape+Town"
+                    }
+                },
+                "share": {
+                    "subject": "Cape Town - Sides",
+                    "text": "I used Shazam to discover Cape Town by Sides.",
+                    "href": "https://www.shazam.com/track/410742200/cape-town",
+                    "image": "https://images.shazam.com/coverart/t410742200-i1360390384_s400.jpg",
+                    "twitter": "I used @Shazam to discover Cape Town by Sides.",
+                    "html": "https://www.shazam.com/snippets/email-share/410742200?lang=en&country=GB",
+                    "snapchat": "https://www.shazam.com/partner/sc/track/410742200"
+                },
+                "footnotes": [
+                    {
+                        "title": "Album",
+                        "value": "Kalushi VA Sampler 2018"
+                    },
+                    {
+                        "title": "Label",
+                        "value": "Kalushi Recordings"
+                    },
+                    {
+                        "title": "Released",
+                        "value": "2018"
+                    },
+                    {
+                        "title": "Artwork",
+                        "value": "Provided by iTunes"
+                    }
+                ],
+                "alias": "cape-town",
+                "url": "https://www.shazam.com/track/410742200/cape-town",
+                "actions": [
+                    {
+                        "name": "track:410742200",
+                        "type": "track",
+                        "id": "410742200"
+                    }
+                ],
+                "urlparams": {
+                    "{tracktitle}": "Cape+Town",
+                    "{trackartist}": "Sides"
+                }
+            }
+        },
+        {
+            "tagid": "c6016a3e-5c47-4d28-9812-29e58e2f7ce4",
+            "key": "538879612",
+            "timestamp": 1601156496611,
+            "timezone": "Europe/London",
+            "geolocation": {
+                "longitude": 0.0,
+                "latitude": 0.0
+            },
+            "type": "TAG",
+            "track": {
+                "type": "MUSIC",
+                "key": "538879612",
+                "heading": {
+                    "title": "Flashback (Mixed)",
+                    "subtitle": "ARTY"
+                },
+                "images": {
+                    "default": "https://images.shazam.com/coverart/t538879612-b1533438804_s400.jpg",
+                    "blurred": "https://images.shazam.com/coverart/t538879612-b1533438804_s400b6.jpg",
+                    "play": "https://images.shazam.com/coverart/t538879612-b1533438804_s400play.jpg"
+                },
+                "stores": {
+                    "apple": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://music.apple.com/gb/album/flashback/1533438184?i=1533438804&uo=5&at=1001l4DI&itscg=30201&ct=5348615A-616D-3235-3830-44754D6D5973&app=music&itsct=Shazam_1"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t538879612-b1533438804_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t538879612-b1533438804_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t538879612-b1533438804_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview114/v4/2a/ea/80/2aea807a-ccb9-d582-8af9-cae4711d726e/mzaf_14995404013778229574.plus.aac.p.m4a",
+                        "trackid": "1533438804",
+                        "productid": "1533438184"
+                    }
+                },
+                "streams": {},
+                "modules": [],
+                "content": {
+                    "videos": {
+                        "href": "https://cdn.shazam.com/video/v2/-/GB/web/track/-/videos?q=ARTY+Flashback+%28Mixed%29"
+                    },
+                    "artiststoptracks": {
+                        "href": "https://cdn.shazam.com/shazam/v2/en/GB/web/-/tracks/artisttoptracks_10045272"
+                    }
+                },
+                "artists": [
+                    {
+                        "follow": {
+                            "followkey": "A_10045272"
+                        },
+                        "alias": "arty",
+                        "id": "10045272"
+                    }
+                ],
+                "share": {
+                    "subject": "Flashback (Mixed) - ARTY",
+                    "text": "I used Shazam to discover Flashback (Mixed) by ARTY.",
+                    "href": "https://www.shazam.com/track/538879612/flashback-mixed",
+                    "image": "https://images.shazam.com/coverart/t538879612-b1533438804_s400.jpg",
+                    "twitter": "I used @Shazam to discover Flashback (Mixed) by ARTY.",
+                    "html": "https://www.shazam.com/snippets/email-share/538879612?lang=en&country=GB",
+                    "avatar": "https://is4-ssl.mzstatic.com/image/thumb/Music124/v4/e1/9d/cb/e19dcbda-3a0b-525b-d4a0-86a4647f64f8/pr_source.png/800x800bb.jpeg",
+                    "snapchat": "https://www.shazam.com/partner/sc/track/538879612"
+                },
+                "footnotes": [
+                    {
+                        "title": "Album",
+                        "value": "Anjunafamily Radio 2013 with Jono Grant"
+                    },
+                    {
+                        "title": "Label",
+                        "value": "Anjunabeats"
+                    },
+                    {
+                        "title": "Released",
+                        "value": "2020"
+                    },
+                    {
+                        "title": "Artwork",
+                        "value": "Provided by iTunes"
+                    }
+                ],
+                "alias": "flashback-mixed",
+                "url": "https://www.shazam.com/track/538879612/flashback-mixed",
+                "actions": [
+                    {
+                        "name": "track:538879612",
+                        "type": "track",
+                        "id": "538879612"
+                    }
+                ],
+                "urlparams": {
+                    "{tracktitle}": "Flashback+%28Mixed%29",
+                    "{trackartist}": "ARTY"
+                }
+            }
+        },
+        {
+            "tagid": "b43606c6-ebca-4ff4-b5e1-4888cc7a848d",
+            "key": "521137331",
+            "timestamp": 1601156480726,
+            "timezone": "Europe/London",
+            "geolocation": {
+                "longitude": 0.0,
+                "latitude": 0.0
+            },
+            "type": "TAG",
+            "track": {
+                "type": "MUSIC",
+                "key": "521137331",
+                "heading": {
+                    "title": "Automatic (The Aston Shuffle Extended Remix)",
+                    "subtitle": "Tensnake Feat. Fiora"
+                },
+                "images": {
+                    "default": "https://images.shazam.com/coverart/t521137331-i1517913329_s400.jpg",
+                    "blurred": "https://images.shazam.com/coverart/t521137331-i1517913329_s400b6.jpg",
+                    "play": "https://images.shazam.com/coverart/t521137331-i1517913329_s400play.jpg"
+                },
+                "stores": {
+                    "apple": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://music.apple.com/gb/album/automatic-feat-fiora/1517913327?i=1517913329&uo=5&at=1001l4DI&itscg=30201&ct=5348615A-616D-3235-3830-44754D6D5973&app=music&itsct=Shazam_1"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t521137331-b1517913329_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t521137331-b1517913329_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t521137331-b1517913329_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview113/v4/50/49/83/50498399-0200-c9ca-6237-d6a7e334a185/mzaf_15180226122574403050.plus.aac.p.m4a",
+                        "trackid": "1517913329",
+                        "productid": "1517913327"
+                    },
+                    "itunes": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://itunes.apple.com/gb/album/automatic-feat-fiora/1517913327?i=1517913329&uo=5&at=11l3eE&ct=5348615A-616D-3235-3830-44754D6D5973&app=itunes"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t521137331-i1517913329_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t521137331-i1517913329_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t521137331-i1517913329_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview113/v4/50/49/83/50498399-0200-c9ca-6237-d6a7e334a185/mzaf_15180226122574403050.plus.aac.p.m4a",
+                        "trackid": "1517913329",
+                        "productid": "1517913327"
+                    }
+                },
+                "streams": {},
+                "modules": [],
+                "content": {
+                    "videos": {
+                        "href": "https://cdn.shazam.com/video/v2/-/GB/web/track/-/videos?q=Tensnake+Feat.+Fiora+Automatic+%28The+Aston+Shuffle+Extended+Remix%29"
+                    },
+                    "artiststoptracks": {
+                        "href": "https://cdn.shazam.com/shazam/v2/en/GB/web/-/tracks/artisttoptracks_40286417"
+                    }
+                },
+                "artists": [
+                    {
+                        "follow": {
+                            "followkey": "A_40286417"
+                        },
+                        "alias": "tensnake",
+                        "id": "40286417"
+                    }
+                ],
+                "share": {
+                    "subject": "Automatic (The Aston Shuffle Extended Remix) - Tensnake Feat. Fiora",
+                    "text": "I used Shazam to discover Automatic (The Aston Shuffle Extended Remix) by Tensnake Feat. Fiora.",
+                    "href": "https://www.shazam.com/track/521137331/automatic-the-aston-shuffle-extended-remix",
+                    "image": "https://images.shazam.com/coverart/t521137331-i1517913329_s400.jpg",
+                    "twitter": "I used @Shazam to discover Automatic (The Aston Shuffle Extended Remix) by Tensnake Feat. Fiora.",
+                    "html": "https://www.shazam.com/snippets/email-share/521137331?lang=en&country=GB",
+                    "avatar": "https://is5-ssl.mzstatic.com/image/thumb/Music123/v4/48/8b/23/488b23fd-0495-5808-87d9-7f8abbc0e98b/pr_source.png/800x800bb.jpeg",
+                    "snapchat": "https://www.shazam.com/partner/sc/track/521137331"
+                },
+                "footnotes": [
+                    {
+                        "title": "Album",
+                        "value": "Automatic (feat. Fiora) [The Aston Shuffle Remix] - Single"
+                    },
+                    {
+                        "title": "Label",
+                        "value": "Armada Music"
+                    },
+                    {
+                        "title": "Released",
+                        "value": "2020"
+                    },
+                    {
+                        "title": "Artwork",
+                        "value": "Provided by iTunes"
+                    }
+                ],
+                "alias": "automatic-the-aston-shuffle-extended-remix",
+                "url": "https://www.shazam.com/track/521137331/automatic-the-aston-shuffle-extended-remix",
+                "actions": [
+                    {
+                        "name": "track:521137331",
+                        "type": "track",
+                        "id": "521137331"
+                    }
+                ],
+                "urlparams": {
+                    "{tracktitle}": "Automatic+%28The+Aston+Shuffle+Extended+Remix%29",
+                    "{trackartist}": "Tensnake"
+                }
+            }
+        },
+        {
+            "tagid": "9eb71856-08b6-4748-914d-10abd19d9a14",
+            "key": "454202187",
+            "timestamp": 1601150064027,
+            "timezone": "Europe/London",
+            "geolocation": {
+                "longitude": 0.0,
+                "latitude": 0.0
+            },
+            "type": "TAG",
+            "track": {
+                "type": "MUSIC",
+                "key": "454202187",
+                "heading": {
+                    "title": "Artifect",
+                    "subtitle": "Thing"
+                },
+                "images": {
+                    "default": "https://images.shazam.com/coverart/t454202187-i1447752303_s400.jpg",
+                    "blurred": "https://images.shazam.com/coverart/t454202187-i1447752303_s400b6.jpg",
+                    "play": "https://images.shazam.com/coverart/t454202187-i1447752303_s400play.jpg"
+                },
+                "stores": {
+                    "apple": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://music.apple.com/gb/album/artifect/1447752251?i=1447752303&uo=5&at=1001l4DI&itscg=30201&ct=5348615A-616D-3235-3830-44754D6D5973&app=music&itsct=Shazam_1"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t454202187-b1447752303_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t454202187-b1447752303_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t454202187-b1447752303_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview124/v4/fa/19/32/fa193234-a34e-1d45-c86c-b42ee153853d/mzaf_5545106031706449899.plus.aac.p.m4a",
+                        "trackid": "1447752303",
+                        "productid": "1447752251"
+                    },
+                    "itunes": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://itunes.apple.com/gb/album/artifect/1447752251?i=1447752303&uo=5&at=11l3eE&ct=5348615A-616D-3235-3830-44754D6D5973&app=itunes"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t454202187-i1447752303_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t454202187-i1447752303_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t454202187-i1447752303_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview124/v4/fa/19/32/fa193234-a34e-1d45-c86c-b42ee153853d/mzaf_5545106031706449899.plus.aac.p.m4a",
+                        "trackid": "1447752303",
+                        "productid": "1447752251"
+                    }
+                },
+                "streams": {},
+                "modules": [],
+                "content": {
+                    "videos": {
+                        "href": "https://cdn.shazam.com/video/v2/-/GB/web/track/-/videos?q=Thing+Artifect"
+                    },
+                    "artiststoptracks": {
+                        "href": "https://cdn.shazam.com/shazam/v2/en/GB/web/-/tracks/artisttoptracks_40085975"
+                    }
+                },
+                "artists": [
+                    {
+                        "follow": {
+                            "followkey": "A_40085975"
+                        },
+                        "alias": "thing",
+                        "id": "40085975"
+                    }
+                ],
+                "share": {
+                    "subject": "Artifect - Thing",
+                    "text": "I used Shazam to discover Artifect by Thing.",
+                    "href": "https://www.shazam.com/track/454202187/artifect",
+                    "image": "https://images.shazam.com/coverart/t454202187-i1447752303_s400.jpg",
+                    "twitter": "I used @Shazam to discover Artifect by Thing.",
+                    "html": "https://www.shazam.com/snippets/email-share/454202187?lang=en&country=GB",
+                    "snapchat": "https://www.shazam.com/partner/sc/track/454202187"
+                },
+                "footnotes": [
+                    {
+                        "title": "Album",
+                        "value": "Keldrist Kõlab Trummi Ja Bassi, Vol. 3"
+                    },
+                    {
+                        "title": "Label",
+                        "value": "Kldr"
+                    },
+                    {
+                        "title": "Released",
+                        "value": "2018"
+                    },
+                    {
+                        "title": "Artwork",
+                        "value": "Provided by iTunes"
+                    }
+                ],
+                "alias": "artifect",
+                "url": "https://www.shazam.com/track/454202187/artifect",
+                "actions": [
+                    {
+                        "name": "track:454202187",
+                        "type": "track",
+                        "id": "454202187"
+                    }
+                ],
+                "urlparams": {
+                    "{tracktitle}": "Artifect",
+                    "{trackartist}": "Thing"
+                }
+            }
+        }
+    ]
+}
