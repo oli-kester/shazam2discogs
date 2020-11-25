@@ -65,7 +65,7 @@ document.getElementById('resultsForm').addEventListener('submit', (event) => {
   // pull checkboxes from the form
   const releaseSelectors = Array.from(document.getElementsByClassName('tag-select'))
   const queryString = releaseSelectors.reduce(function (accum, elem) {
-    return accum += `${elem.name}=${elem.value}&`
+    return accum += `${elem.name}=${elem.checked}&`
   }, '/addToDiscogs?'
   )
   xhttp.open('POST', queryString)

@@ -9,7 +9,8 @@
 			<div class="page-contents">
 				<div class="row">
 					<h1 class="pb-3 pt-3 mx-auto">Here are your matches</h1>
-					<form method="POST" action="addToDiscogs" class="mx-auto" id="resultsForm">
+					<form method="POST" action="addToDiscogs" class="mx-auto"
+						id="resultsForm">
 						<div class="row">
 							<table
 								class="table table-dark table-striped table-bordered col-12">
@@ -41,32 +42,40 @@
 												</div>
 											</div>
 										</td>
-										<td class="matched-release-list"
-											th:each="release : ${tag.getLinkedDiscogsRelease()}">
-											<div class="d-flex align-items-center">
-												<div class="release-image mr-2">
-													<img class="img-thumbnail"
-														th:alt="'Image for - ' + ${release.getTitle()}"
-														th:src="${release.getThumbnailPath()}">
+										<td class="align-middle text-center">
+											<div th:switch="${tag.getLinkedDiscogsRelease()}">
+												<div th:case="null">
+													<p>No Releases matched</p>
 												</div>
-												<div class="tag-data ml-2">
-													<div class="release-title font-weight-bold"
-														th:text="${release.getTitle()}"></div>
-													<span class="release-format-desc"
-														th:text="${release.getFormatDesc()} + ' '"></span><span
-														class="release-format-type"
-														th:text="${release.getFormatType()}"></span>
-													<div>
-														<span class="release-country"
-															th:text="${release.getCountry()} + ' - '"></span> <span
-															class="release-year"
-															th:text="${release.getReleaseYear()}"></span>
+												<div th:case="*" class="matched-release-list"
+													th:each="release : ${tag.getLinkedDiscogsRelease()}">
+													<div class="d-flex align-items-center">
+														<div class="release-image mr-2">
+															<img class="img-thumbnail"
+																th:alt="'Image for - ' + ${release.getTitle()}"
+																th:src="${release.getThumbnailPath()}">
+														</div>
+														<div class="tag-data ml-2">
+															<div class="release-title font-weight-bold"
+																th:text="${release.getTitle()}"></div>
+															<span class="release-format-desc"
+																th:text="${release.getFormatDesc()} + ' '"></span><span
+																class="release-format-type"
+																th:text="${release.getFormatType()}"></span>
+															<div>
+																<span class="release-country"
+																	th:text="${release.getCountry()} + ' - '"></span> <span
+																	class="release-year"
+																	th:text="${release.getReleaseYear()}"></span>
+															</div>
+															<div class="release-label"
+																th:text="${release.getLabel()}"></div>
+															<span data-toggle="tooltip"
+																title="How many users on Discogs have this Release in their collection. "><em>Popularity
+																	-</em></span> <span class="release-popularity"
+																th:text="${release.getPopularity()}"></span>
+														</div>
 													</div>
-													<div class="release-label" th:text="${release.getLabel()}"></div>
-													<span data-toggle="tooltip"
-														title="How many users on Discogs have this Release in their collection. "><em>Popularity
-															-</em></span> <span class="release-popularity"
-														th:text="${release.getPopularity()}"></span>
 												</div>
 											</div>
 										</td>
@@ -90,8 +99,9 @@
 								</tbody>
 							</table>
 						</div>
-						<p class="mb-3">Check carefully what you have selected above, then click
-							below to add all selected releases to your Discogs Wantlist.</p>
+						<p class="mb-3">Check carefully what you have selected above,
+							then click below to add all selected releases to your Discogs
+							Wantlist.</p>
 						<p class="mt-3">
 							<strong>Discogs limits our speed here too, so please be
 								patient and let the magic happen.</strong>
@@ -99,9 +109,9 @@
 						<input type="submit" class="btn btn-primary btn-lg" id="addBtn"
 							value="Add to Discogs Wantlist" />
 					</form>
-				<hr class="w-100" />
-				<div class="w-100"
-					th:insert="fragments/progressBar:: progress_bar(title='Progress of Discogs wantlist additions', resultsUrl='finished')"></div>
+					<hr class="w-100" />
+					<div class="w-100"
+						th:insert="fragments/progressBar:: progress_bar(title='Progress of Discogs wantlist additions', resultsUrl='finished')"></div>
 				</div>
 			</div>
 		</div>

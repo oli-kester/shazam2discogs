@@ -183,7 +183,7 @@ public class DiscogsController {
 
 	if (authCheck(userToken)) {
 	    List<Release> releasesToAdd = params.entrySet().stream()
-		    .filter(e -> e.getValue().equals("on") && e.getKey().startsWith("add-")).map((e) -> {
+		    .filter(e -> e.getValue().equals("true") && e.getKey().startsWith("add-")).map((e) -> {
 			String releaseId = e.getKey().substring(4);
 			Release release = releaseDao.findById(releaseId).orElseThrow();
 			return release;
