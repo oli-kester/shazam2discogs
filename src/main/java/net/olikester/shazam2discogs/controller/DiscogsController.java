@@ -198,7 +198,7 @@ public class DiscogsController {
 		}
 
 		boolean wasAdded = discogsService.addReleaseToUserWantlist(release, userToken.get());
-		if (!wasAdded) { //TODO reset this to !
+		if (!wasAdded) {
 		    releaseFailedAdditions.add(release);
 		}
 

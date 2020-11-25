@@ -42,9 +42,9 @@
 												</div>
 											</div>
 										</td>
-										<td class="align-middle text-center">
+										<td class="align-middle">
 											<div th:switch="${tag.getLinkedDiscogsRelease()}">
-												<div th:case="null">
+												<div th:case="null" class="text-center">
 													<p>No Releases matched</p>
 												</div>
 												<div th:case="*" class="matched-release-list"

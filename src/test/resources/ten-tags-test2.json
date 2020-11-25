@@ -1,0 +1,1158 @@
+{
+    "tags": [
+        {
+            "tagid": "1bed0588-9a0b-4bc5-8465-206cf373dac3",
+            "key": "58254315",
+            "timestamp": 1601846064962,
+            "timezone": "Europe/London",
+            "geolocation": {
+                "longitude": 0.0,
+                "latitude": 0.0
+            },
+            "type": "TAG",
+            "track": {
+                "type": "MUSIC",
+                "key": "58254315",
+                "heading": {
+                    "title": "Wisdom (Original Mix)",
+                    "subtitle": "Leventina"
+                },
+                "images": {
+                    "default": "https://images.shazam.com/coverart/t58254315-i281091904_s400.jpg",
+                    "blurred": "https://images.shazam.com/coverart/t58254315-i281091904_s400b6.jpg",
+                    "play": "https://images.shazam.com/coverart/t58254315-i281091904_s400play.jpg"
+                },
+                "stores": {
+                    "apple": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://music.apple.com/gb/album/wisdom/281091861?i=281091904&uo=5&at=1001l4DI&itscg=30201&ct=5348615A-616D-3235-3830-44754D6D5973&app=music&itsct=Shazam_1"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t58254315-b281091904_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t58254315-b281091904_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t58254315-b281091904_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/Music/6c/90/51/mzm.zfrtqxtx.aac.p.m4a",
+                        "trackid": "281091904",
+                        "productid": "281091861"
+                    },
+                    "itunes": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://itunes.apple.com/gb/album/wisdom/281091861?i=281091904&uo=5&at=11l3eE&ct=5348615A-616D-3235-3830-44754D6D5973&app=itunes"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t58254315-i281091904_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t58254315-i281091904_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t58254315-i281091904_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/Music/6c/90/51/mzm.zfrtqxtx.aac.p.m4a",
+                        "trackid": "281091904",
+                        "productid": "281091861"
+                    }
+                },
+                "streams": {},
+                "modules": [],
+                "content": {
+                    "videos": {
+                        "href": "https://cdn.shazam.com/video/v2/-/GB/web/track/-/videos?q=Leventina+Wisdom+%28Original+Mix%29"
+                    },
+                    "artiststoptracks": {
+                        "href": "https://cdn.shazam.com/shazam/v2/en/GB/web/-/tracks/artisttoptracks_40449405"
+                    }
+                },
+                "artists": [
+                    {
+                        "follow": {
+                            "followkey": "A_40449405"
+                        },
+                        "alias": "leventina",
+                        "id": "40449405"
+                    }
+                ],
+                "share": {
+                    "subject": "Wisdom (Original Mix) - Leventina",
+                    "text": "I used Shazam to discover Wisdom (Original Mix) by Leventina.",
+                    "href": "https://www.shazam.com/track/58254315/wisdom-original-mix",
+                    "image": "https://images.shazam.com/coverart/t58254315-i281091904_s400.jpg",
+                    "twitter": "I used @Shazam to discover Wisdom (Original Mix) by Leventina.",
+                    "html": "https://www.shazam.com/snippets/email-share/58254315?lang=en&country=GB",
+                    "snapchat": "https://www.shazam.com/partner/sc/track/58254315"
+                },
+                "footnotes": [
+                    {
+                        "title": "Album",
+                        "value": "Everlasting Love - EP"
+                    },
+                    {
+                        "title": "Label",
+                        "value": "Unreleased Digital"
+                    },
+                    {
+                        "title": "Released",
+                        "value": "2008"
+                    },
+                    {
+                        "title": "Artwork",
+                        "value": "Provided by iTunes"
+                    }
+                ],
+                "alias": "wisdom-original-mix",
+                "url": "https://www.shazam.com/track/58254315/wisdom-original-mix",
+                "actions": [
+                    {
+                        "name": "track:58254315",
+                        "type": "track",
+                        "id": "58254315"
+                    }
+                ],
+                "urlparams": {
+                    "{tracktitle}": "Wisdom+%28Original+Mix%29",
+                    "{trackartist}": "Leventina"
+                }
+            }
+        },
+        {
+            "tagid": "a8f40bc9-a02d-44eb-b5f9-1dd29dfb7a93",
+            "key": "277065807",
+            "timestamp": 1601845253052,
+            "timezone": "Europe/London",
+            "geolocation": {
+                "longitude": 0.0,
+                "latitude": 0.0
+            },
+            "type": "TAG",
+            "track": {
+                "type": "MUSIC",
+                "key": "277065807",
+                "heading": {
+                    "title": "Undertrack",
+                    "subtitle": "Lorenzo Silvano"
+                },
+                "images": {
+                    "default": "https://images.shazam.com/coverart/t277065807-i1021243782_s400.jpg",
+                    "blurred": "https://images.shazam.com/coverart/t277065807-i1021243782_s400b6.jpg",
+                    "play": "https://images.shazam.com/coverart/t277065807-i1021243782_s400play.jpg"
+                },
+                "stores": {
+                    "apple": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://music.apple.com/gb/album/undertrack/1021243596?i=1021243782&uo=5&at=1001l4DI&itscg=30201&ct=5348615A-616D-3235-3830-44754D6D5973&app=music&itsct=Shazam_1"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t277065807-b1021243782_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t277065807-b1021243782_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t277065807-b1021243782_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/Music5/v4/c4/5a/3d/c45a3dbc-b137-4dcd-df94-7c24aa5702e5/mzaf_4448162398074683372.plus.aac.p.m4a",
+                        "trackid": "1021243782",
+                        "productid": "1021243596"
+                    },
+                    "itunes": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://itunes.apple.com/gb/album/undertrack/1021243596?i=1021243782&uo=5&at=11l3eE&ct=5348615A-616D-3235-3830-44754D6D5973&app=itunes"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t277065807-i1021243782_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t277065807-i1021243782_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t277065807-i1021243782_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/Music5/v4/c4/5a/3d/c45a3dbc-b137-4dcd-df94-7c24aa5702e5/mzaf_4448162398074683372.plus.aac.p.m4a",
+                        "trackid": "1021243782",
+                        "productid": "1021243596"
+                    }
+                },
+                "streams": {},
+                "modules": [],
+                "content": {
+                    "videos": {
+                        "href": "https://cdn.shazam.com/video/v2/-/GB/web/track/-/videos?q=Lorenzo+Silvano+Undertrack"
+                    },
+                    "artiststoptracks": {
+                        "href": "https://cdn.shazam.com/shazam/v2/en/GB/web/-/tracks/artisttoptracks_41266782"
+                    }
+                },
+                "artists": [
+                    {
+                        "follow": {
+                            "followkey": "A_41266782"
+                        },
+                        "alias": "lorenzo-silvano",
+                        "id": "41266782"
+                    }
+                ],
+                "share": {
+                    "subject": "Undertrack - Lorenzo Silvano",
+                    "text": "I used Shazam to discover Undertrack by Lorenzo Silvano.",
+                    "href": "https://www.shazam.com/track/277065807/undertrack",
+                    "image": "https://images.shazam.com/coverart/t277065807-i1021243782_s400.jpg",
+                    "twitter": "I used @Shazam to discover Undertrack by Lorenzo Silvano.",
+                    "html": "https://www.shazam.com/snippets/email-share/277065807?lang=en&country=GB",
+                    "snapchat": "https://www.shazam.com/partner/sc/track/277065807"
+                },
+                "footnotes": [
+                    {
+                        "title": "Album",
+                        "value": "Summer Comp. Vol. 5"
+                    },
+                    {
+                        "title": "Label",
+                        "value": "Escapism Musique"
+                    },
+                    {
+                        "title": "Released",
+                        "value": "2015"
+                    },
+                    {
+                        "title": "Artwork",
+                        "value": "Provided by iTunes"
+                    }
+                ],
+                "alias": "undertrack",
+                "url": "https://www.shazam.com/track/277065807/undertrack",
+                "actions": [
+                    {
+                        "name": "track:277065807",
+                        "type": "track",
+                        "id": "277065807"
+                    }
+                ],
+                "urlparams": {
+                    "{tracktitle}": "Undertrack",
+                    "{trackartist}": "Lorenzo+Silvano"
+                }
+            }
+        },
+        {
+            "tagid": "3463d7a0-d06e-4cc1-8282-8b6b67167568",
+            "key": "81408873",
+            "timestamp": 1601844895661,
+            "timezone": "Europe/London",
+            "geolocation": {
+                "longitude": 0.0,
+                "latitude": 0.0
+            },
+            "type": "TAG",
+            "track": {
+                "type": "MUSIC",
+                "key": "81408873",
+                "heading": {
+                    "title": "Dead Eye (Original Mix)",
+                    "subtitle": "Baby Ford & EON"
+                },
+                "images": {
+                    "default": "https://images.shazam.com/coverart/t81408873_s400.jpg",
+                    "blurred": "https://images.shazam.com/coverart/t81408873_s400b6.jpg",
+                    "play": "https://images.shazam.com/coverart/t81408873_s400play.jpg"
+                },
+                "stores": {},
+                "streams": {
+                    "spotify": {
+                        "actions": [
+                            {
+                                "name": "stream:spotify:web",
+                                "type": "uri",
+                                "uri": "https://open.spotify.com/track/0vHGhh4xvTpI3z6Z5uaHlY?utm_campaign=ShazamSC&utm_source=Shazam&utm_medium=web"
+                            }
+                        ]
+                    }
+                },
+                "modules": [],
+                "content": {
+                    "videos": {
+                        "href": "https://cdn.shazam.com/video/v2/-/GB/web/track/-/videos?q=Baby+Ford+%26+EON+Dead+Eye+%28Original+Mix%29"
+                    },
+                    "artiststoptracks": {
+                        "href": "https://cdn.shazam.com/shazam/v2/en/GB/web/-/tracks/artisttoptracks_206227194"
+                    }
+                },
+                "artists": [
+                    {
+                        "follow": {
+                            "followkey": "A_206227194"
+                        },
+                        "alias": "baby-ford-and-eon",
+                        "id": "206227194"
+                    }
+                ],
+                "share": {
+                    "subject": "Dead Eye (Original Mix) - Baby Ford & EON",
+                    "text": "I used Shazam to discover Dead Eye (Original Mix) by Baby Ford & EON.",
+                    "href": "https://www.shazam.com/track/81408873/dead-eye-original-mix",
+                    "image": "https://images.shazam.com/coverart/t81408873_s400.jpg",
+                    "twitter": "I used @Shazam to discover Dead Eye (Original Mix) by Baby Ford & EON.",
+                    "html": "https://www.shazam.com/snippets/email-share/81408873?lang=en&country=GB",
+                    "snapchat": "https://www.shazam.com/partner/sc/track/81408873"
+                },
+                "footnotes": [
+                    {
+                        "title": "Album",
+                        "value": "Dead Eye - Original Mix"
+                    }
+                ],
+                "alias": "dead-eye-original-mix",
+                "url": "https://www.shazam.com/track/81408873/dead-eye-original-mix",
+                "actions": [
+                    {
+                        "name": "track:81408873",
+                        "type": "track",
+                        "id": "81408873"
+                    }
+                ],
+                "urlparams": {
+                    "{tracktitle}": "Dead+Eye+%28Original+Mix%29",
+                    "{trackartist}": "Baby+Ford+%26+EON"
+                }
+            }
+        },
+        {
+            "tagid": "2c5bd06f-238d-47ca-9833-b8f3d3ff0130",
+            "key": "89216116",
+            "timestamp": 1601844587643,
+            "timezone": "Europe/London",
+            "geolocation": {
+                "longitude": 0.0,
+                "latitude": 0.0
+            },
+            "type": "TAG",
+            "track": {
+                "type": "MUSIC",
+                "key": "89216116",
+                "heading": {
+                    "title": "Hashtag",
+                    "subtitle": "Carl Finlow"
+                },
+                "images": {
+                    "default": "https://images.shazam.com/coverart/t89216116-i630169067_s400.jpg",
+                    "blurred": "https://images.shazam.com/coverart/t89216116-i630169067_s400b6.jpg",
+                    "play": "https://images.shazam.com/coverart/t89216116-i630169067_s400play.jpg"
+                },
+                "stores": {
+                    "apple": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://music.apple.com/gb/album/hashtag/630168726?i=630169067&uo=5&at=1001l4DI&itscg=30201&ct=5348615A-616D-3235-3830-44754D6D5973&app=music&itsct=Shazam_1"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t89216116-b630169067_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t89216116-b630169067_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t89216116-b630169067_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/Music2/v4/62/86/c6/6286c642-ac46-0b20-8dad-a5a2768ace58/mzaf_4442461826466772658.plus.aac.p.m4a",
+                        "trackid": "630169067",
+                        "productid": "630168726"
+                    },
+                    "itunes": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://itunes.apple.com/gb/album/hashtag/630168726?i=630169067&uo=5&at=11l3eE&ct=5348615A-616D-3235-3830-44754D6D5973&app=itunes"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t89216116-i630169067_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t89216116-i630169067_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t89216116-i630169067_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/Music2/v4/62/86/c6/6286c642-ac46-0b20-8dad-a5a2768ace58/mzaf_4442461826466772658.plus.aac.p.m4a",
+                        "trackid": "630169067",
+                        "productid": "630168726"
+                    }
+                },
+                "streams": {
+                    "spotify": {
+                        "actions": [
+                            {
+                                "name": "stream:spotify:web",
+                                "type": "uri",
+                                "uri": "https://open.spotify.com/track/7Ac1AA2GADW3MNIhuoMwnj?utm_campaign=ShazamSC&utm_source=Shazam&utm_medium=web"
+                            }
+                        ]
+                    }
+                },
+                "modules": [],
+                "content": {
+                    "videos": {
+                        "href": "https://cdn.shazam.com/video/v2/-/GB/web/track/-/videos?q=Carl+Finlow+Hashtag"
+                    },
+                    "artiststoptracks": {
+                        "href": "https://cdn.shazam.com/shazam/v2/en/GB/web/-/tracks/artisttoptracks_40211131"
+                    }
+                },
+                "artists": [
+                    {
+                        "follow": {
+                            "followkey": "A_40211131"
+                        },
+                        "alias": "carl-finlow",
+                        "id": "40211131"
+                    }
+                ],
+                "share": {
+                    "subject": "Hashtag - Carl Finlow",
+                    "text": "I used Shazam to discover Hashtag by Carl Finlow.",
+                    "href": "https://www.shazam.com/track/89216116/hashtag",
+                    "image": "https://images.shazam.com/coverart/t89216116-i630169067_s400.jpg",
+                    "twitter": "I used @Shazam to discover Hashtag by Carl Finlow.",
+                    "html": "https://www.shazam.com/snippets/email-share/89216116?lang=en&country=GB",
+                    "snapchat": "https://www.shazam.com/partner/sc/track/89216116"
+                },
+                "footnotes": [
+                    {
+                        "title": "Album",
+                        "value": "Boot Loop"
+                    },
+                    {
+                        "title": "Label",
+                        "value": "Electrix Recordings"
+                    },
+                    {
+                        "title": "Released",
+                        "value": "2013"
+                    },
+                    {
+                        "title": "Artwork",
+                        "value": "Provided by iTunes"
+                    }
+                ],
+                "alias": "hashtag",
+                "url": "https://www.shazam.com/track/89216116/hashtag",
+                "actions": [
+                    {
+                        "name": "track:89216116",
+                        "type": "track",
+                        "id": "89216116"
+                    }
+                ],
+                "urlparams": {
+                    "{tracktitle}": "Hashtag",
+                    "{trackartist}": "Carl+Finlow"
+                }
+            }
+        },
+        {
+            "tagid": "e5aa2308-74b5-4d49-ae2c-9fef632ffd87",
+            "key": "449770704",
+            "timestamp": 1601819072812,
+            "timezone": "Europe/London",
+            "geolocation": {
+                "longitude": 0.0,
+                "latitude": 0.0
+            },
+            "type": "TAG",
+            "track": {
+                "type": "MUSIC",
+                "key": "449770704",
+                "heading": {
+                    "title": "Yearning For Yesterday",
+                    "subtitle": "Harrison BDP"
+                },
+                "images": {
+                    "default": "https://images.shazam.com/coverart/t449770704-i1514216170_s400.jpg",
+                    "blurred": "https://images.shazam.com/coverart/t449770704-i1514216170_s400b6.jpg",
+                    "play": "https://images.shazam.com/coverart/t449770704-i1514216170_s400play.jpg"
+                },
+                "stores": {
+                    "apple": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://music.apple.com/gb/album/yearning-for-yesterday/1514216166?i=1514216170&uo=5&at=1001l4DI&itscg=30201&ct=5348615A-616D-3235-3830-44754D6D5973&app=music&itsct=Shazam_1"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t449770704-b1514216170_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t449770704-b1514216170_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t449770704-b1514216170_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview123/v4/8e/13/6e/8e136e4a-b690-56df-f7f4-3b2b54137ba6/mzaf_15430978622475327552.plus.aac.p.m4a",
+                        "trackid": "1514216170",
+                        "productid": "1514216166"
+                    },
+                    "itunes": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://itunes.apple.com/gb/album/yearning-for-yesterday/1514216166?i=1514216170&uo=5&at=11l3eE&ct=5348615A-616D-3235-3830-44754D6D5973&app=itunes"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t449770704-i1514216170_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t449770704-i1514216170_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t449770704-i1514216170_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview123/v4/8e/13/6e/8e136e4a-b690-56df-f7f4-3b2b54137ba6/mzaf_15430978622475327552.plus.aac.p.m4a",
+                        "trackid": "1514216170",
+                        "productid": "1514216166"
+                    }
+                },
+                "streams": {},
+                "modules": [],
+                "content": {
+                    "videos": {
+                        "href": "https://cdn.shazam.com/video/v2/-/GB/web/track/-/videos?q=Harrison+BDP+Yearning+For+Yesterday"
+                    },
+                    "artiststoptracks": {
+                        "href": "https://cdn.shazam.com/shazam/v2/en/GB/web/-/tracks/artisttoptracks_200862307"
+                    }
+                },
+                "artists": [
+                    {
+                        "follow": {
+                            "followkey": "A_200862307"
+                        },
+                        "alias": "harrison-bdp",
+                        "id": "200862307"
+                    }
+                ],
+                "share": {
+                    "subject": "Yearning For Yesterday - Harrison BDP",
+                    "text": "I used Shazam to discover Yearning For Yesterday by Harrison BDP.",
+                    "href": "https://www.shazam.com/track/449770704/yearning-for-yesterday",
+                    "image": "https://images.shazam.com/coverart/t449770704-i1514216170_s400.jpg",
+                    "twitter": "I used @Shazam to discover Yearning For Yesterday by Harrison BDP.",
+                    "html": "https://www.shazam.com/snippets/email-share/449770704?lang=en&country=GB",
+                    "snapchat": "https://www.shazam.com/partner/sc/track/449770704"
+                },
+                "footnotes": [
+                    {
+                        "title": "Album",
+                        "value": "Yearning for Yesterday"
+                    },
+                    {
+                        "title": "Label",
+                        "value": "Lost Palms"
+                    },
+                    {
+                        "title": "Released",
+                        "value": "2018"
+                    },
+                    {
+                        "title": "Artwork",
+                        "value": "Provided by iTunes"
+                    }
+                ],
+                "alias": "yearning-for-yesterday",
+                "url": "https://www.shazam.com/track/449770704/yearning-for-yesterday",
+                "actions": [
+                    {
+                        "name": "track:449770704",
+                        "type": "track",
+                        "id": "449770704"
+                    }
+                ],
+                "urlparams": {
+                    "{tracktitle}": "Yearning+For+Yesterday",
+                    "{trackartist}": "Harrison+BDP"
+                }
+            }
+        },
+        {
+            "tagid": "0358bf62-344c-4689-8dc4-9c219b259b16",
+            "key": "47661476",
+            "timestamp": 1601818606894,
+            "timezone": "Europe/London",
+            "geolocation": {
+                "longitude": 0.0,
+                "latitude": 0.0
+            },
+            "type": "TAG",
+            "track": {
+                "type": "MUSIC",
+                "key": "47661476",
+                "heading": {
+                    "title": "Sanso Sheep",
+                    "subtitle": "Jens Buchert"
+                },
+                "images": {
+                    "default": "https://images.shazam.com/coverart/t47661476-i265953176_s400.jpg",
+                    "blurred": "https://images.shazam.com/coverart/t47661476-i265953176_s400b6.jpg",
+                    "play": "https://images.shazam.com/coverart/t47661476-i265953176_s400play.jpg"
+                },
+                "stores": {
+                    "apple": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://music.apple.com/gb/album/sanso-sheep/265953164?i=265953176&uo=5&at=1001l4DI&itscg=30201&ct=5348615A-616D-3235-3830-44754D6D5973&app=music&itsct=Shazam_1"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t47661476-b265953176_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t47661476-b265953176_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t47661476-b265953176_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/Music2/v4/86/04/b7/8604b756-8083-ae87-934c-b617ed99d4ae/mzaf_1343645819998898571.plus.aac.p.m4a",
+                        "trackid": "265953176",
+                        "productid": "265953164"
+                    },
+                    "itunes": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://itunes.apple.com/gb/album/sanso-sheep/265953164?i=265953176&uo=5&at=11l3eE&ct=5348615A-616D-3235-3830-44754D6D5973&app=itunes"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t47661476-i265953176_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t47661476-i265953176_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t47661476-i265953176_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/Music2/v4/86/04/b7/8604b756-8083-ae87-934c-b617ed99d4ae/mzaf_1343645819998898571.plus.aac.p.m4a",
+                        "trackid": "265953176",
+                        "productid": "265953164"
+                    }
+                },
+                "streams": {},
+                "modules": [],
+                "content": {
+                    "videos": {
+                        "href": "https://cdn.shazam.com/video/v2/-/GB/web/track/-/videos?q=Jens+Buchert+Sanso+Sheep"
+                    },
+                    "artiststoptracks": {
+                        "href": "https://cdn.shazam.com/shazam/v2/en/GB/web/-/tracks/artisttoptracks_10031961"
+                    }
+                },
+                "artists": [
+                    {
+                        "follow": {
+                            "followkey": "A_10031961"
+                        },
+                        "alias": "jens-buchert",
+                        "id": "10031961"
+                    }
+                ],
+                "share": {
+                    "subject": "Sanso Sheep - Jens Buchert",
+                    "text": "I used Shazam to discover Sanso Sheep by Jens Buchert.",
+                    "href": "https://www.shazam.com/track/47661476/sanso-sheep",
+                    "image": "https://images.shazam.com/coverart/t47661476-i265953176_s400.jpg",
+                    "twitter": "I used @Shazam to discover Sanso Sheep by Jens Buchert.",
+                    "html": "https://www.shazam.com/snippets/email-share/47661476?lang=en&country=GB",
+                    "avatar": "https://is5-ssl.mzstatic.com/image/thumb/Features114/v4/9e/1c/13/9e1c13f0-57f0-5e2b-62d5-c722ecfba7c4/mzl.alowskhf.jpg/800x800bb.jpeg",
+                    "snapchat": "https://www.shazam.com/partner/sc/track/47661476"
+                },
+                "footnotes": [
+                    {
+                        "title": "Album",
+                        "value": "Ice Lounge"
+                    },
+                    {
+                        "title": "Label",
+                        "value": "JeBu Records"
+                    },
+                    {
+                        "title": "Released",
+                        "value": "2007"
+                    },
+                    {
+                        "title": "Artwork",
+                        "value": "Provided by iTunes"
+                    }
+                ],
+                "alias": "sanso-sheep",
+                "url": "https://www.shazam.com/track/47661476/sanso-sheep",
+                "actions": [
+                    {
+                        "name": "track:47661476",
+                        "type": "track",
+                        "id": "47661476"
+                    }
+                ],
+                "urlparams": {
+                    "{tracktitle}": "Sanso+Sheep",
+                    "{trackartist}": "Jens+Buchert"
+                }
+            }
+        },
+        {
+            "tagid": "9bdfd9d3-e838-42a8-b856-f4552f6e2df4",
+            "key": "47661476",
+            "timestamp": 1601818589961,
+            "timezone": "Europe/London",
+            "geolocation": {
+                "longitude": 0.0,
+                "latitude": 0.0
+            },
+            "type": "TAG",
+            "track": {
+                "type": "MUSIC",
+                "key": "47661476",
+                "heading": {
+                    "title": "Sanso Sheep",
+                    "subtitle": "Jens Buchert"
+                },
+                "images": {
+                    "default": "https://images.shazam.com/coverart/t47661476-i265953176_s400.jpg",
+                    "blurred": "https://images.shazam.com/coverart/t47661476-i265953176_s400b6.jpg",
+                    "play": "https://images.shazam.com/coverart/t47661476-i265953176_s400play.jpg"
+                },
+                "stores": {
+                    "apple": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://music.apple.com/gb/album/sanso-sheep/265953164?i=265953176&uo=5&at=1001l4DI&itscg=30201&ct=5348615A-616D-3235-3830-44754D6D5973&app=music&itsct=Shazam_1"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t47661476-b265953176_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t47661476-b265953176_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t47661476-b265953176_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/Music2/v4/86/04/b7/8604b756-8083-ae87-934c-b617ed99d4ae/mzaf_1343645819998898571.plus.aac.p.m4a",
+                        "trackid": "265953176",
+                        "productid": "265953164"
+                    },
+                    "itunes": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://itunes.apple.com/gb/album/sanso-sheep/265953164?i=265953176&uo=5&at=11l3eE&ct=5348615A-616D-3235-3830-44754D6D5973&app=itunes"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t47661476-i265953176_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t47661476-i265953176_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t47661476-i265953176_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/Music2/v4/86/04/b7/8604b756-8083-ae87-934c-b617ed99d4ae/mzaf_1343645819998898571.plus.aac.p.m4a",
+                        "trackid": "265953176",
+                        "productid": "265953164"
+                    }
+                },
+                "streams": {},
+                "modules": [],
+                "content": {
+                    "videos": {
+                        "href": "https://cdn.shazam.com/video/v2/-/GB/web/track/-/videos?q=Jens+Buchert+Sanso+Sheep"
+                    },
+                    "artiststoptracks": {
+                        "href": "https://cdn.shazam.com/shazam/v2/en/GB/web/-/tracks/artisttoptracks_10031961"
+                    }
+                },
+                "artists": [
+                    {
+                        "follow": {
+                            "followkey": "A_10031961"
+                        },
+                        "alias": "jens-buchert",
+                        "id": "10031961"
+                    }
+                ],
+                "share": {
+                    "subject": "Sanso Sheep - Jens Buchert",
+                    "text": "I used Shazam to discover Sanso Sheep by Jens Buchert.",
+                    "href": "https://www.shazam.com/track/47661476/sanso-sheep",
+                    "image": "https://images.shazam.com/coverart/t47661476-i265953176_s400.jpg",
+                    "twitter": "I used @Shazam to discover Sanso Sheep by Jens Buchert.",
+                    "html": "https://www.shazam.com/snippets/email-share/47661476?lang=en&country=GB",
+                    "avatar": "https://is5-ssl.mzstatic.com/image/thumb/Features114/v4/9e/1c/13/9e1c13f0-57f0-5e2b-62d5-c722ecfba7c4/mzl.alowskhf.jpg/800x800bb.jpeg",
+                    "snapchat": "https://www.shazam.com/partner/sc/track/47661476"
+                },
+                "footnotes": [
+                    {
+                        "title": "Album",
+                        "value": "Ice Lounge"
+                    },
+                    {
+                        "title": "Label",
+                        "value": "JeBu Records"
+                    },
+                    {
+                        "title": "Released",
+                        "value": "2007"
+                    },
+                    {
+                        "title": "Artwork",
+                        "value": "Provided by iTunes"
+                    }
+                ],
+                "alias": "sanso-sheep",
+                "url": "https://www.shazam.com/track/47661476/sanso-sheep",
+                "actions": [
+                    {
+                        "name": "track:47661476",
+                        "type": "track",
+                        "id": "47661476"
+                    }
+                ],
+                "urlparams": {
+                    "{tracktitle}": "Sanso+Sheep",
+                    "{trackartist}": "Jens+Buchert"
+                }
+            }
+        },
+        {
+            "tagid": "7a328ad4-6f83-4049-95d7-11f71dacdb7d",
+            "key": "527201611",
+            "timestamp": 1601765457452,
+            "timezone": "Europe/London",
+            "geolocation": {
+                "longitude": 0.0,
+                "latitude": 0.0
+            },
+            "type": "TAG",
+            "track": {
+                "type": "MUSIC",
+                "key": "527201611",
+                "heading": {
+                    "title": "Type Beat 3",
+                    "subtitle": "Skee Mask"
+                },
+                "images": {
+                    "default": "https://images.shazam.com/coverart/t527201611-i1520095770_s400.jpg",
+                    "blurred": "https://images.shazam.com/coverart/t527201611-i1520095770_s400b6.jpg",
+                    "play": "https://images.shazam.com/coverart/t527201611-i1520095770_s400play.jpg"
+                },
+                "stores": {
+                    "apple": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://music.apple.com/gb/album/type-beat-3/1520095401?i=1520095770&uo=5&at=1001l4DI&itscg=30201&ct=5348615A-616D-3235-3830-44754D6D5973&app=music&itsct=Shazam_1"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t527201611-b1520095770_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t527201611-b1520095770_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t527201611-b1520095770_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview123/v4/64/fd/fc/64fdfcce-85d3-23c9-9901-23897464981e/mzaf_4912159561947631609.plus.aac.p.m4a",
+                        "trackid": "1520095770",
+                        "productid": "1520095401"
+                    },
+                    "itunes": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://itunes.apple.com/gb/album/type-beat-3/1520095401?i=1520095770&uo=5&at=11l3eE&ct=5348615A-616D-3235-3830-44754D6D5973&app=itunes"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t527201611-i1520095770_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t527201611-i1520095770_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t527201611-i1520095770_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview123/v4/64/fd/fc/64fdfcce-85d3-23c9-9901-23897464981e/mzaf_4912159561947631609.plus.aac.p.m4a",
+                        "trackid": "1520095770",
+                        "productid": "1520095401"
+                    }
+                },
+                "streams": {},
+                "modules": [],
+                "content": {
+                    "videos": {
+                        "href": "https://cdn.shazam.com/video/v2/-/GB/web/track/-/videos?q=Skee+Mask+Type+Beat+3"
+                    }
+                },
+                "share": {
+                    "subject": "Type Beat 3 - Skee Mask",
+                    "text": "I used Shazam to discover Type Beat 3 by Skee Mask.",
+                    "href": "https://www.shazam.com/track/527201611/type-beat-3",
+                    "image": "https://images.shazam.com/coverart/t527201611-i1520095770_s400.jpg",
+                    "twitter": "I used @Shazam to discover Type Beat 3 by Skee Mask.",
+                    "html": "https://www.shazam.com/snippets/email-share/527201611?lang=en&country=GB",
+                    "snapchat": "https://www.shazam.com/partner/sc/track/527201611"
+                },
+                "footnotes": [
+                    {
+                        "title": "Album",
+                        "value": "Iss005 - EP"
+                    },
+                    {
+                        "title": "Label",
+                        "value": "Ilian Tape"
+                    },
+                    {
+                        "title": "Released",
+                        "value": "2020"
+                    },
+                    {
+                        "title": "Artwork",
+                        "value": "Provided by iTunes"
+                    }
+                ],
+                "alias": "type-beat-3",
+                "url": "https://www.shazam.com/track/527201611/type-beat-3",
+                "actions": [
+                    {
+                        "name": "track:527201611",
+                        "type": "track",
+                        "id": "527201611"
+                    }
+                ],
+                "urlparams": {
+                    "{tracktitle}": "Type+Beat+3",
+                    "{trackartist}": "Skee+Mask"
+                }
+            }
+        },
+        {
+            "tagid": "e0f072a5-8844-4d05-89f7-f85d51ed8202",
+            "key": "523739096",
+            "timestamp": 1601755237933,
+            "timezone": "Europe/London",
+            "geolocation": {
+                "longitude": 0.0,
+                "latitude": 0.0
+            },
+            "type": "TAG",
+            "track": {
+                "type": "MUSIC",
+                "key": "523739096",
+                "heading": {
+                    "title": "Melicent",
+                    "subtitle": "Purl"
+                },
+                "images": {
+                    "default": "https://images.shazam.com/coverart/t523739096-i1515884218_s400.jpg",
+                    "blurred": "https://images.shazam.com/coverart/t523739096-i1515884218_s400b6.jpg",
+                    "play": "https://images.shazam.com/coverart/t523739096-i1515884218_s400play.jpg"
+                },
+                "stores": {
+                    "apple": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://music.apple.com/gb/album/melicent/1515884215?i=1515884218&uo=5&at=1001l4DI&itscg=30201&ct=5348615A-616D-3235-3830-44754D6D5973&app=music&itsct=Shazam_1"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t523739096-b1515884218_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t523739096-b1515884218_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t523739096-b1515884218_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview113/v4/d1/92/aa/d192aa53-4e40-a6f5-9ae4-f580bad816e3/mzaf_16498390034624405134.plus.aac.p.m4a",
+                        "trackid": "1515884218",
+                        "productid": "1515884215"
+                    },
+                    "itunes": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://itunes.apple.com/gb/album/melicent/1515884215?i=1515884218&uo=5&at=11l3eE&ct=5348615A-616D-3235-3830-44754D6D5973&app=itunes"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t523739096-i1515884218_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t523739096-i1515884218_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t523739096-i1515884218_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview113/v4/d1/92/aa/d192aa53-4e40-a6f5-9ae4-f580bad816e3/mzaf_16498390034624405134.plus.aac.p.m4a",
+                        "trackid": "1515884218",
+                        "productid": "1515884215"
+                    }
+                },
+                "streams": {},
+                "modules": [],
+                "content": {
+                    "videos": {
+                        "href": "https://cdn.shazam.com/video/v2/-/GB/web/track/-/videos?q=Purl+Melicent"
+                    },
+                    "artiststoptracks": {
+                        "href": "https://cdn.shazam.com/shazam/v2/en/GB/web/-/tracks/artisttoptracks_41309812"
+                    }
+                },
+                "artists": [
+                    {
+                        "follow": {
+                            "followkey": "A_41309812"
+                        },
+                        "alias": "purl",
+                        "id": "41309812"
+                    }
+                ],
+                "share": {
+                    "subject": "Melicent - Purl",
+                    "text": "I used Shazam to discover Melicent by Purl.",
+                    "href": "https://www.shazam.com/track/523739096/melicent",
+                    "image": "https://images.shazam.com/coverart/t523739096-i1515884218_s400.jpg",
+                    "twitter": "I used @Shazam to discover Melicent by Purl.",
+                    "html": "https://www.shazam.com/snippets/email-share/523739096?lang=en&country=GB",
+                    "avatar": "https://is2-ssl.mzstatic.com/image/thumb/Music124/v4/df/e6/6c/dfe66ca1-5860-f918-1da8-6032db89601b/pr_source.png/800x800bb.jpeg",
+                    "snapchat": "https://www.shazam.com/partner/sc/track/523739096"
+                },
+                "footnotes": [
+                    {
+                        "title": "Album",
+                        "value": "Renovatio"
+                    },
+                    {
+                        "title": "Label",
+                        "value": "Archives"
+                    },
+                    {
+                        "title": "Released",
+                        "value": "2020"
+                    },
+                    {
+                        "title": "Artwork",
+                        "value": "Provided by iTunes"
+                    }
+                ],
+                "alias": "melicent",
+                "url": "https://www.shazam.com/track/523739096/melicent",
+                "actions": [
+                    {
+                        "name": "track:523739096",
+                        "type": "track",
+                        "id": "523739096"
+                    }
+                ],
+                "urlparams": {
+                    "{tracktitle}": "Melicent",
+                    "{trackartist}": "Purl"
+                }
+            }
+        },
+        {
+            "tagid": "9bc602de-dd1e-442c-93f7-7073edb4b70b",
+            "key": "516066362",
+            "timestamp": 1601671038585,
+            "timezone": "Europe/London",
+            "geolocation": {
+                "longitude": 0.0,
+                "latitude": 0.0
+            },
+            "type": "TAG",
+            "track": {
+                "type": "MUSIC",
+                "key": "516066362",
+                "heading": {
+                    "title": "FI3AC2031010",
+                    "subtitle": "Aleksi Perälä"
+                },
+                "images": {
+                    "default": "https://images.shazam.com/coverart/t516066362-i1510786795_s400.jpg",
+                    "blurred": "https://images.shazam.com/coverart/t516066362-i1510786795_s400b6.jpg",
+                    "play": "https://images.shazam.com/coverart/t516066362-i1510786795_s400play.jpg"
+                },
+                "stores": {
+                    "apple": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://music.apple.com/gb/album/fi3ac2031010/1510786783?i=1510786795&uo=5&at=1001l4DI&itscg=30201&ct=5348615A-616D-3235-3830-44754D6D5973&app=music&itsct=Shazam_1"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t516066362-b1510786795_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t516066362-b1510786795_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t516066362-b1510786795_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview123/v4/98/e3/56/98e3563a-2bc9-387c-aacb-486f94f89bac/mzaf_9246479407057603032.plus.aac.p.m4a",
+                        "trackid": "1510786795",
+                        "productid": "1510786783"
+                    },
+                    "itunes": {
+                        "actions": [
+                            {
+                                "type": "uri",
+                                "uri": "https://itunes.apple.com/gb/album/fi3ac2031010/1510786783?i=1510786795&uo=5&at=11l3eE&ct=5348615A-616D-3235-3830-44754D6D5973&app=itunes"
+                            }
+                        ],
+                        "images": {
+                            "default": "https://images.shazam.com/coverart/t516066362-i1510786795_s400.jpg",
+                            "blurred": "https://images.shazam.com/coverart/t516066362-i1510786795_s100b6.jpg",
+                            "play": "https://images.shazam.com/coverart/t516066362-i1510786795_s400play.jpg"
+                        },
+                        "explicit": false,
+                        "previewurl": "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview123/v4/98/e3/56/98e3563a-2bc9-387c-aacb-486f94f89bac/mzaf_9246479407057603032.plus.aac.p.m4a",
+                        "trackid": "1510786795",
+                        "productid": "1510786783"
+                    }
+                },
+                "streams": {},
+                "modules": [],
+                "content": {
+                    "videos": {
+                        "href": "https://cdn.shazam.com/video/v2/-/GB/web/track/-/videos?q=Aleksi+Per%C3%A4l%C3%A4+FI3AC2031010"
+                    },
+                    "artiststoptracks": {
+                        "href": "https://cdn.shazam.com/shazam/v2/en/GB/web/-/tracks/artisttoptracks_40211777"
+                    }
+                },
+                "artists": [
+                    {
+                        "follow": {
+                            "followkey": "A_40211777"
+                        },
+                        "alias": "aleksi-perälä",
+                        "id": "40211777"
+                    }
+                ],
+                "share": {
+                    "subject": "FI3AC2031010 - Aleksi Perälä",
+                    "text": "I used Shazam to discover FI3AC2031010 by Aleksi Perälä.",
+                    "href": "https://www.shazam.com/track/516066362/fi3ac2031010",
+                    "image": "https://images.shazam.com/coverart/t516066362-i1510786795_s400.jpg",
+                    "twitter": "I used @Shazam to discover FI3AC2031010 by Aleksi Perälä.",
+                    "html": "https://www.shazam.com/snippets/email-share/516066362?lang=en&country=GB",
+                    "snapchat": "https://www.shazam.com/partner/sc/track/516066362"
+                },
+                "footnotes": [
+                    {
+                        "title": "Album",
+                        "value": "Spectrum 3"
+                    },
+                    {
+                        "title": "Label",
+                        "value": "AP Musik"
+                    },
+                    {
+                        "title": "Released",
+                        "value": "2020"
+                    },
+                    {
+                        "title": "Artwork",
+                        "value": "Provided by iTunes"
+                    }
+                ],
+                "alias": "fi3ac2031010",
+                "url": "https://www.shazam.com/track/516066362/fi3ac2031010",
+                "actions": [
+                    {
+                        "name": "track:516066362",
+                        "type": "track",
+                        "id": "516066362"
+                    }
+                ],
+                "urlparams": {
+                    "{tracktitle}": "FI3AC2031010",
+                    "{trackartist}": "Aleksi+Per%C3%A4l%C3%A4"
+                }
+            }
+        }
+    ]
+}
