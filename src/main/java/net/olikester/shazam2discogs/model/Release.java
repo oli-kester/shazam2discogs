@@ -1,6 +1,5 @@
 package net.olikester.shazam2discogs.model;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
@@ -8,6 +7,7 @@ import java.util.Objects;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
@@ -31,25 +31,26 @@ public class Release {
     private String label;
     private String thumbnailPath;
     private int popularity; // the number of users that have this in their collection.
-    @OneToMany(mappedBy = "linkedDiscogsRelease")
-    private Set<Tag> linkedTags;
+    @OneToMany(mappedBy = "release")
+    private Set<TagReleaseMatch> matches;
 
     /**
      * Default constructor to allow Jackson to use the class
      */
     public Release() {
-	linkedTags = new HashSet<>();
+	matches = new HashSet<>();
     }
 
     /**
      * Selects the preferred release by the given format. If no format matches, then
      * the most popular Release is returned.
      * 
-     * @param nonMasterReleases        - A list of Release objects
-     * @param preferredFormat - The preferred media format.
+     * @param nonMasterReleases - A list of Release objects
+     * @param preferredFormat   - The preferred media format.
      * @return The Release that best matches the preference.
      */
-    public static Release selectPreferredReleaseByFormat(List<Release> nonMasterReleases, MediaFormats preferredFormat) {	
+    public static Release selectPreferredReleaseByFormat(List<Release> nonMasterReleases,
+	    MediaFormats preferredFormat) {
 	List<Release> filteredResultsByFormat = nonMasterReleases.stream().filter(release -> {
 	    String formatTitle = release.getFormatType();
 	    String formatDesc = release.getFormatDesc();
@@ -194,20 +195,6 @@ public class Release {
     }
 
     /**
-     * @return the linkedTags
-     */
-    public Set<Tag> getLinkedTags() {
-	return linkedTags;
-    }
-
-    /**
-     * @param linkedTags the linkedTags to set
-     */
-    public void setLinkedTags(Set<Tag> linkedTags) {
-	this.linkedTags = linkedTags;
-    }
-
-    /**
      * @return the releaseType
      */
     public String getReleaseType() {
@@ -220,26 +207,16 @@ public class Release {
     public void setReleaseType(String releaseType) {
 	this.releaseType = releaseType;
     }
-
-    @Override
-    public int hashCode() {
-	return Objects.hash(country, formatDesc, formatType, id, label, linkedTags, popularity, releaseType,
-		releaseYear, thumbnailPath, title);
+    
+    public void addMatch(TagReleaseMatch newMatch) {
+	matches.add(newMatch);
     }
 
     @Override
-    public boolean equals(Object obj) {
-	if (this == obj)
-	    return true;
-	if (!(obj instanceof Release))
-	    return false;
-	Release other = (Release) obj;
-	return Objects.equals(country, other.country) && Objects.equals(formatDesc, other.formatDesc)
-		&& Objects.equals(formatType, other.formatType) && Objects.equals(id, other.id)
-		&& Objects.equals(label, other.label) && Objects.equals(linkedTags, other.linkedTags)
-		&& popularity == other.popularity && Objects.equals(releaseType, other.releaseType)
-		&& releaseYear == other.releaseYear && Objects.equals(thumbnailPath, other.thumbnailPath)
-		&& Objects.equals(title, other.title);
-    }
-
+    public String toString() {
+	return "Release [id=" + id + ", title=" + title + ", country=" + country + ", releaseType=" + releaseType
+		+ ", releaseYear=" + releaseYear + ", formatType=" + formatType + ", formatDesc=" + formatDesc
+		+ ", label=" + label + ", thumbnailPath=" + thumbnailPath + ", popularity=" + popularity + ", matches="
+		+ matches + "]";
+    }   
 }

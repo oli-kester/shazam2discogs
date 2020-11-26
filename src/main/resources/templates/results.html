@@ -22,33 +22,33 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr th:each="tag : ${tags}">
+									<tr th:each="matchDatum : ${tags}">
 										<td>
 											<div class="d-flex align-items-center">
 												<div class="tag-image mr-2">
 													<img class="img-thumbnail"
-														th:alt="'Image for - ' + ${tag.getTrackTitle()}"
-														th:src="${tag.getImageUrl()}">
+														th:alt="'Image for - ' + ${matchDatum.getTag().getTrackTitle()}"
+														th:src="${matchDatum.getTag().getImageUrl()}">
 												</div>
 												<div class="tag-data ml-2">
 													<div class="tag-artist font-weight-bold"
-														th:text="${tag.getArtist()}"></div>
+														th:text="${matchDatum.getTag().getArtist()}"></div>
 													<div class="tag-track-title font-weight-bold"
-														th:text="${tag.getTrackTitle()}"></div>
-													<div class="tag-album" th:text="${tag.getAlbum()}"></div>
+														th:text="${matchDatum.getTag().getTrackTitle()}"></div>
+													<div class="tag-album" th:text="${matchDatum.getTag().getAlbum()}"></div>
 													<div class="tag-release-year"
-														th:text="${tag.getReleaseYear()}"></div>
-													<div class="tag-label" th:text="${tag.getLabel()}"></div>
+														th:text="${matchDatum.getTag().getReleaseYear()}"></div>
+													<div class="tag-label" th:text="${matchDatum.getTag().getLabel()}"></div>
 												</div>
 											</div>
 										</td>
 										<td class="align-middle">
-											<div th:switch="${tag.getLinkedDiscogsRelease()}">
+											<div th:switch="${matchDatum.getRelease()}">
 												<div th:case="null" class="text-center">
 													<p>No Releases matched</p>
 												</div>
 												<div th:case="*" class="matched-release-list"
-													th:each="release : ${tag.getLinkedDiscogsRelease()}">
+													th:each="release : ${matchDatum.getRelease()}">
 													<div class="d-flex align-items-center">
 														<div class="release-image mr-2">
 															<img class="img-thumbnail"
@@ -80,7 +80,7 @@
 											</div>
 										</td>
 										<td class="checkbox-cell"
-											th:each="release : ${tag.getLinkedDiscogsRelease()}"><input
+											th:each="release : ${matchDatum.getRelease()}"><input
 											th:name="'add-' + ${release.getId()}" type="checkbox"
 											class="tag-select enlarged-checkbox" checked /></td>
 									</tr>

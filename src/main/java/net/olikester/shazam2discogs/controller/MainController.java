@@ -2,8 +2,8 @@ package net.olikester.shazam2discogs.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -31,12 +31,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
 import net.olikester.shazam2discogs.dao.ConsumerTokenDao;
-import net.olikester.shazam2discogs.dao.SessionDataDao;
+import net.olikester.shazam2discogs.dao.MatchesDao;
 import net.olikester.shazam2discogs.dao.TagDao;
 import net.olikester.shazam2discogs.json.ShazamTagsDeserializer;
 import net.olikester.shazam2discogs.model.JpaOAuthConsumerToken;
-import net.olikester.shazam2discogs.model.SessionData;
 import net.olikester.shazam2discogs.model.Tag;
+import net.olikester.shazam2discogs.model.TagReleaseMatch;
 import net.olikester.shazam2discogs.service.DiscogsService;
 
 @Controller
@@ -48,11 +48,11 @@ public class MainController {
     @Autowired
     private TagDao tagDao;
     @Autowired
-    private SessionDataDao sessionDataDao;
-    @Autowired
     private ConsumerTokenDao tokenDao;
     @Autowired
     private DiscogsService discogsService;
+    @Autowired
+    private MatchesDao matchesDao;
 
     @GetMapping("/")
     public ModelAndView home(HttpSession session) {
@@ -97,14 +97,13 @@ public class MainController {
 	    e.printStackTrace();
 	}
 
-	SessionData sessionData = new SessionData();
-	sessionData.setSessionId(session.getId());
-
-	sessionDataDao.save(sessionData);
-
 	tags.stream().forEach(currTag -> {
-	    currTag.setSession(sessionData);
+	    TagReleaseMatch match = new TagReleaseMatch();
+	    match.setSessionId(session.getId());
+	    match.setTag(currTag);
+	    match.generateId();
 	    tagDao.save(currTag);
+	    matchesDao.save(match);
 	});
 
 	RedirectView rv = new RedirectView("jsonSumbit");
@@ -135,7 +134,7 @@ public class MainController {
 	} else {
 	    // Shazam tags not parsed in previous request. Let's still try and find them in
 	    // the database
-	    int numTags = tagDao.getAllTagsForSession(session.getId()).size();
+	    int numTags = matchesDao.getAllTagsForSession(session.getId()).size();
 	    if (numTags > 0) {
 		mv.addObject("numTags", numTags);
 		if (OAUTH_BYPASS) {
@@ -164,7 +163,7 @@ public class MainController {
 	String headerValue = "attachment; filename=s2d_unmatched_discogs_releases.csv";
 	response.setHeader(headerKey, headerValue);
 
-	List<Tag> unmatchedTags = tagDao.getAllUnmatchedTagsForSession(session.getId());
+	Set<Tag> unmatchedTags = matchesDao.getAllUnmatchedTagsForSession(session.getId());
 
 	ICsvBeanWriter csvWriter = new CsvBeanWriter(response.getWriter(), CsvPreference.STANDARD_PREFERENCE);
 	String[] csvHeader = { "Tag ID", "Track Title", "Artist", "Album", "Label", "Release Year", "Image URL" };

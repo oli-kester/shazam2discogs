@@ -5,8 +5,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+import java.util.Set;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
@@ -24,17 +24,17 @@ import org.springframework.web.servlet.view.RedirectView;
 
 import net.olikester.shazam2discogs.dao.ConsumerTokenDao;
 import net.olikester.shazam2discogs.dao.DiscogsAdditionStatusDao;
+import net.olikester.shazam2discogs.dao.MatchesDao;
 import net.olikester.shazam2discogs.dao.TaskProgressDao;
 import net.olikester.shazam2discogs.dao.ReleaseDao;
-import net.olikester.shazam2discogs.dao.SessionDataDao;
 import net.olikester.shazam2discogs.dao.TagDao;
 import net.olikester.shazam2discogs.model.TaskProgress;
 import net.olikester.shazam2discogs.model.DiscogsAdditionStatus;
 import net.olikester.shazam2discogs.model.JpaOAuthConsumerToken;
 import net.olikester.shazam2discogs.model.MediaFormats;
 import net.olikester.shazam2discogs.model.Release;
-import net.olikester.shazam2discogs.model.SessionData;
 import net.olikester.shazam2discogs.model.Tag;
+import net.olikester.shazam2discogs.model.TagReleaseMatch;
 import net.olikester.shazam2discogs.service.DiscogsService;
 
 @SuppressWarnings("deprecation")
@@ -52,9 +52,7 @@ public class DiscogsController {
     @Autowired
     private ReleaseDao releaseDao;
     @Autowired
-    private SessionDataDao sessionDataDao;
-    @Autowired
-    private TagDao tagDao;
+    private MatchesDao matchesDao;
     @Autowired
     private TaskProgressDao taskProgressDao;
     @Autowired
@@ -105,8 +103,7 @@ public class DiscogsController {
 	final AtomicInteger progressCounter = new AtomicInteger();
 
 	if (authCheck(userToken)) {
-	    SessionData sessionData = sessionDataDao.findById(sessionId).orElseThrow();
-	    List<Tag> userTags = sessionData.getTags();
+	    Set<Tag> userTags = matchesDao.getAllTagsForSession(sessionId);
 
 	    // reset cancellation status
 	    cancelTaskSessionIds.remove(sessionId);
@@ -137,10 +134,13 @@ public class DiscogsController {
 
 		// add best match to release database
 		Release bestMatch = Release.selectPreferredReleaseByFormat(nonMasterReleases, preferredFormat);
-		currTag.setLinkedDiscogsRelease(bestMatch);
-		bestMatch.getLinkedTags().add(currTag);
-		tagDao.save(currTag);
-		releaseDao.save(bestMatch);
+		TagReleaseMatch currMatchRecord = matchesDao.getByTagAndSessionId(sessionId, currTag.getId());
+		currMatchRecord.setRelease(bestMatch);
+		bestMatch.addMatch(currMatchRecord);
+		currTag.addMatch(currMatchRecord);
+//		tagDao.save(currTag); //TODO remove these if testing proves they aren't needed. 
+//		releaseDao.save(bestMatch);
+//		matchesDao.save(currMatchRecord);
 
 		// update search progress so this can be requested by the webpage (casting to
 		// avoid rounding errors)
@@ -171,7 +171,7 @@ public class DiscogsController {
     public ModelAndView searchResults(HttpSession session) {
 	ModelAndView mv = new ModelAndView();
 	mv.setViewName("results");
-	mv.addObject("tags", sessionDataDao.getOne(session.getId()).getTags());
+	mv.addObject("tags", matchesDao.getAllMatchDataForSession(session.getId()));
 	return mv;
     }
 

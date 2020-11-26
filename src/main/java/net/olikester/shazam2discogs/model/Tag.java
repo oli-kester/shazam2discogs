@@ -1,10 +1,13 @@
 package net.olikester.shazam2discogs.model;
 
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 @Entity
 public class Tag {
@@ -16,17 +19,14 @@ public class Tag {
     private String label;
     private int releaseYear;
     private String imageUrl;
-    @ManyToOne
-    @JoinColumn(name = "sessionId", nullable = false)
-    private SessionData session;
-    @ManyToOne(cascade = { CascadeType.ALL })
-    @JoinColumn(name = "discogsReleaseId", nullable = true)
-    private Release linkedDiscogsRelease;
+    @OneToMany(mappedBy = "tag")
+    private Set<TagReleaseMatch> matches;
 
     /**
      * Default constructor to allow Jackson to use the class
      */
     public Tag() {
+	matches = new HashSet<>();
     }
 
     public Tag(String id, String trackTitle, String artist) {
@@ -122,34 +122,6 @@ public class Tag {
     }
 
     /**
-     * @return the session
-     */
-    public SessionData getSession() {
-	return session;
-    }
-
-    /**
-     * @param session the session to set
-     */
-    public void setSession(SessionData session) {
-	this.session = session;
-    }
-
-    /**
-     * @return the linkedDiscogsRelease
-     */
-    public Release getLinkedDiscogsRelease() {
-	return linkedDiscogsRelease;
-    }
-
-    /**
-     * @param linkedDiscogsRelease the linkedDiscogsRelease to set
-     */
-    public void setLinkedDiscogsRelease(Release linkedDiscogsRelease) {
-	this.linkedDiscogsRelease = linkedDiscogsRelease;
-    }
-
-    /**
      * @return the imageUrl
      */
     public String getImageUrl() {
@@ -162,12 +134,8 @@ public class Tag {
     public void setImageUrl(String imageUrl) {
 	this.imageUrl = imageUrl;
     }
-
-    @Override
-    public String toString() {
-	return "Tag [id=" + id + ", trackTitle=" + trackTitle + ", artist=" + artist + ", album=" + album + ", label="
-		+ label + ", releaseYear=" + releaseYear + ", imageUrl=" + imageUrl + ", session=" + session
-		+ ", linkedDiscogsRelease=" + linkedDiscogsRelease + "]";
-    }
-
+    
+    public void addMatch(TagReleaseMatch newMatch) {
+	matches.add(newMatch);
+    }    
 }
