@@ -48,6 +48,9 @@ public class DiscogsReleaseSearchResultsDeserializer extends StdDeserializer<Arr
 	    if (currResult.has("thumb")) {
 		newRelease.setThumbnailPath(currResult.get("thumb").asText());
 	    }
+	    if (currResult.has("type")) {
+		newRelease.setReleaseType(currResult.get("type").asText());
+	    }
 
 	    if (currResult.has("format")) {
 		JsonNode formatDetails = currResult.get("format");

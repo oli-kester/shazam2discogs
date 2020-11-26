@@ -56,6 +56,7 @@ public class DiscogsReleaseSearchResultsDeserializerTest {
 	assertNotNull(release);
 	assertEquals("UK", release.getCountry());
 	assertEquals(2020, release.getReleaseYear());
+	assertEquals("release", release.getReleaseType());
 	assertEquals("FLAC", release.getFormatDesc());
 	assertEquals("File", release.getFormatType());
 	assertEquals("16093568", release.getId());

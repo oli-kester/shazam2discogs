@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
@@ -130,8 +131,12 @@ public class DiscogsController {
 		    }
 		}
 
+		// throw away master releases
+		List<Release> nonMasterReleases = discogsSearchResults.stream()
+			.filter(release -> release.getReleaseType().equals("release")).collect(Collectors.toList());
+
 		// add best match to release database
-		Release bestMatch = Release.selectPreferredReleaseByFormat(discogsSearchResults, preferredFormat);
+		Release bestMatch = Release.selectPreferredReleaseByFormat(nonMasterReleases, preferredFormat);
 		currTag.setLinkedDiscogsRelease(bestMatch);
 		bestMatch.getLinkedTags().add(currTag);
 		tagDao.save(currTag);
@@ -166,7 +171,7 @@ public class DiscogsController {
     public ModelAndView searchResults(HttpSession session) {
 	ModelAndView mv = new ModelAndView();
 	mv.setViewName("results");
-	mv.addObject("tags", tagDao.findAll()); // TODO need to restrict to just our session.
+	mv.addObject("tags", sessionDataDao.getOne(session.getId()).getTags());
 	return mv;
     }
 
@@ -213,7 +218,7 @@ public class DiscogsController {
 	    additionStatus.setNumFailedReleases(releaseFailedAdditions.size());
 	    additionStatus.setFailedReleases(releaseFailedAdditions);
 	    discogsAdditionStatusDao.save(additionStatus);
-	    
+
 	    if (cancelTaskSessionIds.contains(sessionId)) {
 		return ResponseEntity.status(499).build();
 	    }
@@ -221,7 +226,7 @@ public class DiscogsController {
 	}
 	return ResponseEntity.status(401).build();
     }
-    
+
     @GetMapping("finished")
     public ModelAndView finishedResults(HttpSession session) {
 	ModelAndView mv = new ModelAndView();
