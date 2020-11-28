@@ -7,13 +7,16 @@
 			<div th:replace="fragments/navBar:: nav_bar()"></div>
 			<div class="page-contents">
 				<div class="row">
+					<p th:if="${oauthBypassActive}" class="mx-auto bg-danger">OAUTH
+						BYPASS ACTIVE - USING KEYS IN apiSecret.properties</p>
 					<div class="jumbotron mx-auto col-10">
 						<h1>
 							Welcome to the <span th:replace="fragments/strings:: site_name"></span>
 							tool.
 						</h1>
-						<p class="mr-4 mw-6">Use this to import all of your Shazamed tracks into your
-							Discogs wantlist.</p>
+						<p class="mr-4 mw-6">Use this to import all of your Shazamed
+							tracks into your Discogs wantlist.</p>
+
 					</div>
 				</div>
 				<div class="row">

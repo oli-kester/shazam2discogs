@@ -8,7 +8,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     public void configure(WebSecurity web) throws Exception {
-	// TODO this disables all security. Need to restrict certain URLs in future. 
-        web.ignoring().antMatchers("/**");
+	web.ignoring().antMatchers("/**"); // allow unauthenticated access everywhere (we base authentication on
+					   // sessionID).
     }
 }

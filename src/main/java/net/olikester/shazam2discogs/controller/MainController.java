@@ -43,7 +43,7 @@ import net.olikester.shazam2discogs.service.DiscogsService;
 public class MainController {
 
     @Value("${shazam2discogs.oauth-bypass}")
-    private boolean OAUTH_BYPASS; // TODO add some sort of display that this is active
+    private boolean OAUTH_BYPASS;
 
     @Autowired
     private TagDao tagDao;
@@ -57,6 +57,8 @@ public class MainController {
     @GetMapping("/")
     public ModelAndView home(HttpSession session) {
 	ModelAndView mv = new ModelAndView("home");
+	session.setMaxInactiveInterval(-1); // make sure the session doesn't time out, as we might be adding releases
+					    // for a long time.
 
 	// if we're in OAUTH_BYPASS mode, add test keys to database
 	if (OAUTH_BYPASS) {
@@ -64,6 +66,7 @@ public class MainController {
 	    tokenDao.save(testToken);
 	}
 
+	mv.addObject("oauthBypassActive", OAUTH_BYPASS);
 	return mv;
     }
 
@@ -182,10 +185,10 @@ public class MainController {
     public ModelAndView exit(HttpSession session) {
 	String sessionId = session.getId();
 	ModelAndView mv = new ModelAndView();
-	
+
 	tokenDao.deleteById(sessionId);
 	matchesDao.deleteAll(matchesDao.getAllMatchDataForSession(sessionId));
-	
+
 	mv.setViewName("goodbye");
 	return mv;
     }
