@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth.consumer.OAuthConsumerToken;
@@ -40,6 +42,7 @@ public class DiscogsController {
     // TODO change this for production
     private static final String APP_BASE_URL = "http://127.0.0.1:8080";
     private static final String OAUTH_CALLBACK = "/oauthCallback";
+    private static final Logger logger = LoggerFactory.getLogger(DiscogsController.class);
 
     @Autowired
     private DiscogsService discogsService;
@@ -83,7 +86,9 @@ public class DiscogsController {
 	    tokenStore.save(jpaToken);
 	    mv.setViewName("search");
 	} else {
-	    mv.setViewName("error"); // TODO unrecognised OAuth response from Discogs.
+	    logger.error("Session - " + session.getId() + ", unrecognised OAuth response from Discogs - \n"
+		    + requestParams.toString());
+	    throw new IllegalArgumentException("Unrecognised OAuth response from Discogs");
 	}
 	return mv;
     }
@@ -118,7 +123,6 @@ public class DiscogsController {
 		    discogsSearchResults = discogsService.getReleaseList(searchTerm, userToken.get());
 
 		    if (discogsSearchResults.isEmpty()) {
-			System.err.println("No results found for - " + searchTerm);
 			continue; // if there's still no results found, skip this one.
 		    }
 		}

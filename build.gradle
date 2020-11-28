@@ -17,7 +17,7 @@ repositories {
 dependencies {
 	// https://mvnrepository.com/artifact/org.springframework.security.oauth/spring-security-oauth
 	implementation 'org.springframework.security.oauth:spring-security-oauth:2.5.0.RELEASE'
-	
+
   	implementation 'org.springframework.session:spring-session-jdbc'
   	implementation 'com.google.guava:guava:28.0-jre'
   	implementation 'net.sf.supercsv:super-csv:2.4.0'
