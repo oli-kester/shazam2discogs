@@ -1,7 +1,6 @@
 package net.olikester.shazam2discogs.controller;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -25,10 +24,8 @@ import org.springframework.web.servlet.view.RedirectView;
 import net.olikester.shazam2discogs.dao.ConsumerTokenDao;
 import net.olikester.shazam2discogs.dao.DiscogsAdditionStatusDao;
 import net.olikester.shazam2discogs.dao.MatchesDao;
-import net.olikester.shazam2discogs.dao.TaskProgressDao;
 import net.olikester.shazam2discogs.dao.ReleaseDao;
 import net.olikester.shazam2discogs.dao.TagDao;
-import net.olikester.shazam2discogs.model.TaskProgress;
 import net.olikester.shazam2discogs.model.DiscogsAdditionStatus;
 import net.olikester.shazam2discogs.model.JpaOAuthConsumerToken;
 import net.olikester.shazam2discogs.model.MediaFormats;
@@ -54,12 +51,14 @@ public class DiscogsController {
     @Autowired
     private MatchesDao matchesDao;
     @Autowired
-    private TaskProgressDao taskProgressDao;
+    private TagDao tagDao;
     @Autowired
     private DiscogsAdditionStatusDao discogsAdditionStatusDao;
 
     @Autowired
-    private HashSet<String> cancelTaskSessionIds;
+    private Set<String> cancelTaskSessionIds;
+    @Autowired
+    private Map<String, Integer> taskProgress;
 
     @GetMapping("/login")
     public RedirectView login(HttpSession session) {
@@ -99,7 +98,7 @@ public class DiscogsController {
 	    HttpSession session) {
 	String sessionId = session.getId();
 	Optional<JpaOAuthConsumerToken> userToken = tokenStore.findById(sessionId);
-	taskProgressDao.save(new TaskProgress(sessionId, 0));
+	taskProgress.put(sessionId, 0);
 	final AtomicInteger progressCounter = new AtomicInteger();
 
 	if (authCheck(userToken)) {
@@ -140,12 +139,12 @@ public class DiscogsController {
 		currTag.addMatch(currMatchRecord);
 //		tagDao.save(currTag); //TODO remove these if testing proves they aren't needed. 
 //		releaseDao.save(bestMatch);
-//		matchesDao.save(currMatchRecord);
+		matchesDao.save(currMatchRecord);
 
 		// update search progress so this can be requested by the webpage (casting to
 		// avoid rounding errors)
 		double progressPercentage = (progressCounter.incrementAndGet() / (double) userTags.size()) * 100;
-		taskProgressDao.save(new TaskProgress(sessionId, (int) progressPercentage));
+		taskProgress.put(sessionId, (int) progressPercentage);
 	    }
 	    if (cancelTaskSessionIds.contains(sessionId)) {
 		return ResponseEntity.status(499).build();
@@ -158,7 +157,7 @@ public class DiscogsController {
     @GetMapping("getProgress")
     @ResponseBody
     public int getDiscogsSearchProgress(HttpSession session) {
-	return taskProgressDao.getOne(session.getId()).getSearchProgress();
+	return taskProgress.get(session.getId());
     }
 
     @GetMapping("stopSearch")
@@ -180,7 +179,7 @@ public class DiscogsController {
     public ResponseEntity<String> addToDiscogs(@RequestParam Map<String, String> params, HttpSession session) {
 	String sessionId = session.getId();
 	Optional<JpaOAuthConsumerToken> userToken = tokenStore.findById(sessionId);
-	taskProgressDao.save(new TaskProgress(sessionId, 0));
+	taskProgress.put(sessionId, 0);
 	final AtomicInteger progressCounter = new AtomicInteger();
 
 	// reset cancellation status
@@ -208,7 +207,7 @@ public class DiscogsController {
 		}
 
 		double progressPercentage = (progressCounter.incrementAndGet() / (double) releasesToAdd.size()) * 100;
-		taskProgressDao.save(new TaskProgress(sessionId, (int) progressPercentage));
+		taskProgress.put(sessionId, (int) progressPercentage);
 	    }
 
 	    DiscogsAdditionStatus additionStatus = new DiscogsAdditionStatus();
