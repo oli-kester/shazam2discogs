@@ -25,7 +25,6 @@ import net.olikester.shazam2discogs.dao.ConsumerTokenDao;
 import net.olikester.shazam2discogs.dao.DiscogsAdditionStatusDao;
 import net.olikester.shazam2discogs.dao.MatchesDao;
 import net.olikester.shazam2discogs.dao.ReleaseDao;
-import net.olikester.shazam2discogs.dao.TagDao;
 import net.olikester.shazam2discogs.model.DiscogsAdditionStatus;
 import net.olikester.shazam2discogs.model.JpaOAuthConsumerToken;
 import net.olikester.shazam2discogs.model.MediaFormats;
@@ -51,8 +50,6 @@ public class DiscogsController {
     @Autowired
     private MatchesDao matchesDao;
     @Autowired
-    private TagDao tagDao;
-    @Autowired
     private DiscogsAdditionStatusDao discogsAdditionStatusDao;
 
     @Autowired
@@ -76,7 +73,6 @@ public class DiscogsController {
 	if (requestParams.containsKey("denied")) {
 	    // TODO request cancelled by user. Give try again option?
 	} else if (requestParams.containsKey("oauth_token") && requestParams.containsKey("oauth_verifier")) {
-	    System.out.println("Session ID - " + session.getId()); // TODO remove
 	    JpaOAuthConsumerToken requestToken = tokenStore.findById(session.getId()).orElseThrow();
 	    // TODO check if request token is already an access token (that means OAuth has
 	    // been completed).

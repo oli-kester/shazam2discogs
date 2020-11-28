@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.core.Version;
@@ -21,7 +20,6 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
 
 import net.olikester.shazam2discogs.json.DiscogsReleaseSearchResultsDeserializer;
 
-@SpringBootTest
 public class ReleaseTest {
 
     private static ArrayList<Release> releases;
