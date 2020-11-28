@@ -1,6 +1,10 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<a th:fragment="exit_btn()" class="nav-link text-danger" href="exit"><button
-		class="btn btn-danger btn-sm">Delete Data &amp; Exit</button></a>
-<a th:fragment="export_csv_button()" href="csvExport" class="nav-link"><button
-		class="btn btn-primary btn-sm">Export CSV</button></a>
+<div th:fragment="exit_btn()" class="btn-container">
+	<a class="nav-link text-danger" href="exit"><button
+			class="btn btn-danger btn-sm btn-nomargin">Delete Data &amp; Exit</button></a>
+</div>
+<div th:fragment="export_csv_button()" class="btn-container">
+	<a href="csvExport" class="nav-link"><button
+			class="btn btn-primary btn-sm btn-nomargin">Export CSV</button></a>
+</div>

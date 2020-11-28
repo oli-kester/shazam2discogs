@@ -151,6 +151,17 @@ a {
 	}
 }
 
+.btn-container {
+	display: inline-block;	
+	.btn-nomargin {
+		margin: 0;
+	}
+	
+	a {
+		padding: 0;
+	}
+}
+
 hr {
 	border-top: 1px double rgb(122, 122, 122);
 }

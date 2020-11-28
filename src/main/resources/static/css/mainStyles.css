@@ -10100,6 +10100,16 @@ a {
   min-width: 200px;
 }
 
+.btn-container {
+  display: inline-block;
+}
+.btn-container .btn-nomargin {
+  margin: 0;
+}
+.btn-container a {
+  padding: 0;
+}
+
 hr {
   border-top: 1px double #7a7a7a;
 }

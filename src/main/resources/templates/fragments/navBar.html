@@ -6,9 +6,12 @@
 		th:replace="fragments/strings:: site_name"></span></a>
 	<div class="collapse navbar-collapse align-top" id="navbarText">
 		<ul class="navbar-nav mx-auto w-100 row">
-			<li class="nav-item col-6"><a class="nav-link" href="/"><button
-						class="btn btn-primary btn-sm">Home</button> </a></li>
-			<li class="nav-item col-6 text-right"><div th:replace="fragments/buttons:: exit_btn"></div></li>
+			<li class="nav-item col-6"><div class="btn-container">
+					<a class="nav-link" href="/"><button
+							class="btn btn-primary btn-sm btn-nomargin">Home</button> </a>
+				</div></li>
+			<li class="nav-item col-6 text-right d-flex flex-row-reverse"><div
+					th:replace="fragments/buttons:: exit_btn"></div></li>
 		</ul>
 	</div>
 </nav>
