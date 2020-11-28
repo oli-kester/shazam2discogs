@@ -142,7 +142,7 @@ public class MainController {
 		} else {
 		    mv.setViewName("linkDiscogs");
 		}
-	    } else { // No tags parsed for this user, they shouldn't be here. 
+	    } else { // No tags parsed for this user, they shouldn't be here.
 		mv.setViewName("home");
 	    }
 	}
@@ -176,5 +176,17 @@ public class MainController {
 	}
 
 	csvWriter.close();
+    }
+
+    @GetMapping("exit")
+    public ModelAndView exit(HttpSession session) {
+	String sessionId = session.getId();
+	ModelAndView mv = new ModelAndView();
+	
+	tokenDao.deleteById(sessionId);
+	matchesDao.deleteAll(matchesDao.getAllMatchDataForSession(sessionId));
+	
+	mv.setViewName("goodbye");
+	return mv;
     }
 }

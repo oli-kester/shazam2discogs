@@ -1,0 +1,16 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/htmlHead:: common_header(subtitle='Goodbye')" />
+<body>
+	<div class="container-fluid">
+		<div class="site-container">
+			<div th:replace="fragments/navBar:: nav_bar()"></div>
+			<div class="page-contents">
+				<h1>Goodbye!</h1>
+				<p>Thanks for using <span th:replace="fragments/strings:: site_name"></span>!</p>
+				<p>Your personal data has now been deleted. </p>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

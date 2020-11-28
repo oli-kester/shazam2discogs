@@ -8,6 +8,7 @@ bin/
 src/test/resources/personal*
 src/main/resources/apiSecret.properties
 node/
+*.mwb.bak
 
 ### STS ###
 .apt_generated
