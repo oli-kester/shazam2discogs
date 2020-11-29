@@ -24,7 +24,6 @@ import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.view.RedirectView;
 
 import net.olikester.shazam2discogs.dao.ConsumerTokenDao;
-import net.olikester.shazam2discogs.dao.DiscogsAdditionStatusDao;
 import net.olikester.shazam2discogs.dao.MatchesDao;
 import net.olikester.shazam2discogs.dao.ReleaseDao;
 import net.olikester.shazam2discogs.model.DiscogsAdditionStatus;
@@ -52,8 +51,6 @@ public class DiscogsController {
     private ReleaseDao releaseDao;
     @Autowired
     private MatchesDao matchesDao;
-    @Autowired
-    private DiscogsAdditionStatusDao discogsAdditionStatusDao;
 
     @Autowired
     private Set<String> cancelTaskSessionIds;
@@ -137,8 +134,6 @@ public class DiscogsController {
 		currMatchRecord.setRelease(bestMatch);
 		bestMatch.addMatch(currMatchRecord);
 		currTag.addMatch(currMatchRecord);
-//		tagDao.save(currTag); //TODO remove these if testing proves they aren't needed. 
-//		releaseDao.save(bestMatch);
 		matchesDao.save(currMatchRecord);
 
 		// update search progress so this can be requested by the webpage (casting to
@@ -157,7 +152,7 @@ public class DiscogsController {
     @GetMapping("getProgress")
     @ResponseBody
     public int getDiscogsSearchProgress(HttpSession session) {
-	return taskProgress.get(session.getId());
+	return taskProgress.getOrDefault(session.getId(), 100);
     }
 
     @GetMapping("stopSearch")
@@ -193,30 +188,25 @@ public class DiscogsController {
 			return release;
 		    }).collect(Collectors.toList());
 
-	    List<Release> releaseFailedAdditions = new ArrayList<Release>();
-
 	    // for loop lets us break stream when the user cancels the search
 	    for (Release release : releasesToAdd) {
 		if (cancelTaskSessionIds.contains(sessionId)) {
 		    break;
 		}
 
+		TagReleaseMatch currMatch = matchesDao.getByReleaseAndSessionId(sessionId, release.getId());
 		boolean wasAdded = discogsService.addReleaseToUserWantlist(release, userToken.get());
-		if (!wasAdded) {
-		    releaseFailedAdditions.add(release);
+
+		if (wasAdded) { // save this to the match table
+		    currMatch.setDiscogsAdditionStatus(DiscogsAdditionStatus.ADDED);
+		} else {
+		    currMatch.setDiscogsAdditionStatus(DiscogsAdditionStatus.FAILED);
 		}
+		matchesDao.save(currMatch);
 
 		double progressPercentage = (progressCounter.incrementAndGet() / (double) releasesToAdd.size()) * 100;
 		taskProgress.put(sessionId, (int) progressPercentage);
 	    }
-
-	    DiscogsAdditionStatus additionStatus = new DiscogsAdditionStatus();
-	    additionStatus.setSessionId(sessionId);
-	    additionStatus.setNumReleasesProcessed(releasesToAdd.size());
-	    additionStatus.setNumReleasesAdded(releasesToAdd.size() - releaseFailedAdditions.size());
-	    additionStatus.setNumFailedReleases(releaseFailedAdditions.size());
-	    additionStatus.setFailedReleases(releaseFailedAdditions);
-	    discogsAdditionStatusDao.save(additionStatus);
 
 	    if (cancelTaskSessionIds.contains(sessionId)) {
 		return ResponseEntity.status(499).build();
@@ -229,7 +219,16 @@ public class DiscogsController {
     @GetMapping("finished")
     public ModelAndView finishedResults(HttpSession session) {
 	ModelAndView mv = new ModelAndView();
-	mv.addObject("additionStatus", discogsAdditionStatusDao.findById(session.getId()).orElseThrow());
+	String sessionId = session.getId();
+	
+	int numReleasesAdded = matchesDao.getNumberOfReleasesAddedBySessionId(sessionId);
+	Set<Release> failedReleases = matchesDao.getFailedReleasesBySessionId(sessionId);
+	int numReleasesFailed = failedReleases.size();
+	
+	mv.addObject("numReleasesProcessed", numReleasesAdded + numReleasesFailed);
+	mv.addObject("numReleasesAdded", numReleasesAdded);
+	mv.addObject("numReleasesFailed", numReleasesFailed);
+	mv.addObject("failedReleases", matchesDao.getFailedReleasesBySessionId(sessionId));
 	mv.setViewName("finished");
 	return mv;
     }

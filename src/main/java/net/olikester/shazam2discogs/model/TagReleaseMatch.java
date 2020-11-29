@@ -4,6 +4,8 @@ import java.util.Objects;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 
@@ -12,10 +14,12 @@ public class TagReleaseMatch {
     @Id
     private int id;
     private String sessionId;
-    @ManyToOne(cascade={CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
     private Tag tag;
-    @ManyToOne(cascade={CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+    @ManyToOne(cascade = { CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH })
     private Release release;
+    @Enumerated(EnumType.STRING)
+    private DiscogsAdditionStatus discogsAdditionStatus = DiscogsAdditionStatus.PENDING;
 
     /**
      * @return the id
@@ -80,14 +84,17 @@ public class TagReleaseMatch {
 	this.release = release;
     }
 
-    @Override
-    public String toString() {
-	return "TagReleaseMatch [sessionId=" + sessionId + ", tag=" + tag + ", release=" + release + "]";
+    public DiscogsAdditionStatus getDiscogsAdditionStatus() {
+	return discogsAdditionStatus;
+    }
+
+    public void setDiscogsAdditionStatus(DiscogsAdditionStatus discogsAdditionStatus) {
+	this.discogsAdditionStatus = discogsAdditionStatus;
     }
 
     @Override
     public int hashCode() {
-	return Objects.hash(release, sessionId, tag);
+	return Objects.hash(discogsAdditionStatus, id, release, sessionId, tag);
     }
 
     @Override
@@ -97,8 +104,15 @@ public class TagReleaseMatch {
 	if (!(obj instanceof TagReleaseMatch))
 	    return false;
 	TagReleaseMatch other = (TagReleaseMatch) obj;
-	return Objects.equals(release, other.release) && Objects.equals(sessionId, other.sessionId)
+	return discogsAdditionStatus == other.discogsAdditionStatus && id == other.id
+		&& Objects.equals(release, other.release) && Objects.equals(sessionId, other.sessionId)
 		&& Objects.equals(tag, other.tag);
+    }
+
+    @Override
+    public String toString() {
+	return "TagReleaseMatch [id=" + id + ", sessionId=" + sessionId + ", tag=" + tag + ", release=" + release
+		+ ", discogsAdditionStatus=" + discogsAdditionStatus + "]";
     }
 
 }

@@ -10,6 +10,7 @@ src/main/resources/apiSecret.properties
 src/main/resources/database.properties
 node/
 *.mwb.bak
+log/
 
 ### STS ###
 .apt_generated

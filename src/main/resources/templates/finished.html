@@ -19,20 +19,20 @@
 						<table class="table table-dark table-bordered additions-table mx-auto">
 							<tr>
 								<td class="text-right">Wantlist additions send to Discogs</td>
-								<td th:text="${additionStatus.getNumReleasesProcessed()}"></td>
+								<td th:text="${numReleasesProcessed}"></td>
 							</tr>
 							<tr>
 								<td class="text-right">Releases added successfully</td>
-								<td th:text="${additionStatus.getNumReleasesAdded()}"></td>
+								<td th:text="${numReleasesAdded}"></td>
 							</tr>
 							<tr>
 								<td class="text-right">Failed additions</td>
-								<td th:text="${additionStatus.getNumFailedReleases()}"></td>
+								<td th:text="${numReleasesFailed}"></td>
 							</tr>
 						</table>
 					</div>
 					<div
-						th:if="${not #lists.isEmpty(additionStatus.getFailedReleases())}">
+						th:if="${not #lists.isEmpty(failedReleases)}">
 						<div class="row">
 							<p class="mt-4">You can find the releases that failed to add listed below
 								-</p>
@@ -41,7 +41,7 @@
 							<table
 								class="table table-dark table-striped table-bordered col-8 mx-auto mt-n3">
 								<tbody>
-									<tr th:each="release : ${additionStatus.getFailedReleases()}">
+									<tr th:each="release : ${failedReleases}">
 										<td>
 											<div class="d-flex align-items-center">
 												<div class="release-image mr-2">

@@ -57,8 +57,6 @@ public class MainController {
     @GetMapping("/")
     public ModelAndView home(HttpSession session) {
 	ModelAndView mv = new ModelAndView("home");
-	session.setMaxInactiveInterval(-1); // make sure the session doesn't time out, as we might be adding releases
-					    // for a long time.
 
 	// if we're in OAUTH_BYPASS mode, add test keys to database
 	if (OAUTH_BYPASS) {
