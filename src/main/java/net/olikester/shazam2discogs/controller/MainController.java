@@ -151,8 +151,7 @@ public class MainController {
     }
 
     /**
-     * Export a CSV file of all the Shazam tags we couldn't match to Discogs
-     * releases.
+     * Export a CSV file of all the Shazam tags that weren't added to Discogs. 
      * 
      * @param response
      * @throws IOException

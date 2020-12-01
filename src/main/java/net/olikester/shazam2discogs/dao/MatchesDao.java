@@ -14,7 +14,7 @@ public interface MatchesDao extends JpaRepository<TagReleaseMatch, Integer> {
     @Query("SELECT tag FROM TagReleaseMatch WHERE SESSION_ID = ?1")
     public Set<Tag> getAllTagsForSession(String sessionId);
 
-    @Query("SELECT tag FROM TagReleaseMatch WHERE SESSION_ID = ?1 and RELEASE_ID = NULL")
+    @Query("SELECT tag FROM TagReleaseMatch WHERE SESSION_ID = ?1 and (RELEASE_ID = NULL or DISCOGS_ADDITION_STATUS != 'ADDED')")
     public Set<Tag> getAllUnmatchedTagsForSession(String id);
 
     @Query("select T from TagReleaseMatch T where SESSION_ID = ?1 and TAG_ID = ?2")
