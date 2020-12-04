@@ -119,7 +119,7 @@ public class MainController {
 	if (inputFlashMap != null) {
 	    boolean ioSuccess = (boolean) inputFlashMap.get("ioSuccess");
 	    boolean parseSuccess = (boolean) inputFlashMap.get("parseSuccess");
-	    mv.addObject("numTags", inputFlashMap.get("numTags"));
+	    mv.addObject("numTags", matchesDao.getAllUnmatchedTagsForSession(session.getId()).size());
 
 	    if (ioSuccess && parseSuccess) {
 		if (OAUTH_BYPASS) {

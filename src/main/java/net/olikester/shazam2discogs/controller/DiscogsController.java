@@ -81,6 +81,7 @@ public class DiscogsController {
 	    JpaOAuthConsumerToken jpaToken = new JpaOAuthConsumerToken(session.getId(), accessToken);
 	    jpaToken.setUsername(discogsService.getUserName(jpaToken));
 	    tokenStore.save(jpaToken);
+	    mv.addObject("numTags", matchesDao.getAllUnmatchedTagsForSession(session.getId()).size());
 	    mv.setViewName("search");
 	} else {
 	    logger.error("Session - " + session.getId() + ", unrecognised OAuth response from Discogs - \n"
