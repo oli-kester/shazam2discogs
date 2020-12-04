@@ -71,7 +71,7 @@ public class DiscogsController {
     public ModelAndView oauthCallback(@RequestParam Map<String, String> requestParams, HttpSession session) {
 	ModelAndView mv = new ModelAndView();
 	if (requestParams.containsKey("denied")) {
-	    // TODO request cancelled by user. Give try again option?
+	    mv.setViewName("home");
 	} else if (requestParams.containsKey("oauth_token") && requestParams.containsKey("oauth_verifier")) {
 	    JpaOAuthConsumerToken requestToken = tokenStore.findById(session.getId()).orElseThrow();
 	    // TODO check if request token is already an access token (that means OAuth has
