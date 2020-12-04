@@ -34,7 +34,10 @@ class ShazamDeserializationTest {
 	oneTagJson1 = Files.readString(Path.of("src/test/resources/one-tag-test.json"));
 	oneTagJson2 = Files.readString(Path.of("src/test/resources/one-tag-test2.json"));
 	oneTagJsonUnicode1 = Files.readString(Path.of("src/test/resources/one-tag-unicode-test.json"));
-	largeShazamDoc = Files.readString(Path.of("src/test/resources/personal-shazams-oct-2020.json"));
+	oneTagJsonUnicode1 = Files.readString(Path.of("src/test/resources/one-tag-unicode-test.json"));
+	if (Files.exists(Path.of("src/test/resources/personal-shazams-oct-2020.json"))) {
+	    largeShazamDoc = Files.readString(Path.of("src/test/resources/personal-shazams-oct-2020.json"));
+	}
 	oneTagInvalidTrailingComma = Files
 		.readString(Path.of("src/test/resources/one-tag-invalid-trailing-comma.json"));
     }
@@ -106,22 +109,27 @@ class ShazamDeserializationTest {
 	assertEquals("https://images.shazam.com/coverart/t516066362-i1510786795_s400.jpg", tag.getImageUrl());
     }
 
-    // TODO skip these extended tests if the files don't exist.
     /**
-     * Just check there are no errors thrown with a real, large Shazam JSON file.
+     * Just check there are no errors thrown with a real, large Shazam JSON file. 
+     * This test is skipped if the file isn't provided. 
      */
     @Test
     public void largeFileSimpleTest() {
-	ArrayList<Tag> tags = new ArrayList<>();
-	try {
-	    tags = mapper.readValue(largeShazamDoc, new TypeReference<ArrayList<Tag>>() {
-	    });
-	} catch (Exception e) {
-	    e.printStackTrace();
-	    fail("Check there are no errors thrown with a real, large Shazam JSON file. Exception thrown. ");
-	}
-	if (tags.size() < 1) {
-	    fail("Check there are no errors thrown with a real, large Shazam JSON file. No tags scanned. ");
+	if (!largeShazamDoc.equals("")) {
+	    ArrayList<Tag> tags = new ArrayList<>();
+	    try {
+		tags = mapper.readValue(largeShazamDoc, new TypeReference<ArrayList<Tag>>() {
+		});
+	    } catch (Exception e) {
+		e.printStackTrace();
+		fail("Check there are no errors thrown with a real, large Shazam JSON file. Exception thrown. ");
+	    }
+	    if (tags.size() < 1) {
+		fail("Check there are no errors thrown with a real, large Shazam JSON file. No tags scanned. ");
+	    }
+	} else {
+	    //test skipped if personal Shazam file isn't provided. 
+	    System.out.println("No personal Shazam Tags file provided. Test Skipped. ");
 	}
     }
 
