@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 import org.springframework.web.servlet.view.RedirectView;
 
 import net.olikester.shazam2discogs.dao.ConsumerTokenDao;
@@ -38,8 +39,6 @@ import net.olikester.shazam2discogs.service.DiscogsService;
 @Controller
 public class DiscogsController {
 
-    // TODO change this for production
-    private static final String APP_BASE_URL = "http://127.0.0.1:8080";
     private static final String OAUTH_CALLBACK = "/oauthCallback";
     private static final Logger logger = LoggerFactory.getLogger(DiscogsController.class);
 
@@ -60,7 +59,8 @@ public class DiscogsController {
     @GetMapping("/login")
     public RedirectView login(HttpSession session) {
 	RedirectView rv = new RedirectView();
-	OAuthConsumerToken requestToken = discogsService.fetchRequestToken(APP_BASE_URL + OAUTH_CALLBACK);
+	String appBaseUrl = ServletUriComponentsBuilder.fromCurrentContextPath().build().toUriString();
+	OAuthConsumerToken requestToken = discogsService.fetchRequestToken(appBaseUrl + OAUTH_CALLBACK);
 	JpaOAuthConsumerToken jpaToken = new JpaOAuthConsumerToken(session.getId(), requestToken);
 	tokenStore.save(jpaToken);
 	rv.setUrl(DiscogsService.AUTHORIZATION_URL + "?oauth_token=" + requestToken.getValue());
