@@ -32,3 +32,6 @@ spring.datasource.username=[your desired username here]
 spring.datasource.password=[your desired password here]
 
 ```
+
+### Local Development URL
+During local development, access the site through a specific IP (e.g. `http://127.0.0.1:8080/`), rather than localhost, as this prevents the OAuth callback from working. 
