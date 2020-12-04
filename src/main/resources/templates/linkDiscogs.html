@@ -3,15 +3,23 @@
 <head
 	th:replace="fragments/htmlHead:: common_header(subtitle='Link Discogs')" />
 <body>
-	<h1>Link to Discogs</h1>
-	<div class="row"
-		th:insert="fragments/tagsParseResultsTable:: parse_results(numTags=${numTags})">
+	<div class="container-fluid">
+		<div class="site-container">
+			<div th:replace="fragments/navBar:: nav_bar()"></div>
+			<div class="page-contents">
+				<h1>Link to Discogs</h1>
+				<div class="row"
+					th:insert="fragments/tagsParseResultsTable:: parse_results(numTags=${numTags})">
+				</div>
+				<p>Click the button below to authenticate with Discogs for
+					access - </p>
+				<div class="row">
+					<form method="get" action="/login" class="mx-auto">
+						<input type="submit" value="Login" class="btn btn-primary btn-lg" />
+					</form>
+				</div>
+			</div>
+		</div>
 	</div>
-	<p>Click the button below to authenticate with Discogs for access.
-	</p>
-	<br />
-	<form method="get" action="/login">
-		<input type="submit" value="Login" />
-	</form>
 </body>
 </html>
