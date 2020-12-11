@@ -11,8 +11,9 @@
 				<div class="row"
 					th:insert="fragments/tagsParseResultsTable:: parse_results(numTags=${numTags})">
 				</div>
+				<hr>
 				<p>Click the button below to authenticate with Discogs for
-					access - </p>
+					access -</p>
 				<div class="row">
 					<form method="get" action="/login" class="mx-auto">
 						<input type="submit" value="Login" class="btn btn-primary btn-lg" />

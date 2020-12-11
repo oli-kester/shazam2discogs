@@ -164,6 +164,7 @@ a {
 
 hr {
 	border-top: 1px double rgb(122, 122, 122);
+	margin: 3rem 0rem 4rem 0rem;
 }
 
 .search-buttons {
@@ -199,4 +200,9 @@ hr {
 
 input.enlarged-checkbox {
 	transform: scale(1.5);
+}
+
+iframe {
+	margin: auto;
+	margin-top: -20px;
 }

@@ -10112,6 +10112,7 @@ a {
 
 hr {
   border-top: 1px double #7a7a7a;
+  margin: 3rem 0rem 4rem 0rem;
 }
 
 .search-buttons {
@@ -10147,6 +10148,11 @@ hr {
 
 input.enlarged-checkbox {
   transform: scale(1.5);
+}
+
+iframe {
+  margin: auto;
+  margin-top: -20px;
 }
 
 /*# sourceMappingURL=mainStyles.css.map */
