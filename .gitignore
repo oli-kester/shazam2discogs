@@ -159,3 +159,11 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+
+
+### GitHub SASS Ignore Template ###
+
+.sass-cache/
+*.css.map
+*.sass.map
+*.scss.map

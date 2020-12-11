@@ -10012,10 +10012,14 @@ body {
 }
 
 .site-container {
-  margin: 7vh 7vw 7vh 7vw;
   background: linear-gradient(35deg, #2c2c34, #30303c 80%);
   border-radius: 10px 10px 1% 1%;
   box-shadow: 0px 2px 3px 3px rgba(28, 1, 1, 0.5);
+}
+@media (min-width: 992px) {
+  .site-container {
+    margin: 7vh 7vw 7vh 7vw;
+  }
 }
 
 .page-contents {
@@ -10071,8 +10075,10 @@ h1 {
   text-shadow: 0px 0px 6px #905f8b;
 }
 
-.navbar-collapse {
-  margin-top: -50px;
+@media (min-width: 992px) {
+  .navbar-collapse {
+    margin-top: -50px;
+  }
 }
 
 /* Element Styling */
