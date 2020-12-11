@@ -1,14 +1,24 @@
-#Shazam2Discogs
+# Shazam2Discogs
 
-##Usage
+This is a Spring Boot application that will import a JSON-based file of Shazam Tags and allow you to add it to your Discogs Wantlist. 
 
-Head to web site...
+It uses the older OAuth1.0a standard, as dictated by Discogs. 
 
-##Development
+## Usage
 
-For development, add a file named `apiSecret.properties` in the directory `src/main/resources/`. 
+The service is hosted at [shazam2discogs.olikester.com](shazam2discogs.olikester.com)
 
-This should not be checked in to version control, it should follow the following format - 
+## Development
+
+For development, two files must be manually added - 
+
+### 1. API Access Keys
+
+First, add a file named `apiSecret.properties` in the directory `src/main/resources/`. 
+
+This should not be checked in to version control, as it will contain sensitive information. 
+
+It should follow the following format - 
 
 ```
 shazam2discogs.api-key=[key for your Discogs Developer App]
@@ -18,9 +28,11 @@ shazam2discogs.test-access-token=[an OAuth user access token for testing]
 shazam2discogs.test-access-secret=[an OAuth user access secret for testing]
 ```
 
-The last two are optional. 
+The last two arguments are optional. 
 
-To skip the OAuth flow and use your test keys, set `shazam2discogs.oauth-bypass=true` in `application.properties`.  
+To skip the OAuth and use your own Discogs OAuth keys, set `shazam2discogs.oauth-bypass=true` in `application.properties`. 
+
+### 2. Database Username & Password
 
 Also, add a file named `database.properties`. This will store the username / password used to access your database. 
 
@@ -34,4 +46,4 @@ spring.datasource.password=[your desired password here]
 ```
 
 ### Local Development URL
-During local development, access the site through a specific IP (e.g. `http://127.0.0.1:8080/`), rather than localhost, as this prevents the OAuth callback from working. 
+During local development, access the site through a specific IP (e.g. `http://127.0.0.1:8080/`) rather than `localhost`. Using `localhost` will prevent the OAuth callback from working. 
