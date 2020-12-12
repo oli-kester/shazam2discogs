@@ -6,7 +6,7 @@ It uses the older OAuth1.0a standard, as dictated by Discogs.
 
 ## Usage
 
-The service is hosted at [shazam2discogs.olikester.com](shazam2discogs.olikester.com)
+The service is hosted at [shazam2discogs.olikester.com](https://shazam2discogs.olikester.com)
 
 ## Development
 
