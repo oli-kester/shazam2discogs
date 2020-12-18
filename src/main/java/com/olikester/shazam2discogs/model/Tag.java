@@ -1,6 +1,8 @@
 package com.olikester.shazam2discogs.model;
 
+import java.util.Date;
 import java.util.HashSet;
+import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -9,16 +11,24 @@ import javax.persistence.OneToMany;
 
 @Entity
 public class Tag {
+
+    // shared CSV / JSON input data
     @Id
     private String id;
     private String trackTitle;
     private String artist;
+    @OneToMany(mappedBy = "tag")
+    private Set<TagReleaseMatch> matches;
+
+    // JSON-only data
     private String album;
     private String label;
     private int releaseYear;
     private String imageUrl;
-    @OneToMany(mappedBy = "tag")
-    private Set<TagReleaseMatch> matches;
+
+    // CSV-only data
+    private Date tagTime;
+    private String shazamInfoUrl;
 
     /**
      * Default constructor to allow Jackson to use the class
@@ -132,8 +142,78 @@ public class Tag {
     public void setImageUrl(String imageUrl) {
 	this.imageUrl = imageUrl;
     }
-    
+
     public void addMatch(TagReleaseMatch newMatch) {
 	matches.add(newMatch);
-    }    
+    }
+
+    /**
+     * @return the matches
+     */
+    public Set<TagReleaseMatch> getMatches() {
+	return matches;
+    }
+
+    /**
+     * @param matches the matches to set
+     */
+    public void setMatches(Set<TagReleaseMatch> matches) {
+	this.matches = matches;
+    }
+
+    /**
+     * @return the tagTime
+     */
+    public Date getTagTime() {
+	return tagTime;
+    }
+
+    /**
+     * @param tagTime the tagTime to set
+     */
+    public void setTagTime(Date tagTime) {
+	this.tagTime = tagTime;
+    }
+
+    /**
+     * @return the shazamInfoUrl
+     */
+    public String getShazamInfoUrl() {
+	return shazamInfoUrl;
+    }
+
+    /**
+     * @param shazamInfoUrl the shazamInfoUrl to set
+     */
+    public void setShazamInfoUrl(String shazamInfoUrl) {
+	this.shazamInfoUrl = shazamInfoUrl;
+    }
+
+    @Override
+    public String toString() {
+	return "Tag [id=" + id + ", trackTitle=" + trackTitle + ", artist=" + artist + ", matches=" + matches
+		+ ", album=" + album + ", label=" + label + ", releaseYear=" + releaseYear + ", imageUrl=" + imageUrl
+		+ ", tagTime=" + tagTime + ", shazamInfoUrl=" + shazamInfoUrl + "]";
+    }
+
+    @Override
+    public int hashCode() {
+	return Objects.hash(album, artist, id, imageUrl, label, matches, releaseYear, shazamInfoUrl, tagTime,
+		trackTitle);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+	if (this == obj)
+	    return true;
+	if (!(obj instanceof Tag))
+	    return false;
+	Tag other = (Tag) obj;
+	return Objects.equals(album, other.album) && Objects.equals(artist, other.artist)
+		&& Objects.equals(id, other.id) && Objects.equals(imageUrl, other.imageUrl)
+		&& Objects.equals(label, other.label) && Objects.equals(matches, other.matches)
+		&& releaseYear == other.releaseYear && Objects.equals(shazamInfoUrl, other.shazamInfoUrl)
+		&& Objects.equals(tagTime, other.tagTime) && Objects.equals(trackTitle, other.trackTitle);
+    }
+
 }

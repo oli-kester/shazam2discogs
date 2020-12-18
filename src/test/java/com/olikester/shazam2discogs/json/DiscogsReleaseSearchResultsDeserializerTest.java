@@ -19,7 +19,6 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.olikester.shazam2discogs.json.DiscogsReleaseSearchResultsDeserializer;
 import com.olikester.shazam2discogs.model.Release;
 
 public class DiscogsReleaseSearchResultsDeserializerTest {
