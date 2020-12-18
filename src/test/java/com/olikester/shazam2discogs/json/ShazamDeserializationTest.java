@@ -5,7 +5,6 @@ import com.fasterxml.jackson.core.Version;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.olikester.shazam2discogs.json.ShazamTagsDeserializer;
 import com.olikester.shazam2discogs.model.Tag;
 
 import org.junit.jupiter.api.BeforeAll;

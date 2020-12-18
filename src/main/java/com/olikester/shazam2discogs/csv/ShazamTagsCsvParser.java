@@ -40,7 +40,7 @@ public class ShazamTagsCsvParser {
 	ICsvBeanReader beanReader = null;
 	ArrayList<Tag> tagList = new ArrayList<Tag>();
 	
-	String escapedInput = removeUnescapedQuotes(input);
+	String escapedInput = fixUnescapedQuotes(input);
 
 	try {
 	    beanReader = new CsvBeanReader(new StringReader(escapedInput), CsvPreference.STANDARD_PREFERENCE);
@@ -53,7 +53,6 @@ public class ShazamTagsCsvParser {
 
 	    Tag newTag;
 	    while ((newTag = beanReader.read(Tag.class, header, cellProcessors)) != null) {
-		System.out.println(newTag.toString());
 		tagList.add(newTag);
 	    }
 
@@ -70,7 +69,7 @@ public class ShazamTagsCsvParser {
      * @param input String
      * @return The more-valid CSV
      */
-    protected static String removeUnescapedQuotes(String input) {
+    protected static String fixUnescapedQuotes(String input) {
 	// look for un-escaped quotes in the CSV and escape them.
 	Pattern unescapedQuoteRegex = Pattern.compile(",\"(([^\",]+\"[^\",]+)+)\",");
 	Matcher matcher = unescapedQuoteRegex.matcher(input);

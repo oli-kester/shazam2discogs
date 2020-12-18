@@ -24,15 +24,10 @@ import org.supercsv.io.CsvBeanWriter;
 import org.supercsv.io.ICsvBeanWriter;
 import org.supercsv.prefs.CsvPreference;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.core.Version;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.olikester.shazam2discogs.csv.ShazamTagsCsvParser;
 import com.olikester.shazam2discogs.dao.ConsumerTokenDao;
 import com.olikester.shazam2discogs.dao.MatchesDao;
 import com.olikester.shazam2discogs.dao.TagDao;
-import com.olikester.shazam2discogs.json.ShazamTagsDeserializer;
 import com.olikester.shazam2discogs.model.JpaOAuthConsumerToken;
 import com.olikester.shazam2discogs.model.Tag;
 import com.olikester.shazam2discogs.model.TagReleaseMatch;
@@ -68,11 +63,10 @@ public class MainController {
     }
 
     @PostMapping("/")
-    public RedirectView handleFileUpload(@RequestParam("shazam-json-file") MultipartFile file, RedirectAttributes ra,
+    public RedirectView handleFileUpload(@RequestParam("shazam-data-file") MultipartFile file, RedirectAttributes ra,
 	    HttpSession session) {
 
 	String fileContents = "";
-
 	try {
 	    fileContents = new String(file.getBytes());
 	    ra.addFlashAttribute("ioSuccess", true);
@@ -81,18 +75,12 @@ public class MainController {
 	    e.printStackTrace();
 	}
 
-	ObjectMapper mapper = new ObjectMapper();
-	SimpleModule module = new SimpleModule("ShazamTagsDeserializer", new Version(1, 0, 0, null, null, null));
 	ArrayList<Tag> tags = new ArrayList<Tag>();
-	module.addDeserializer(ArrayList.class, new ShazamTagsDeserializer());
-	mapper.registerModule(module);
-
 	try {
-	    tags = mapper.readValue(fileContents, new TypeReference<ArrayList<Tag>>() {
-	    });
+	    tags = ShazamTagsCsvParser.readWithCsvBeanReader(fileContents);
 	    ra.addFlashAttribute("parseSuccess", true);
 	    ra.addFlashAttribute("numTags", tags.size());
-	} catch (JsonProcessingException e) {
+	} catch (IOException e) {
 	    ra.addFlashAttribute("parseSuccess", false);
 	    e.printStackTrace();
 	}
@@ -106,12 +94,12 @@ public class MainController {
 	    matchesDao.save(match);
 	});
 
-	RedirectView rv = new RedirectView("jsonSumbit");
+	RedirectView rv = new RedirectView("tagDataSumbit");
 	return rv;
     }
 
-    @GetMapping("/jsonSumbit")
-    public ModelAndView jsonSumbit(HttpSession session, HttpServletRequest request) {
+    @GetMapping("/tagDataSumbit")
+    public ModelAndView tagDataSumbit(HttpSession session, HttpServletRequest request) {
 	Map<String, ?> inputFlashMap = RequestContextUtils.getInputFlashMap(request);
 	ModelAndView mv = new ModelAndView();
 
@@ -127,9 +115,9 @@ public class MainController {
 		    mv.setViewName("linkDiscogs");
 		}
 	    } else {
-		// TODO better error messages in JSON Error document
+		// TODO better error messages in data error document
 		mv.addAllObjects(inputFlashMap);
-		mv.setViewName("jsonError");
+		mv.setViewName("dataError");
 	    }
 	} else {
 	    // Shazam tags not parsed in previous request. Let's still try and find them in
@@ -150,7 +138,7 @@ public class MainController {
     }
 
     /**
-     * Export a CSV file of all the Shazam tags that weren't added to Discogs. 
+     * Export a CSV file of all the Shazam tags that weren't added to Discogs.
      * 
      * @param response
      * @throws IOException

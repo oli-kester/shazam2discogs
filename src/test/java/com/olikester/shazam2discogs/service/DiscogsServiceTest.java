@@ -16,7 +16,6 @@ import org.springframework.test.context.TestPropertySource;
 import com.olikester.shazam2discogs.model.JpaOAuthConsumerToken;
 import com.olikester.shazam2discogs.model.Release;
 import com.olikester.shazam2discogs.model.Tag;
-import com.olikester.shazam2discogs.service.DiscogsService;
 
 @SpringBootTest
 @TestPropertySource(locations = "classpath:apiSecret.properties") // API keys are hidden in second properties file.

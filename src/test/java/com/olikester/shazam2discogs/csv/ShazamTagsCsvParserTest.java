@@ -106,14 +106,14 @@ class ShazamTagsCsvParserTest {
     @DisplayName("Check we're escaping quote marks")
     @Test
     void escapeQuoteTest() {
-	String escaped = ShazamTagsCsvParser.removeUnescapedQuotes(escapeQuoteTest1);
+	String escaped = ShazamTagsCsvParser.fixUnescapedQuotes(escapeQuoteTest1);
 	assertEquals(escapeQuoteTest1expected, escaped);
     }
 
     @DisplayName("Check we're not wrongly escaping quote at cell ends")
     @Test
     void escapeQuoteTest2() {
-	String escaped = ShazamTagsCsvParser.removeUnescapedQuotes(escapeQuoteTest2);
+	String escaped = ShazamTagsCsvParser.fixUnescapedQuotes(escapeQuoteTest2);
 	assertEquals(escapeQuoteTest2, escaped); // should be unchanged
     }
 
@@ -151,7 +151,7 @@ class ShazamTagsCsvParserTest {
     void manualRegexTest1() {
 	String input = ",\"This is a test \" with lots \" of quote \" marks \",";
 	String expected = ",\"This is a test \"\" with lots \"\" of quote \"\" marks \",";
-	String result = ShazamTagsCsvParser.removeUnescapedQuotes(input);
+	String result = ShazamTagsCsvParser.fixUnescapedQuotes(input);
 	assertEquals(expected, result);
     }
     
@@ -160,7 +160,7 @@ class ShazamTagsCsvParserTest {
     void manualRegexTest2() {
 	String input = ",\"12\"13\"records\",";
 	String expected = ",\"12\"\"13\"\"records\",";
-	String result = ShazamTagsCsvParser.removeUnescapedQuotes(input);
+	String result = ShazamTagsCsvParser.fixUnescapedQuotes(input);
 	assertEquals(expected, result);
     }
 }

@@ -2,7 +2,6 @@ package com.olikester.shazam2discogs.model;
 
 import java.util.Date;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -194,26 +193,6 @@ public class Tag {
 	return "Tag [id=" + id + ", trackTitle=" + trackTitle + ", artist=" + artist + ", matches=" + matches
 		+ ", album=" + album + ", label=" + label + ", releaseYear=" + releaseYear + ", imageUrl=" + imageUrl
 		+ ", tagTime=" + tagTime + ", shazamInfoUrl=" + shazamInfoUrl + "]";
-    }
-
-    @Override
-    public int hashCode() {
-	return Objects.hash(album, artist, id, imageUrl, label, matches, releaseYear, shazamInfoUrl, tagTime,
-		trackTitle);
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-	if (this == obj)
-	    return true;
-	if (!(obj instanceof Tag))
-	    return false;
-	Tag other = (Tag) obj;
-	return Objects.equals(album, other.album) && Objects.equals(artist, other.artist)
-		&& Objects.equals(id, other.id) && Objects.equals(imageUrl, other.imageUrl)
-		&& Objects.equals(label, other.label) && Objects.equals(matches, other.matches)
-		&& releaseYear == other.releaseYear && Objects.equals(shazamInfoUrl, other.shazamInfoUrl)
-		&& Objects.equals(tagTime, other.tagTime) && Objects.equals(trackTitle, other.trackTitle);
     }
 
 }

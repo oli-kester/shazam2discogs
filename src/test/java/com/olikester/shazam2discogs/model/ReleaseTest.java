@@ -18,8 +18,6 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.olikester.shazam2discogs.json.DiscogsReleaseSearchResultsDeserializer;
-import com.olikester.shazam2discogs.model.MediaFormats;
-import com.olikester.shazam2discogs.model.Release;
 
 public class ReleaseTest {
 
