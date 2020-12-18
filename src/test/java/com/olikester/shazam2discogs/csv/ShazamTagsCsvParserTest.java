@@ -145,12 +145,21 @@ class ShazamTagsCsvParserTest {
 	assertEquals("https://www.shazam.com/track/59078628/hall-of-mirrors", tag.getShazamInfoUrl());
 	assertEquals("59078628", tag.getId());
     }
-    
+
     @DisplayName("Test Escaping Regex function")
     @Test
     void manualRegexTest1() {
-	String input = "\"This is a test \" with lots \" of quote \" marks \"";
-	String expected = "\"This is a test \"\" with lots \"\" of quote \"\" marks \"";
+	String input = ",\"This is a test \" with lots \" of quote \" marks \",";
+	String expected = ",\"This is a test \"\" with lots \"\" of quote \"\" marks \",";
+	String result = ShazamTagsCsvParser.removeUnescapedQuotes(input);
+	assertEquals(expected, result);
+    }
+    
+    @DisplayName("Test Escaping Regex function")
+    @Test
+    void manualRegexTest2() {
+	String input = ",\"12\"13\"records\",";
+	String expected = ",\"12\"\"13\"\"records\",";
 	String result = ShazamTagsCsvParser.removeUnescapedQuotes(input);
 	assertEquals(expected, result);
     }

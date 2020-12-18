@@ -72,7 +72,7 @@ public class ShazamTagsCsvParser {
      */
     protected static String removeUnescapedQuotes(String input) {
 	// look for un-escaped quotes in the CSV and escape them.
-	Pattern unescapedQuoteRegex = Pattern.compile(",\"([^\",]+(\")[^\",]+)\",");
+	Pattern unescapedQuoteRegex = Pattern.compile(",\"(([^\",]+\"[^\",]+)+)\",");
 	Matcher matcher = unescapedQuoteRegex.matcher(input);
 	return matcher.replaceAll(match -> {
 	    String escaped = match.group(1).replaceAll("\"", "\"\"");
