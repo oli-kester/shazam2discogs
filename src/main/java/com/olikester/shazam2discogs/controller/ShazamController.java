@@ -32,9 +32,10 @@ import com.olikester.shazam2discogs.model.JpaOAuthConsumerToken;
 import com.olikester.shazam2discogs.model.Tag;
 import com.olikester.shazam2discogs.model.TagReleaseMatch;
 import com.olikester.shazam2discogs.service.DiscogsService;
+import com.olikester.shazam2discogs.service.ShazamService;
 
 @Controller
-public class MainController {
+public class ShazamController {
 
     @Value("${shazam2discogs.oauth-bypass}")
     private boolean OAUTH_BYPASS;
@@ -43,6 +44,8 @@ public class MainController {
     private TagDao tagDao;
     @Autowired
     private ConsumerTokenDao tokenDao;
+    @Autowired
+    private ShazamService shazamService;
     @Autowired
     private DiscogsService discogsService;
     @Autowired
@@ -86,6 +89,8 @@ public class MainController {
 	}
 
 	tags.stream().forEach(currTag -> {
+	    currTag = shazamService.fetchExtraTagData(currTag);
+
 	    TagReleaseMatch match = new TagReleaseMatch();
 	    match.setSessionId(session.getId());
 	    match.setTag(currTag);
