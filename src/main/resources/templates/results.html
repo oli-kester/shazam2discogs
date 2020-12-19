@@ -26,19 +26,27 @@
 										<td>
 											<div class="d-flex align-items-center">
 												<div class="tag-image mr-2">
-													<img class="img-thumbnail"
+													<img th:if="${matchDatum.getTag().getImageUrl() != ''}"
+														class="img-thumbnail"
 														th:alt="'Image for - ' + ${matchDatum.getTag().getTrackTitle()}"
-														th:src="${matchDatum.getTag().getImageUrl()}">
+														th:src="${matchDatum.getTag().getImageUrl()}"> <img
+														th:if="${matchDatum.getTag().getImageUrl() == ''}"
+														class="img-thumbnail"
+														th:alt="'No art found for - ' + ${matchDatum.getTag().getTrackTitle()}"
+														th:src="@{/disc.svg}">
 												</div>
 												<div class="tag-data ml-2">
 													<div class="tag-artist font-weight-bold"
 														th:text="${matchDatum.getTag().getArtist()}"></div>
 													<div class="tag-track-title font-weight-bold"
 														th:text="${matchDatum.getTag().getTrackTitle()}"></div>
-													<div class="tag-album" th:text="${matchDatum.getTag().getAlbum()}"></div>
+													<div class="tag-album"
+														th:text="${matchDatum.getTag().getAlbum()}"></div>
 													<div class="tag-release-year"
+													th:if="${matchDatum.getTag().getReleaseYear() != 0}"
 														th:text="${matchDatum.getTag().getReleaseYear()}"></div>
-													<div class="tag-label" th:text="${matchDatum.getTag().getLabel()}"></div>
+													<div class="tag-label"
+														th:text="${matchDatum.getTag().getLabel()}"></div>
 												</div>
 											</div>
 										</td>
