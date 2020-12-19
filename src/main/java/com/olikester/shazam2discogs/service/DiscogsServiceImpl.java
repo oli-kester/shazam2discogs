@@ -103,7 +103,8 @@ public class DiscogsServiceImpl implements DiscogsService {
     public ArrayList<Release> getReleaseList(Tag currTag, JpaOAuthConsumerToken accessToken) {
 
 	UriComponentsBuilder uriComponents = UriComponentsBuilder.fromHttpUrl(DISCOGS_SEARCH_URL)
-		.queryParam("type", "release").queryParam("artist", currTag.getArtist());
+		.queryParam("type", "release").queryParam("artist", currTag.getArtist())
+		.queryParam("track", currTag.getTrackTitle());
 
 	// only add these search parameters if they're not null
 	if (currTag.getAlbum() != null) {
