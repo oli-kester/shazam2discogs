@@ -1,12 +1,10 @@
 # Shazam2Discogs
 
-This is a Spring Boot application that will import a JSON-based file of Shazam Tags and allow you to add it to your Discogs Wantlist. 
-
-It uses the older OAuth1.0a standard, as dictated by Discogs. 
+This is a Spring Boot application that imports a CSV file of Shazam Tags & adds it to your Discogs Wantlist. 
 
 ## Usage
 
-The service is hosted at [shazam2discogs.olikester.com](https://shazam2discogs.olikester.com)
+The service is hosted at [shazam2discogs.olikester.com](https://shazam2discogs.olikester.com). 
 
 ## Development
 
@@ -46,4 +44,12 @@ spring.datasource.password=[your desired password here]
 ```
 
 ### Local Development URL
-During local development, access the site through a specific IP (e.g. `http://127.0.0.1:8080/`) rather than `localhost`. Using `localhost` will prevent the OAuth callback from working. 
+During local development, you should access the site through IP (e.g. `http://127.0.0.1:8080/`) rather than `localhost`. 
+
+- Using `localhost` will prevent the OAuth callback from working. 
+
+
+### Docker
+Docker images can be created using the included Dockerfile. 
+
+- Note that the Gradle command `bootJar` should be run before the `docker build` command to create a .jar file for Docker to bundle.  
