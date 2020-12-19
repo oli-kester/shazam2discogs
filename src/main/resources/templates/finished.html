@@ -16,7 +16,8 @@
 							Discogs wantlist</a>.
 					</p>
 					<div>
-						<table class="table table-dark table-bordered additions-table mx-auto">
+						<table
+							class="table table-dark table-bordered additions-table mx-auto">
 							<tr>
 								<td class="text-right">Wantlist additions send to Discogs</td>
 								<td th:text="${numReleasesProcessed}"></td>
@@ -31,11 +32,10 @@
 							</tr>
 						</table>
 					</div>
-					<div
-						th:if="${not #lists.isEmpty(failedReleases)}">
+					<div th:if="${not #lists.isEmpty(failedReleases)}">
 						<div class="row">
-							<p class="mt-4">You can find the releases that failed to add listed below
-								-</p>
+							<p class="mt-4">You can find the releases that failed to add
+								listed below -</p>
 						</div>
 						<div class="row">
 							<table
@@ -75,18 +75,34 @@
 							</table>
 						</div>
 					</div>
-					<div class="mt-4 mx-auto">
-						<div class="row w-100">
-							<p class="col-6">Click here to export a CSV file of tags that weren't added to Discogs  - </p>
-							<div class="col-6"
-								th:insert="fragments/buttons:: export_csv_button"></div>
+					<div class="mt-4 mx-auto row text-center">
+						<div class="card p-3 m-3 border-light bg-dark col-md">
+							<p>Click here to export a CSV file of tags that weren't
+								added to Discogs</p>
+							<div th:insert="fragments/buttons:: export_csv_button"></div>
 						</div>
-						<div class="row w-100">
-							<p class="col-6">
+						<div class="card p-3 m-3 border-light bg-dark col-md">
+							<p>If this tool was useful to you, please consider a
+								donation</p>
+							<form action="https://www.paypal.com/donate" method="post"
+								target="_top">
+								<input type="hidden" name="hosted_button_id"
+									value="J8ACACNETHTUA" /> <input type="image"
+									class="mb-4 bg-light p-2 border-dark rounded"
+									src="https://www.paypalobjects.com/en_US/GB/i/btn/btn_donateCC_LG.gif"
+									border="0" name="submit"
+									title="PayPal - The safer, easier way to pay online!"
+									alt="Donate with PayPal button" /> <img alt="" border="0"
+									src="https://www.paypal.com/en_GB/i/scr/pixel.gif" width="1"
+									height="1" />
+							</form>
+						</div>
+						<div class="card p-3 m-3 border-light bg-dark col-md">
+							<p>
 								Click here to delete your personal data from <span
 									th:replace="fragments/strings:: site_name"></span>
 							</p>
-							<div class="col-6" th:insert="fragments/buttons:: exit_btn"></div>
+							<div th:insert="fragments/buttons:: exit_btn"></div>
 						</div>
 					</div>
 				</div>
