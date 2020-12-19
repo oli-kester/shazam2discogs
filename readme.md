@@ -47,3 +47,9 @@ spring.datasource.password=[your desired password here]
 
 ### Local Development URL
 During local development, access the site through a specific IP (e.g. `http://127.0.0.1:8080/`) rather than `localhost`. Using `localhost` will prevent the OAuth callback from working. 
+
+
+### Docker
+Docker images can be created using the included Dockerfile. 
+
+- Note that the Gradle command `bootJar` should be run before the `docker build` command to create a .jar file.  
