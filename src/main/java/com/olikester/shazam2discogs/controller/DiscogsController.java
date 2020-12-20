@@ -4,7 +4,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpSession;
@@ -26,12 +25,9 @@ import org.springframework.web.servlet.view.RedirectView;
 import com.olikester.shazam2discogs.dao.ConsumerTokenDao;
 import com.olikester.shazam2discogs.dao.MatchesDao;
 import com.olikester.shazam2discogs.dao.ReleaseDao;
-import com.olikester.shazam2discogs.model.DiscogsAdditionStatus;
 import com.olikester.shazam2discogs.model.JpaOAuthConsumerToken;
 import com.olikester.shazam2discogs.model.MediaFormats;
 import com.olikester.shazam2discogs.model.Release;
-import com.olikester.shazam2discogs.model.Tag;
-import com.olikester.shazam2discogs.model.TagReleaseMatch;
 import com.olikester.shazam2discogs.service.DiscogsAsync;
 import com.olikester.shazam2discogs.service.DiscogsService;
 
