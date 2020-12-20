@@ -17,7 +17,8 @@ public class Tag {
     private String id;
     private String trackTitle;
     private String artist;
-    @OneToMany(mappedBy = "tag", fetch=FetchType.EAGER)
+    @OneToMany(mappedBy = "tag", fetch = FetchType.EAGER) // TODO remove EAGER for efficiency & solve subsequent
+							  // Hibernate errors
     private Set<TagReleaseMatch> matches;
 
     // JSON-only data
