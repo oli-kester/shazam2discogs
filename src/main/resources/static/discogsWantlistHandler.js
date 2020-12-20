@@ -5,6 +5,7 @@ const resultsBtn = document.getElementById('resultsBtn')
 const progressBar = document.getElementById('searchProgress')
 const progressText = document.getElementById('progressText')
 
+let searchProgressWorker
 let adding = false
 
 function resetGui() {
@@ -31,11 +32,18 @@ document.getElementById('resultsForm').addEventListener('submit', (event) => {
   cancelBtn.hidden = false
 
   // add worker to keep progress bar updated
-  let searchProgressWorker
   if (window.Worker) {
     searchProgressWorker = new Worker('searchProgressUpdater.js');
     searchProgressWorker.onmessage = (event) => {
       setProgressBar(event.data)
+
+      if (event.data == 100) { //actioned when search completes
+        resultsBtn.hidden = false
+        addBtn.value = 'Done!'
+        cancelBtn.hidden = true
+        adding = false
+        searchProgressWorker.terminate()
+      }
     }
   }
 
@@ -51,17 +59,6 @@ document.getElementById('resultsForm').addEventListener('submit', (event) => {
 
   // send request to S2D API
   const xhttp = new XMLHttpRequest()
-  xhttp.onreadystatechange = function () {
-    if (this.readyState == 4 && this.status == 200) {
-      //this is actioned when the search completes.
-      searchProgressWorker.terminate()
-      resultsBtn.hidden = false
-      addBtn.value = 'Done!'
-      cancelBtn.hidden = true
-      adding = false
-      setProgressBar(100)
-    }
-  };
   // pull checkboxes from the form
   const releaseSelectors = Array.from(document.getElementsByClassName('tag-select'))
   const queryString = releaseSelectors.reduce(function (accum, elem) {
@@ -75,5 +72,6 @@ document.getElementById('resultsForm').addEventListener('submit', (event) => {
 //handle cancel button presses
 cancelBtn.addEventListener('click', () => {
   serverRequestCanceller(STOP_ADDING_URL)
+  searchProgressWorker.terminate()
   resetGui()
 })

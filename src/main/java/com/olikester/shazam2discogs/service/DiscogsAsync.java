@@ -11,8 +11,10 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.olikester.shazam2discogs.dao.MatchesDao;
+import com.olikester.shazam2discogs.model.DiscogsAdditionStatus;
 import com.olikester.shazam2discogs.model.JpaOAuthConsumerToken;
 import com.olikester.shazam2discogs.model.MediaFormats;
 import com.olikester.shazam2discogs.model.Release;
@@ -33,9 +35,11 @@ public class DiscogsAsync {
     private Map<String, Integer> taskProgress;
 
     @Async
+    @Transactional
     public void asyncDiscogsSearch(MediaFormats preferredFormat, String sessionId,
-	    Optional<JpaOAuthConsumerToken> userToken, Set<Tag> userTags) {
+	    Optional<JpaOAuthConsumerToken> userToken) {
 	final AtomicInteger progressCounter = new AtomicInteger();
+	Set<Tag> userTags = matchesDao.getAllTagsForSession(sessionId);
 
 	// for loop lets us break stream when the user cancels the search
 	for (Tag currTag : userTags) {
@@ -73,7 +77,38 @@ public class DiscogsAsync {
 	    double progressPercentage = (progressCounter.incrementAndGet() / (double) userTags.size()) * 100;
 	    taskProgress.put(sessionId, (int) progressPercentage);
 	}
+	
+	if (!cancelTaskSessionIds.contains(sessionId)) {
+	    taskProgress.put(sessionId, 100);
+	}
+    }
 
+    @Async
+    @Transactional
+    public void asyncDiscogsWantlistAdditions(String sessionId, Optional<JpaOAuthConsumerToken> userToken,
+	    List<Release> releasesToAdd) {
+	final AtomicInteger progressCounter = new AtomicInteger();
+
+	// for loop lets us break stream when the user cancels the search
+	for (Release release : releasesToAdd) {
+	    if (cancelTaskSessionIds.contains(sessionId)) {
+		break;
+	    }
+
+	    TagReleaseMatch currMatch = matchesDao.getByReleaseAndSessionId(sessionId, release.getId());
+	    boolean wasAdded = discogsService.addReleaseToUserWantlist(release, userToken.get());
+
+	    if (wasAdded) { // save this to the match table
+		currMatch.setDiscogsAdditionStatus(DiscogsAdditionStatus.ADDED);
+	    } else {
+		currMatch.setDiscogsAdditionStatus(DiscogsAdditionStatus.FAILED);
+	    }
+	    matchesDao.save(currMatch);
+
+	    double progressPercentage = (progressCounter.incrementAndGet() / (double) releasesToAdd.size()) * 100;
+	    taskProgress.put(sessionId, (int) progressPercentage);
+	}
+	
 	if (!cancelTaskSessionIds.contains(sessionId)) {
 	    taskProgress.put(sessionId, 100);
 	}

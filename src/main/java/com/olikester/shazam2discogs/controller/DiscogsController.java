@@ -102,12 +102,11 @@ public class DiscogsController {
 	taskProgress.put(sessionId, 0);
 
 	if (authCheck(userToken)) {
-	    Set<Tag> userTags = matchesDao.getAllTagsForSession(sessionId);
 
 	    // reset cancellation status
 	    cancelTaskSessionIds.remove(sessionId);
 
-	    discogsAsync.asyncDiscogsSearch(preferredFormat, sessionId, userToken, userTags);
+	    discogsAsync.asyncDiscogsSearch(preferredFormat, sessionId, userToken);
 
 	    if (cancelTaskSessionIds.contains(sessionId)) {
 		return ResponseEntity.status(499).build();
@@ -143,7 +142,6 @@ public class DiscogsController {
 	String sessionId = session.getId();
 	Optional<JpaOAuthConsumerToken> userToken = tokenStore.findById(sessionId);
 	taskProgress.put(sessionId, 0);
-	final AtomicInteger progressCounter = new AtomicInteger();
 
 	// reset cancellation status
 	cancelTaskSessionIds.remove(sessionId);
@@ -156,25 +154,7 @@ public class DiscogsController {
 			return release;
 		    }).collect(Collectors.toList());
 
-	    // for loop lets us break stream when the user cancels the search
-	    for (Release release : releasesToAdd) {
-		if (cancelTaskSessionIds.contains(sessionId)) {
-		    break;
-		}
-
-		TagReleaseMatch currMatch = matchesDao.getByReleaseAndSessionId(sessionId, release.getId());
-		boolean wasAdded = discogsService.addReleaseToUserWantlist(release, userToken.get());
-
-		if (wasAdded) { // save this to the match table
-		    currMatch.setDiscogsAdditionStatus(DiscogsAdditionStatus.ADDED);
-		} else {
-		    currMatch.setDiscogsAdditionStatus(DiscogsAdditionStatus.FAILED);
-		}
-		matchesDao.save(currMatch);
-
-		double progressPercentage = (progressCounter.incrementAndGet() / (double) releasesToAdd.size()) * 100;
-		taskProgress.put(sessionId, (int) progressPercentage);
-	    }
+	    discogsAsync.asyncDiscogsWantlistAdditions(sessionId, userToken, releasesToAdd);
 
 	    if (cancelTaskSessionIds.contains(sessionId)) {
 		return ResponseEntity.status(499).build();
