@@ -16,7 +16,7 @@ public interface DiscogsService {
     public final String AUTHORIZATION_URL = "https://www.discogs.com/oauth/authorize";
     public final String ACCESS_TOKEN_URL = "https://api.discogs.com/oauth/access_token";
     public final String IDENTITY_CHECK_URL = "https://api.discogs.com/oauth/identity";
-    public final String USER_AGENT = "Shazam2Discogs/1.2.2 +http://oli-kester.net";
+    public final String USER_AGENT = "Shazam2Discogs/1.2.4 +http://oli-kester.net";
     public final String DISCOGS_SEARCH_URL = "https://api.discogs.com/database/search";
     public final String DISCOGS_USERS_URL = "https://api.discogs.com/users";
 
