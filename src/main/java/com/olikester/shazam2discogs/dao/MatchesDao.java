@@ -1,5 +1,6 @@
 package com.olikester.shazam2discogs.dao;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -21,7 +22,7 @@ public interface MatchesDao extends JpaRepository<TagReleaseMatch, Integer> {
     public TagReleaseMatch getByTagAndSessionId(String sessionId, String tagId);
 
     @Query("select T from TagReleaseMatch T where SESSION_ID = ?1 and RELEASE_ID = ?2")
-    public TagReleaseMatch getByReleaseAndSessionId(String sessionId, String releaseId);
+    public List<TagReleaseMatch> getByReleaseAndSessionId(String sessionId, String releaseId);
 
     @Query("select T from TagReleaseMatch T where SESSION_ID = ?1")
     public Set<TagReleaseMatch> getAllMatchDataForSession(String sessionId);

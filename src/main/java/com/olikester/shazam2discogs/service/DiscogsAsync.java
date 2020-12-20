@@ -95,7 +95,7 @@ public class DiscogsAsync {
 		break;
 	    }
 
-	    TagReleaseMatch currMatch = matchesDao.getByReleaseAndSessionId(sessionId, release.getId());
+	    TagReleaseMatch currMatch = matchesDao.getByReleaseAndSessionId(sessionId, release.getId()).get(0);
 	    boolean wasAdded = discogsService.addReleaseToUserWantlist(release, userToken.get());
 
 	    if (wasAdded) { // save this to the match table
