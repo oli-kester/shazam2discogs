@@ -1,4 +1,4 @@
-const STOP_ADDING_URL = 'stopAdding'
+const STOP_ADDING_URL = 'stopTask'
 const cancelBtn = document.getElementById('cancelBtn')
 const addBtn = document.getElementById('addBtn')
 const resultsBtn = document.getElementById('resultsBtn')

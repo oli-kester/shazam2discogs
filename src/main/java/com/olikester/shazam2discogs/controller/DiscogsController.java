@@ -118,9 +118,9 @@ public class DiscogsController {
 	return taskProgress.getOrDefault(session.getId(), 100);
     }
 
-    @GetMapping("stopSearch")
+    @GetMapping("stopTask")
     @ResponseBody
-    public void stopDiscogsSearch(HttpSession session) {
+    public void stopDiscogsTask(HttpSession session) {
 	cancelTaskSessionIds.add(session.getId());
     }
 

@@ -1,4 +1,4 @@
-const STOP_SEARCH_URL = 'stopSearch'
+const STOP_SEARCH_URL = 'stopTask'
 const cancelBtn = document.getElementById('cancelBtn')
 const searchBtn = document.getElementById('searchBtn')
 const resultsBtn = document.getElementById('resultsBtn')
