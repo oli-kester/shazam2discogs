@@ -5,6 +5,7 @@ const resultsBtn = document.getElementById('resultsBtn')
 const progressBar = document.getElementById('searchProgress')
 const progressText = document.getElementById('progressText')
 
+let searchProgressWorker
 let searching = false
 
 function resetGui() {
@@ -31,11 +32,18 @@ document.getElementById('searchForm').addEventListener('submit', (event) => {
   cancelBtn.hidden = false
 
   // add worker to keep progress bar updated
-  let searchProgressWorker
   if (window.Worker) {
     searchProgressWorker = new Worker('searchProgressUpdater.js');
     searchProgressWorker.onmessage = (event) => {
-	  setProgressBar(event.data)
+      setProgressBar(event.data)
+
+      if (event.data == 100) { //actioned when search completes
+        resultsBtn.hidden = false
+        searchBtn.value = 'Done!'
+        cancelBtn.hidden = true
+        searching = false
+        searchProgressWorker.terminate()
+      }
     }
   }
 
@@ -51,17 +59,6 @@ document.getElementById('searchForm').addEventListener('submit', (event) => {
 
   // send request to S2D API
   const xhttp = new XMLHttpRequest()
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-	  //this is actioned when the search completes.
-      searchProgressWorker.terminate()
-      resultsBtn.hidden = false
-      searchBtn.value = 'Done!'
-      cancelBtn.hidden = true
-      searching = false
-      setProgressBar(100)
-    }
-  };
   const mediaFormat = document.getElementById('media-type').value
   xhttp.open('GET', `/searchTags?mediaType=${mediaFormat}`)
   xhttp.send()
@@ -70,5 +67,6 @@ document.getElementById('searchForm').addEventListener('submit', (event) => {
 //handle cancel button presses
 cancelBtn.addEventListener('click', () => {
   serverRequestCanceller(STOP_SEARCH_URL)
+  searchProgressWorker.terminate()
   resetGui()
 })

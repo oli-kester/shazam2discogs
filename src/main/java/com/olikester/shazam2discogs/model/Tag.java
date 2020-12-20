@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
@@ -16,7 +17,7 @@ public class Tag {
     private String id;
     private String trackTitle;
     private String artist;
-    @OneToMany(mappedBy = "tag")
+    @OneToMany(mappedBy = "tag", fetch=FetchType.EAGER)
     private Set<TagReleaseMatch> matches;
 
     // JSON-only data

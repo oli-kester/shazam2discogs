@@ -1,6 +1,5 @@
 package com.olikester.shazam2discogs.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -33,6 +32,7 @@ import com.olikester.shazam2discogs.model.MediaFormats;
 import com.olikester.shazam2discogs.model.Release;
 import com.olikester.shazam2discogs.model.Tag;
 import com.olikester.shazam2discogs.model.TagReleaseMatch;
+import com.olikester.shazam2discogs.service.DiscogsAsync;
 import com.olikester.shazam2discogs.service.DiscogsService;
 
 @SuppressWarnings("deprecation")
@@ -42,6 +42,8 @@ public class DiscogsController {
     private static final String OAUTH_CALLBACK = "/oauthCallback";
     private static final Logger logger = LoggerFactory.getLogger(DiscogsController.class);
 
+    @Autowired
+    private DiscogsAsync discogsAsync;
     @Autowired
     private DiscogsService discogsService;
     @Autowired
@@ -98,7 +100,6 @@ public class DiscogsController {
 	String sessionId = session.getId();
 	Optional<JpaOAuthConsumerToken> userToken = tokenStore.findById(sessionId);
 	taskProgress.put(sessionId, 0);
-	final AtomicInteger progressCounter = new AtomicInteger();
 
 	if (authCheck(userToken)) {
 	    Set<Tag> userTags = matchesDao.getAllTagsForSession(sessionId);
@@ -106,42 +107,8 @@ public class DiscogsController {
 	    // reset cancellation status
 	    cancelTaskSessionIds.remove(sessionId);
 
-	    // for loop lets us break stream when the user cancels the search
-	    for (Tag currTag : userTags) {
-		if (cancelTaskSessionIds.contains(sessionId)) {
-		    break;
-		}
+	    discogsAsync.asyncDiscogsSearch(preferredFormat, sessionId, userToken, userTags);
 
-		// search Discogs database for best match for each tag
-		ArrayList<Release> discogsSearchResults = discogsService.getReleaseList(currTag, userToken.get());
-
-		if (discogsSearchResults.isEmpty()) {
-		    // if we didn't find any results, try a less specific search.
-		    String searchTerm = currTag.getSimpleSearchTerm();
-		    discogsSearchResults = discogsService.getReleaseList(searchTerm, userToken.get());
-
-		    if (discogsSearchResults.isEmpty()) {
-			continue; // if there's still no results found, skip this one.
-		    }
-		}
-
-		// throw away master releases
-		List<Release> nonMasterReleases = discogsSearchResults.stream()
-			.filter(release -> release.getReleaseType().equals("release")).collect(Collectors.toList());
-
-		// add best match to release database
-		Release bestMatch = Release.selectPreferredReleaseByFormat(nonMasterReleases, preferredFormat);
-		TagReleaseMatch currMatchRecord = matchesDao.getByTagAndSessionId(sessionId, currTag.getId());
-		currMatchRecord.setRelease(bestMatch);
-		bestMatch.addMatch(currMatchRecord);
-		currTag.addMatch(currMatchRecord);
-		matchesDao.save(currMatchRecord);
-
-		// update search progress so this can be requested by the webpage (casting to
-		// avoid rounding errors)
-		double progressPercentage = (progressCounter.incrementAndGet() / (double) userTags.size()) * 100;
-		taskProgress.put(sessionId, (int) progressPercentage);
-	    }
 	    if (cancelTaskSessionIds.contains(sessionId)) {
 		return ResponseEntity.status(499).build();
 	    }
@@ -221,11 +188,11 @@ public class DiscogsController {
     public ModelAndView finishedResults(HttpSession session) {
 	ModelAndView mv = new ModelAndView();
 	String sessionId = session.getId();
-	
+
 	int numReleasesAdded = matchesDao.getNumberOfReleasesAddedBySessionId(sessionId);
 	Set<Release> failedReleases = matchesDao.getFailedReleasesBySessionId(sessionId);
 	int numReleasesFailed = failedReleases.size();
-	
+
 	mv.addObject("numReleasesProcessed", numReleasesAdded + numReleasesFailed);
 	mv.addObject("numReleasesAdded", numReleasesAdded);
 	mv.addObject("numReleasesFailed", numReleasesFailed);
