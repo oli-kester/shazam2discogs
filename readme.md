@@ -9,7 +9,7 @@
   </a>
 </p>
 
-This is a Spring Boot application that imports a CSV file of Shazam Tags & adds it to your Discogs Wantlist. 
+This is a Spring Boot application that takes a CSV file of Shazam Tags, matches them with your chosen media format, and adds them to your Discogs Wantlist. 
 
 ## Usage
 
