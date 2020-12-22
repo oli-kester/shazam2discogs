@@ -1,4 +1,13 @@
 # Shazam2Discogs
+<p align="center">
+  <a href="https://shazam2discogs.olikester.com">
+    <img
+      alt="Shazam2Discogs"
+      src="https://olikester.blob.core.windows.net/$web/assets/project-images/s2d.png"
+      width="90%"
+    />
+  </a>
+</p>
 
 This is a Spring Boot application that imports a CSV file of Shazam Tags & adds it to your Discogs Wantlist. 
 
